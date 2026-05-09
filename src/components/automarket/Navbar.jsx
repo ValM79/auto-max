@@ -34,8 +34,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-1">
-            <span className="text-[hsl(var(--foreground))] text-xl font-semibold tracking-tight">Ant</span>
-            <span className="text-[hsl(var(--foreground))] text-xl font-extrabold tracking-tight">Ratu</span>
+            <span className="text-[hsl(var(--foreground))] text-xl font-semibold tracking-tight">Auto</span>
+            <span className="text-[hsl(var(--foreground))] text-xl font-extrabold tracking-tight">Market</span>
             <svg className="text-[hsl(var(--destructive))] mt-0.5 w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <path d="M7 17l9.2-9.2M17 17V7H7" />
             </svg>
@@ -46,8 +46,6 @@ export default function Navbar() {
             {navLinks.map((link) =>
             <button
               key={link.label} className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
-              
-              
                 {link.label}
                 {link.hasDropdown && <ChevronDown className="w-3.5 h-3.5" />}
               </button>
@@ -75,7 +73,6 @@ export default function Navbar() {
             <button
               className="lg:hidden text-white"
               onClick={() => setMobileOpen(!mobileOpen)}>
-              
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
@@ -89,7 +86,6 @@ export default function Navbar() {
         <button
           key={link.label}
           className="w-full text-left text-white/90 hover:text-white hover:bg-white/10 px-6 py-3 text-sm font-medium flex items-center justify-between transition-colors">
-          
               {link.label}
               {link.hasDropdown && <ChevronDown className="w-4 h-4" />}
             </button>
@@ -105,5 +101,4 @@ export default function Navbar() {
         </div>
       }
     </nav>);
-
 }

@@ -22,7 +22,6 @@ const IMG = {
   boatExtras: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/87a17cb2c_generated_image.png',
   boat: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/87a17cb2c_generated_image.png',
   breaking: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/700a41555_generated_image.png',
-  // carParts: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/b7a3b7c7f_generated_image.png',
   rallyCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/f262f4c3a_generated_image.png',
 };
 
@@ -38,7 +37,6 @@ const categories = [
 { label: 'Rally Cars', imgKey: 'rallyCar' },
 { label: 'Breaking & Repairables', imgKey: 'breaking' },
 ],
-
 [
 { label: 'Trucks', imgKey: 'truck' },
 { label: 'Commercials', imgKey: 'commercial', highlight: true },
@@ -49,7 +47,6 @@ const categories = [
 { label: 'Motorbike Extras', imgKey: 'motorbikeExtras' },
 { label: 'Caravans', imgKey: 'caravan' },
 ],
-
 [
 { label: 'Motorbikes', imgKey: 'motorbike', highlight: true },
 { label: 'Vintage Bikes', imgKey: 'vintageBike' },
@@ -60,26 +57,21 @@ const categories = [
 { label: 'Other Motor', isOther: true },
 ]];
 
-
-
 function CategoryIcon({ imgKey, isAllMotor, isOther }) {
   if (isAllMotor) {
     return (
       <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center flex-shrink-0">
         <span className="text-white font-bold text-lg">D</span>
       </div>);
-
   }
   if (isOther) {
     return (
       <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 text-muted-foreground text-2xl font-bold">?</div>);
-
   }
   return (
     <div className="w-12 h-9 flex items-center justify-center flex-shrink-0">
       <img src={IMG[imgKey]} alt="" className="max-w-full max-h-full object-contain" />
     </div>);
-
 }
 
 function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
@@ -93,7 +85,6 @@ function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
       </div>
       <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
     </button>);
-
 }
 
 export default function BrowseByCategory() {
@@ -110,5 +101,4 @@ export default function BrowseByCategory() {
         )}
       </div>
     </section>);
-
 }

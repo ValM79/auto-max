@@ -35,7 +35,7 @@ export default function HubsSection() {
     <section className="bg-secondary py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-2">
-          AntRatu Hubs
+          AutoMarket Hubs
         </h2>
         <p className="text-center text-muted-foreground mb-8">
           Tips and advice for buying your next car.

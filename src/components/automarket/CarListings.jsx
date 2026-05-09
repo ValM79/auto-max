@@ -1,6 +1,5 @@
 import React from 'react';
 
-// All makes from HeroSearch
 const ALL_MAKES = [
   '-Kita-', 'A1 PRO', 'Abarth', 'AC', 'Acura', 'Aito', 'Aiways', 'Aixam', 'Alfa Romeo', 'Alpina',
   'Aston Martin', 'Audi', 'BAW', 'BELLIER', 'Bentley', 'BMW', 'Bontu', 'Buick', 'BYD', 'Cadillac',
@@ -17,14 +16,12 @@ const ALL_MAKES = [
   'ZAZ', 'Zeekr', 'Zhidou',
 ];
 
-// Initials for badge — use first 2 chars for readability
 function getInitials(name) {
   const words = name.trim().split(/[\s\-&]/);
   if (words.length >= 2) return (words[0][0] + words[1][0]).toUpperCase();
   return name.slice(0, 2).toUpperCase();
 }
 
-// Deterministic pastel background per make
 const BADGE_COLORS = [
   'bg-blue-100 text-blue-700',
   'bg-emerald-100 text-emerald-700',
@@ -46,7 +43,7 @@ export default function CarListings() {
   return (
     <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
       <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Browse by Make</h2>
-      <p className="text-muted-foreground mb-8">Find cars from all manufacturers available on AntRatu.</p>
+      <p className="text-muted-foreground mb-8">Find cars from all manufacturers available on AutoMarket.</p>
 
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
         {ALL_MAKES.map((make) => (

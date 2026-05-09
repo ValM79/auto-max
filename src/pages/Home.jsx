@@ -1,14 +1,14 @@
 import React from 'react';
-import Navbar from '../components/antratu/Navbar';
-import QuickLinks from '../components/antratu/QuickLinks';
-import HeroSearch from '../components/antratu/HeroSearch';
-import BrowseByCategory from '../components/antratu/BrowseByCategory';
-import HubsSection from '../components/antratu/HubsSection';
-import ReviewsSection from '../components/antratu/ReviewsSection';
-import ElectricSection from '../components/antratu/ElectricSection';
-import PopularMakes from '../components/antratu/PopularMakes';
-import Footer from '../components/antratu/Footer';
-import CarListings from '../components/antratu/CarListings';
+import Navbar from '../components/automarket/Navbar';
+import QuickLinks from '../components/automarket/QuickLinks';
+import HeroSearch from '../components/automarket/HeroSearch';
+import BrowseByCategory from '../components/automarket/BrowseByCategory';
+import HubsSection from '../components/automarket/HubsSection';
+import ReviewsSection from '../components/automarket/ReviewsSection';
+import ElectricSection from '../components/automarket/ElectricSection';
+import PopularMakes from '../components/automarket/PopularMakes';
+import Footer from '../components/automarket/Footer';
+import CarListings from '../components/automarket/CarListings';
 
 export default function Home() {
   return (

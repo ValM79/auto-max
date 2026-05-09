@@ -43,41 +43,37 @@ export default function CompareModal({ cars, onClose }) {
           ))}
         </div>
 
-        {SPECS.map((spec, i) => {
-          const values = cars.map((c) => c[spec.key]);
-
-          return (
-            <div
-              key={spec.key}
-              className="grid border-b border-border last:border-0"
-              style={{ gridTemplateColumns: `200px repeat(${cars.length}, 1fr)` }}
-            >
-              <div className={`px-5 py-3.5 flex items-center text-sm font-semibold text-muted-foreground ${i % 2 === 0 ? 'bg-secondary/30' : ''}`}>
-                {spec.label}
-              </div>
-              {cars.map((car) => {
-                const val = car[spec.key];
-                const isHighlight = spec.key === 'price'
-                  ? val === cars.reduce((best, c) => {
-                      const n = parseFloat(c.price.replace(/[^0-9.]/g, ''));
-                      const bn = parseFloat(best.replace(/[^0-9.]/g, ''));
-                      return n < bn ? c.price : best;
-                    }, cars[0].price)
-                  : false;
-
-                return (
-                  <div
-                    key={car.id}
-                    className={`px-5 py-3.5 text-sm border-l border-border flex items-center ${i % 2 === 0 ? 'bg-secondary/30' : ''} ${isHighlight ? 'text-accent font-bold' : 'text-foreground'}`}
-                  >
-                    {val || <Minus className="w-4 h-4 text-muted-foreground" />}
-                    {isHighlight && <Check className="w-3.5 h-3.5 ml-1.5 text-accent" />}
-                  </div>
-                );
-              })}
+        {SPECS.map((spec, i) => (
+          <div
+            key={spec.key}
+            className="grid border-b border-border last:border-0"
+            style={{ gridTemplateColumns: `200px repeat(${cars.length}, 1fr)` }}
+          >
+            <div className={`px-5 py-3.5 flex items-center text-sm font-semibold text-muted-foreground ${i % 2 === 0 ? 'bg-secondary/30' : ''}`}>
+              {spec.label}
             </div>
-          );
-        })}
+            {cars.map((car) => {
+              const val = car[spec.key];
+              const isHighlight = spec.key === 'price'
+                ? val === cars.reduce((best, c) => {
+                    const n = parseFloat(c.price.replace(/[^0-9.]/g, ''));
+                    const bn = parseFloat(best.replace(/[^0-9.]/g, ''));
+                    return n < bn ? c.price : best;
+                  }, cars[0].price)
+                : false;
+
+              return (
+                <div
+                  key={car.id}
+                  className={`px-5 py-3.5 text-sm border-l border-border flex items-center ${i % 2 === 0 ? 'bg-secondary/30' : ''} ${isHighlight ? 'text-accent font-bold' : 'text-foreground'}`}
+                >
+                  {val || <Minus className="w-4 h-4 text-muted-foreground" />}
+                  {isHighlight && <Check className="w-3.5 h-3.5 ml-1.5 text-accent" />}
+                </div>
+              );
+            })}
+          </div>
+        ))}
       </div>
     </div>
   );
