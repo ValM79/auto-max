@@ -8,8 +8,10 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(null); // null = loading
 
   useEffect(() => {
-    base44.auth.isAuthenticated()
-      .then((authed) => setIsLoggedIn(authed));
+    const checkAuth = () => base44.auth.isAuthenticated().then((authed) => setIsLoggedIn(authed));
+    checkAuth();
+    window.addEventListener('focus', checkAuth);
+    return () => window.removeEventListener('focus', checkAuth);
   }, []);
 
   const handleAuthClick = () => {
