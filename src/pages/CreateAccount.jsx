@@ -59,7 +59,7 @@ export default function CreateAccount() {
         <form onSubmit={handleSubmit}>
           {/* Email */}
           <div className="mb-5">
-            <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1.5"></label>
+            <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1.5">Email</label>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
