@@ -96,13 +96,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-1">
+          <Link to="/" className="flex items-center gap-1">
             <span className="text-[hsl(var(--foreground))] text-xl font-semibold tracking-tight">Auto</span>
             <span className="text-[hsl(var(--foreground))] text-xl font-extrabold tracking-tight">Market</span>
             <svg className="text-[hsl(var(--destructive))] mt-0.5 w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <path d="M7 17l9.2-9.2M17 17V7H7" />
             </svg>
-          </div>
+          </Link>
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-5">
