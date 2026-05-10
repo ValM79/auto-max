@@ -76,7 +76,7 @@ export default function CreateAccount() {
           <PasswordInput
             id="password"
             label="Password"
-            // placeholder="Min. 8 characters"
+            placeholder="Min. 8 characters"
             hint="At least 8 characters, one upper and lower character, one number and one symbol."
             value={form.password}
             onChange={set('password')}
