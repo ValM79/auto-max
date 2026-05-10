@@ -19,17 +19,33 @@ const userMenuItems = [
   { label: 'Log out', icon: LogOut, action: 'logout' },
 ];
 
+const buyMenuItems = [
+  { label: 'Used cars', count: '83,969' },
+  { label: 'New cars', count: '6,558' },
+  { label: 'Dealership cars', count: '72,543' },
+  { label: 'Trusted Dealer cars', count: '33,624' },
+  { label: 'Electric & Hybrid cars', count: '25,493' },
+  { divider: true },
+  { label: 'All motors' },
+  { label: 'Buying tips' },
+];
+
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showPlaceAd, setShowPlaceAd] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showBuyMenu, setShowBuyMenu] = useState(false);
   const menuRef = useRef(null);
+  const buyMenuRef = useRef(null);
   const { user } = useAuth();
 
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setShowUserMenu(false);
+      }
+      if (buyMenuRef.current && !buyMenuRef.current.contains(e.target)) {
+        setShowBuyMenu(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -69,11 +85,38 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-5">
             {navLinks.map((link) =>
-            <button
-              key={link.label} className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
-                {link.label}
-                {link.hasDropdown && <ChevronDown className="w-3.5 h-3.5" />}
-              </button>
+              link.label === 'Buy' ? (
+                <div key="Buy" className="relative" ref={buyMenuRef}>
+                  <button
+                    onClick={() => setShowBuyMenu((v) => !v)}
+                    className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
+                    Buy <ChevronDown className="w-3.5 h-3.5" />
+                  </button>
+                  {showBuyMenu && (
+                    <div className="absolute left-0 mt-2 w-56 bg-white border border-border rounded-xl shadow-lg py-1 z-50">
+                      {buyMenuItems.map((item, i) =>
+                        item.divider ? (
+                          <div key={i} className="border-t border-border my-1" />
+                        ) : (
+                          <button
+                            key={item.label}
+                            onClick={() => setShowBuyMenu(false)}
+                            className="flex items-center justify-between w-full px-4 py-2 text-sm text-foreground hover:bg-secondary transition-colors">
+                            <span>{item.label}</span>
+                            {item.count && <span className="text-xs text-muted-foreground">({item.count})</span>}
+                          </button>
+                        )
+                      )}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <button
+                  key={link.label} className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
+                  {link.label}
+                  {link.hasDropdown && <ChevronDown className="w-3.5 h-3.5" />}
+                </button>
+              )
             )}
           </div>
 
