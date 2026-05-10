@@ -3,6 +3,7 @@ import { Search, ChevronDown, Menu, X, User, Megaphone, MessageSquare, Bookmark,
 import { Button } from '@/components/ui/button';
 import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
+import { Link } from 'react-router-dom';
 import PlaceAdModal from './PlaceAdModal';
 
 const userMenuItems = [
@@ -171,6 +172,13 @@ export default function Navbar() {
                     </div>
                   )}
                 </div>
+              ) : link.label === 'Car Rent' ? (
+                <Link
+                  key="Car Rent"
+                  to="/car-rent"
+                  className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
+                  Car Rent
+                </Link>
               ) : (
                 <button
                   key={link.label} className="text-[hsl(var(--foreground))] px-3 py-2 text-sm font-medium hover:text-destructive flex items-center gap-1 transition-colors">
