@@ -4,10 +4,12 @@ import { Button } from '@/components/ui/button';
 import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
 import PlaceAdModal from './PlaceAdModal';
+import AuthModal from './AuthModal';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showPlaceAd, setShowPlaceAd] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
   const { user } = useAuth();
   const isLoggedIn = !!user;
 
@@ -65,7 +67,7 @@ export default function Navbar() {
 
             {!isLoggedIn ? (
               <button
-                onClick={() => base44.auth.redirectToLogin()}
+                onClick={() => setShowAuth(true)}
                 className="hidden sm:block text-foreground text-sm font-medium hover:underline transition-all ml-1">
                 Login or Sign up
               </button>
@@ -87,6 +89,7 @@ export default function Navbar() {
       </div>
 
       {showPlaceAd && <PlaceAdModal onClose={() => setShowPlaceAd(false)} />}
+      {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
 
       {/* Mobile Nav */}
       {mobileOpen &&
