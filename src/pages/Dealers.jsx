@@ -10,7 +10,9 @@ const dealers = [
     rating: 4.4,
     reviews: 63,
     location: 'Kilreesk, K67 Y2T6, Dublin',
+    county: 'Dublin',
     stock: 41,
+    makes: ['Toyota', 'Ford', 'Nissan', 'Hyundai'],
     logo: 'https://images.unsplash.com/photo-1611566026373-c6c8da0ea861?w=80&q=80',
   },
   {
@@ -18,7 +20,9 @@ const dealers = [
     rating: 4.2,
     reviews: 38,
     location: 'Newcastlewest, Limerick',
+    county: 'Limerick',
     stock: 27,
+    makes: ['BMW', 'Audi', 'Mercedes', 'Volkswagen'],
     logo: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=80&q=80',
   },
   {
@@ -26,7 +30,9 @@ const dealers = [
     rating: 4.6,
     reviews: 112,
     location: 'Roscommon Town, Roscommon',
+    county: 'Roscommon',
     stock: 58,
+    makes: ['Toyota', 'Skoda', 'Renault', 'Ford'],
     logo: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=80&q=80',
   },
   {
@@ -34,7 +40,9 @@ const dealers = [
     rating: 4.3,
     reviews: 74,
     location: 'Ballincollig, Cork',
+    county: 'Cork',
     stock: 34,
+    makes: ['Volkswagen', 'Skoda', 'Nissan', 'Hyundai'],
     logo: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=80&q=80',
   },
   {
@@ -42,7 +50,9 @@ const dealers = [
     rating: 4.5,
     reviews: 89,
     location: 'Galway City, Galway',
+    county: 'Galway',
     stock: 62,
+    makes: ['Ford', 'Toyota', 'BMW', 'Renault'],
     logo: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=80&q=80',
   },
   {
@@ -50,7 +60,9 @@ const dealers = [
     rating: 4.1,
     reviews: 51,
     location: 'Athlone, Westmeath',
+    county: 'Westmeath',
     stock: 19,
+    makes: ['Mercedes', 'Audi', 'Toyota', 'Ford'],
     logo: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=80&q=80',
   },
 ];
@@ -93,12 +105,25 @@ export default function Dealers() {
   const [dealerFilter, setDealerFilter] = useState('');
   const [makeFilter, setMakeFilter] = useState('');
   const [countyFilter, setCountyFilter] = useState('');
+  const [activeFilters, setActiveFilters] = useState({ dealer: '', make: '', county: '' });
 
   const handleReset = () => {
     setDealerFilter('');
     setMakeFilter('');
     setCountyFilter('');
+    setActiveFilters({ dealer: '', make: '', county: '' });
   };
+
+  const handleSearch = () => {
+    setActiveFilters({ dealer: dealerFilter, make: makeFilter, county: countyFilter });
+  };
+
+  const filteredDealers = dealers.filter((d) => {
+    const matchDealer = !activeFilters.dealer || d.name === activeFilters.dealer;
+    const matchMake = !activeFilters.make || d.makes.includes(activeFilters.make);
+    const matchCounty = !activeFilters.county || d.county === activeFilters.county;
+    return matchDealer && matchMake && matchCounty;
+  });
 
   return (
     <div className="min-h-screen bg-background">
@@ -140,7 +165,7 @@ export default function Dealers() {
           <button onClick={handleReset} className="flex items-center gap-1.5 text-sm text-primary mt-3 hover:underline">
             <RotateCcw className="w-3.5 h-3.5" /> Reset Search
           </button>
-          <button className="mt-4 w-full bg-primary text-white font-semibold py-3 rounded-lg hover:bg-primary/90 transition-colors">
+          <button onClick={handleSearch} className="mt-4 w-full bg-primary text-white font-semibold py-3 rounded-lg hover:bg-primary/90 transition-colors">
             Search
           </button>
         </div>
@@ -148,8 +173,14 @@ export default function Dealers() {
 
       {/* Dealer listings */}
       <div className="max-w-4xl mx-auto px-4 py-10 flex flex-col gap-5">
-        {dealers.map((dealer) => (
+        {filteredDealers.length === 0 && (
+          <div className="text-center py-16 text-muted-foreground">
+            No dealers found for the selected filters.
+          </div>
+        )}
+        {filteredDealers.map((dealer) => (
           <div key={dealer.name} className="bg-white rounded-xl border border-border shadow-sm p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+
             <img src={dealer.logo} alt={dealer.name} className="w-20 h-16 object-cover rounded-lg flex-shrink-0" />
             <div className="flex-1">
               <h3 className="text-lg font-bold text-primary mb-1">{dealer.name}</h3>
@@ -162,9 +193,16 @@ export default function Dealers() {
                 <MapPin className="w-4 h-4 flex-shrink-0" />
                 <span>{dealer.location}</span>
               </div>
-              <div className="flex items-center gap-1 text-sm text-muted-foreground">
+              <div className="flex items-center gap-1 text-sm text-muted-foreground mb-2">
                 <Car className="w-4 h-4 flex-shrink-0" />
                 <span>Stock: {dealer.stock}</span>
+              </div>
+              <div className="flex flex-wrap gap-1">
+                {dealer.makes.map((make) => (
+                  <span key={make} className={`text-xs px-2 py-0.5 rounded-full border ${activeFilters.make === make ? 'bg-primary text-white border-primary' : 'border-border text-muted-foreground'}`}>
+                    {make}
+                  </span>
+                ))}
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 flex-shrink-0">
