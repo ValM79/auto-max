@@ -113,9 +113,22 @@ export default function Motorbikes() {
   const [savedIds, setSavedIds] = useState([]);
   const [viewMode, setViewMode] = useState('list');
 
-  const toggleSave = (id) => setSavedIds(prev =>
-    prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
-  );
+  const toggleSave = (id) => {
+    setSavedIds(prev => {
+      const updated = prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id];
+      const itemToSave = listings.find(item => item.id === id);
+      if (itemToSave && !prev.includes(id)) {
+        const saved = JSON.parse(localStorage.getItem('automarket_saved_items') || '[]');
+        saved.push({ ...itemToSave, savedAt: new Date().toISOString() });
+        localStorage.setItem('automarket_saved_items', JSON.stringify(saved));
+      } else if (prev.includes(id)) {
+        const saved = JSON.parse(localStorage.getItem('automarket_saved_items') || '[]');
+        const filtered = saved.filter(item => item.id !== id);
+        localStorage.setItem('automarket_saved_items', JSON.stringify(filtered));
+      }
+      return updated;
+    });
+  };
 
   const filtered = listings.filter(item =>
     !search || item.title.toLowerCase().includes(search.toLowerCase()) || item.location.toLowerCase().includes(search.toLowerCase())

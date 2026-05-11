@@ -238,6 +238,15 @@ export default function Navbar() {
                     {userMenuItems.map((item, i) =>
                       item.divider ? (
                         <div key={i} className="border-t border-border my-1" />
+                      ) : item.label === 'Saved Searches' ? (
+                        <Link
+                          key={item.label}
+                          to="/saved-searches"
+                          onClick={() => setShowUserMenu(false)}
+                          className="flex items-center gap-2.5 w-full px-4 py-2 text-sm text-foreground hover:bg-secondary transition-colors">
+                          <item.icon className="w-4 h-4 text-muted-foreground" />
+                          {item.label}
+                        </Link>
                       ) : (
                         <button
                           key={item.label}
