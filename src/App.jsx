@@ -40,6 +40,7 @@ import Profile from './pages/Profile';
 import MyAds from './pages/MyAds';
 import Messages from './pages/Messages';
 import BrowsingHistory from './pages/BrowsingHistory';
+import HistoryChecks from './pages/HistoryChecks';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -103,6 +104,7 @@ const AuthenticatedApp = () => {
       <Route path="/my-ads" element={<MyAds />} />
       <Route path="/messages" element={<Messages />} />
       <Route path="/browsing-history" element={<BrowsingHistory />} />
+      <Route path="/history-checks" element={<HistoryChecks />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
