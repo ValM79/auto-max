@@ -37,6 +37,7 @@ import BoatExtras from './pages/BoatExtras';
 import OtherMotor from './pages/OtherMotor';
 import SavedSearches from './pages/SavedSearches';
 import Profile from './pages/Profile';
+import MyAds from './pages/MyAds';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -97,6 +98,7 @@ const AuthenticatedApp = () => {
       <Route path="/other-motor" element={<OtherMotor />} />
       <Route path="/saved-searches" element={<SavedSearches />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/my-ads" element={<MyAds />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
