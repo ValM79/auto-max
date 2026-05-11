@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const IMG = {
   car: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cffa66889_generated_image.png',
@@ -75,8 +76,14 @@ function CategoryIcon({ imgKey, isAllMotor, isOther }) {
 }
 
 function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (label === 'New Cars') navigate('/cars-for-sale');
+  };
+
   return (
-    <button className="flex items-center justify-between w-full py-2.5 border-b border-border last:border-0 hover:bg-secondary/40 px-2 rounded transition-colors group">
+    <button onClick={handleClick} className="flex items-center justify-between w-full py-2.5 border-b border-border last:border-0 hover:bg-secondary/40 px-2 rounded transition-colors group">
       <div className="flex items-center gap-3">
         <CategoryIcon imgKey={imgKey} isAllMotor={isAllMotor} isOther={isOther} />
         <span className="text-[hsl(var(--foreground))] text-sm font-medium group-hover:text-primary transition-colors">
