@@ -39,6 +39,7 @@ import SavedSearches from './pages/SavedSearches';
 import Profile from './pages/Profile';
 import MyAds from './pages/MyAds';
 import Messages from './pages/Messages';
+import BrowsingHistory from './pages/BrowsingHistory';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -101,6 +102,7 @@ const AuthenticatedApp = () => {
       <Route path="/profile" element={<Profile />} />
       <Route path="/my-ads" element={<MyAds />} />
       <Route path="/messages" element={<Messages />} />
+      <Route path="/browsing-history" element={<BrowsingHistory />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
