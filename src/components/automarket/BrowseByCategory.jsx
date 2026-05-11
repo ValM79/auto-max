@@ -93,6 +93,7 @@ function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
     if (label === 'Trucks') navigate('/trucks');
     if (label === 'Trailers') navigate('/trailers');
     if (label === 'Campers') navigate('/campers');
+    if (label === 'Coaches & Buses') navigate('/coaches-buses');
     if (label === 'Commercials') navigate('/commercials');
   };
 
