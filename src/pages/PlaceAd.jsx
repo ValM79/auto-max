@@ -41,6 +41,7 @@ export default function PlaceAd() {
     email: user?.email || '',
   });
   const [photos, setPhotos] = useState([]);
+  const [video, setVideo] = useState(null);
   const [dragOver, setDragOver] = useState(false);
   const [step, setStep] = useState('form'); // 'form' | 'preview'
 
@@ -52,6 +53,7 @@ export default function PlaceAd() {
   const handleReset = () => {
     setForm({ ...emptyForm, fullName: user?.full_name || '', email: user?.email || '' });
     setPhotos([]);
+    setVideo(null);
   };
 
   const handleFiles = (files) => {
@@ -116,7 +118,7 @@ export default function PlaceAd() {
           </Section>
 
           {/* Section 2: Photos */}
-          <Section id="photos-section" title="Photos and Video" icon={<Upload className="w-5 h-5" />} subtitle="Up to 15 photos">
+          <Section id="photos-section" title="Photos and Video" icon={<Upload className="w-5 h-5" />} subtitle="Up to 15 photos and 1 video">
             {/* Photo grid */}
             {photos.length > 0 && (
               <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 mb-4">
@@ -151,6 +153,26 @@ export default function PlaceAd() {
                 <p className="text-xs text-muted-foreground mt-2">Up to {15 - photos.length} more images · .jpg, .png and .gif files</p>
               </div>
             )}
+
+            {/* Video upload */}
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-foreground mb-1.5">Upload Video <span className="text-muted-foreground font-normal">(1 video, max 100MB)</span></label>
+              {video ? (
+                <div className="flex items-center gap-3 border border-border rounded-lg px-4 py-3 bg-secondary/50">
+                  <span className="text-sm text-foreground flex-1 truncate">{video.name}</span>
+                  <button onClick={() => setVideo(null)} className="text-muted-foreground hover:text-destructive">
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              ) : (
+                <label className="cursor-pointer flex items-center gap-3 border border-dashed border-border rounded-lg px-4 py-3 hover:bg-secondary/50 transition-colors">
+                  <Upload className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-sm text-primary font-medium">Choose video file</span>
+                  <span className="text-sm text-muted-foreground">· .mp4, .mov, .avi</span>
+                  <input type="file" accept="video/*" className="hidden" onChange={(e) => e.target.files[0] && setVideo(e.target.files[0])} />
+                </label>
+              )}
+            </div>
 
             {/* YouTube */}
             <div className="mt-4">
