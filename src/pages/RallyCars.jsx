@@ -1,0 +1,260 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Search, Heart, Camera, ChevronDown, Star, LayoutList, LayoutGrid, ArrowLeft } from 'lucide-react';
+import Navbar from '../components/automarket/Navbar';
+import Footer from '../components/automarket/Footer';
+import FiltersSidebar from '../components/automarket/FiltersSidebar';
+
+const listings = [
+  {
+    id: 1,
+    dealer: null,
+    sellerType: 'Private Seller',
+    sellerRating: 4,
+    spotlight: true,
+    title: 'Honda Civic 1.6 Junior Spec Car',
+    description: 'Full roll cage, race harnesses, bucket seat, fire suppression system. Ready to rally.',
+    timeAgo: '1 day',
+    location: 'Lifford, Donegal',
+    price: '€14,000',
+    photos: 10,
+    image: 'https://images.unsplash.com/photo-1547245324-d777c6f05e80?w=600&q=80',
+  },
+  {
+    id: 2,
+    dealer: null,
+    sellerType: 'Private Seller',
+    sellerRating: null,
+    spotlight: true,
+    title: 'Mk2 Escort',
+    description: 'Classic Mk2 Escort rally car. Recently rebuilt engine, new suspension setup.',
+    timeAgo: '4 hours',
+    location: 'Letterkenny, Donegal',
+    price: '€22,500',
+    photos: 8,
+    image: 'https://images.unsplash.com/photo-1558618047-f4e90b0a0d0f?w=600&q=80',
+  },
+  {
+    id: 3,
+    dealer: null,
+    sellerType: 'Private Seller',
+    sellerRating: 4.5,
+    spotlight: false,
+    title: 'Subaru Impreza WRX Rally Spec',
+    description: 'Built to national spec. Sequential gearbox, Prodrive suspension, full safety equipment.',
+    timeAgo: '2 days',
+    location: 'Cork City, Cork',
+    price: '€38,000',
+    photos: 14,
+    image: 'https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=600&q=80',
+  },
+  {
+    id: 4,
+    dealer: null,
+    sellerType: 'Private Seller',
+    sellerRating: null,
+    spotlight: false,
+    title: 'Ford Fiesta R2 – Full FIA Spec',
+    description: 'FIA logbook, new tyres, full service history. Competitive in national championship.',
+    timeAgo: '3 days',
+    location: 'Galway City, Galway',
+    price: '€29,500',
+    photos: 12,
+    image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80',
+  },
+  {
+    id: 5,
+    dealer: null,
+    sellerType: 'Private Seller',
+    sellerRating: 3.8,
+    spotlight: false,
+    title: 'Mitsubishi Lancer Evo VI Rally Car',
+    description: 'Evo 6 built to stage spec. Motec ECU, adjustable diff, new clutch. Ready to compete.',
+    timeAgo: '5 days',
+    location: 'Limerick City, Limerick',
+    price: '€45,000',
+    photos: 11,
+    image: 'https://images.unsplash.com/photo-1519245659620-e859806a8d3b?w=600&q=80',
+  },
+  {
+    id: 6,
+    dealer: null,
+    sellerType: 'Private Seller',
+    sellerRating: null,
+    spotlight: false,
+    title: 'Peugeot 206 WRC Replica – Stage Ready',
+    description: '206 WRC replica, built on bare shell. 2.0 turbo, 6-speed sequential, full cage.',
+    timeAgo: '1 week',
+    location: 'Waterford City, Waterford',
+    price: '€18,000',
+    photos: 9,
+    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80',
+  },
+];
+
+function StarRating({ rating }) {
+  return (
+    <div className="flex items-center gap-0.5">
+      {[1,2,3,4,5].map(s => (
+        <Star key={s} className={`w-3 h-3 ${s <= Math.round(rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200 fill-gray-200'}`} />
+      ))}
+    </div>
+  );
+}
+
+export default function RallyCars() {
+  const [search, setSearch] = useState('');
+  const [savedIds, setSavedIds] = useState([]);
+  const [viewMode, setViewMode] = useState('list');
+
+  const toggleSave = (id) => setSavedIds(prev =>
+    prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+  );
+
+  const filtered = listings.filter(c =>
+    !search ||
+    c.title.toLowerCase().includes(search.toLowerCase()) ||
+    c.location.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div className="min-h-screen bg-[#f4f5f6]">
+      <Navbar />
+
+      <div className="max-w-7xl mx-auto px-4 py-4">
+        {/* Breadcrumb */}
+        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+          <button onClick={() => window.history.back()} className="flex items-center gap-1 hover:text-primary transition-colors">
+            <ArrowLeft className="w-3.5 h-3.5" /> Back
+          </button>
+          <span>›</span>
+          <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+          <span>›</span>
+          <span className="text-foreground font-medium">Rally Cars</span>
+        </div>
+
+        {/* Title + Search */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Rally Cars in Ireland</h1>
+          <div className="relative w-full sm:w-72">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <input
+              type="text"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              placeholder="Search Rally Cars"
+              className="w-full border border-border rounded-lg pl-9 pr-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30"
+            />
+          </div>
+        </div>
+
+        {/* Banner */}
+        <div className="mb-6 rounded-xl overflow-hidden border border-border h-36 sm:h-44 bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-between px-8">
+          <div className="text-white">
+            <p className="text-3xl font-extrabold leading-tight">FIND YOUR<br />RALLY CAR</p>
+            <p className="text-sm mt-1 opacity-80">183 ads in Ireland</p>
+          </div>
+          <img
+            src="https://images.unsplash.com/photo-1547245324-d777c6f05e80?w=600&q=80"
+            alt="Rally Car"
+            className="h-full w-1/2 object-cover rounded-lg opacity-80"
+          />
+        </div>
+
+        <div className="flex gap-6">
+          {/* Sidebar */}
+          <aside className="hidden lg:block w-64 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
+            <FiltersSidebar />
+          </aside>
+
+          {/* Listings */}
+          <div className="flex-1 min-w-0">
+            {/* Sort bar */}
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-sm text-foreground font-medium">
+                <span className="font-bold">183</span> ads for Rally Cars in Ireland
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1">
+                  <button onClick={() => setViewMode('list')}>
+                    <LayoutList className={`w-5 h-5 ${viewMode === 'list' ? 'text-primary' : 'text-muted-foreground'}`} />
+                  </button>
+                  <button onClick={() => setViewMode('grid')}>
+                    <LayoutGrid className={`w-5 h-5 ${viewMode === 'grid' ? 'text-primary' : 'text-muted-foreground'}`} />
+                  </button>
+                </div>
+                <div className="relative">
+                  <select className="appearance-none border border-border rounded-lg px-3 py-1.5 text-sm bg-white pr-8 focus:outline-none">
+                    <option>Sort by: Best match</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                    <option>Newest First</option>
+                  </select>
+                  <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
+                </div>
+              </div>
+            </div>
+
+            <div className={viewMode === 'grid' ? 'grid grid-cols-2 gap-4' : 'flex flex-col gap-4'}>
+              {filtered.map(item => (
+                <div key={item.id} className="bg-white rounded-xl border border-border shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                  <div className={viewMode === 'grid' ? 'flex flex-col' : 'flex flex-col sm:flex-row'}>
+                    <div className={`relative flex-shrink-0 ${viewMode === 'grid' ? 'h-44 w-full' : 'sm:w-56 h-44 sm:h-auto'}`}>
+                      {item.spotlight && (
+                        <span className="absolute top-2 left-2 bg-black/70 text-white text-xs font-semibold px-2 py-0.5 rounded z-10">Spotlight</span>
+                      )}
+                      <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                      <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-black/60 text-white text-xs px-2 py-0.5 rounded">
+                        <Camera className="w-3 h-3" /> {item.photos}
+                      </div>
+                    </div>
+
+                    <div className="flex-1 p-4 flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
+                          <span className="text-xs text-muted-foreground">{item.sellerType}</span>
+                          {item.sellerRating ? (
+                            <>
+                              <StarRating rating={item.sellerRating} />
+                              <span className="text-xs text-muted-foreground">{item.sellerRating}</span>
+                            </>
+                          ) : (
+                            <span className="text-xs text-muted-foreground flex items-center gap-1">
+                              <Star className="w-3 h-3 text-gray-300 fill-gray-300" /> No rating
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="text-base font-bold text-foreground mb-1 hover:text-primary cursor-pointer transition-colors">{item.title}</h3>
+                        {item.description && (
+                          <p className="text-sm text-muted-foreground mb-1 line-clamp-2">{item.description}</p>
+                        )}
+                        <p className="text-sm text-muted-foreground">{item.timeAgo} · {item.location}</p>
+                      </div>
+                      <div className="flex items-end justify-between mt-4">
+                        <p className="text-2xl font-bold text-foreground">{item.price}</p>
+                        <button
+                          onClick={() => toggleSave(item.id)}
+                          className={`p-2 rounded-full border transition-colors ${savedIds.includes(item.id) ? 'border-destructive text-destructive' : 'border-border text-muted-foreground hover:text-destructive hover:border-destructive'}`}>
+                          <Heart className={`w-5 h-5 ${savedIds.includes(item.id) ? 'fill-destructive' : ''}`} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {filtered.length === 0 && (
+                <div className="text-center py-16 text-muted-foreground col-span-2">
+                  <p className="text-lg font-medium">No rally cars found</p>
+                  <p className="text-sm mt-1">Try adjusting your search or filters</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+  );
+}
