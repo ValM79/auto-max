@@ -37,7 +37,7 @@ const buyMenuItems = [
   { label: 'New cars', count: '6,558', route: '/new-cars' },
   { label: 'Dealership cars', count: '72,543', route: '/dealership-cars' },
   { label: 'Trusted Dealer cars', count: '33,624', route: '/trusted-dealer-cars' },
-  { label: 'Electric & Hybrid cars', count: '25,493' },
+  { label: 'Electric & Hybrid cars', count: '25,493', route: '/electric-hybrid-cars' },
   { divider: true },
   { label: 'All motors' },
   { label: 'Buying tips' },
