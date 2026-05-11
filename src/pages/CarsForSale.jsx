@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Search, Heart, Camera, ChevronDown, ChevronUp, Star, SlidersHorizontal, LayoutList, LayoutGrid, ArrowLeft } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
+import FiltersSidebar from '../components/automarket/FiltersSidebar';
 
 const carListings = [
   {
@@ -109,35 +110,6 @@ const carListings = [
   },
 ];
 
-const makes = ['All Makes', 'Audi', 'BMW', 'Ford', 'Hyundai', 'Nissan', 'Renault', 'Toyota', 'Volkswagen'];
-const years = ['Any Year', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014 & older'];
-const prices = ['Any Price', 'Under €5,000', '€5,000–€10,000', '€10,000–€20,000', '€20,000–€40,000', '€40,000+'];
-const counties = ['All Counties', 'Dublin', 'Cork', 'Galway', 'Limerick', 'Waterford', 'Kerry', 'Wexford', 'Wicklow'];
-
-function FilterSelect({ label, options }) {
-  return (
-    <div className="relative">
-      <select className="w-full appearance-none border border-border rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 pr-8">
-        {options.map(o => <option key={o}>{o}</option>)}
-      </select>
-      <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
-    </div>
-  );
-}
-
-function FilterSection({ title, children }) {
-  const [open, setOpen] = useState(true);
-  return (
-    <div className="border-b border-border py-4">
-      <button onClick={() => setOpen(v => !v)} className="flex items-center justify-between w-full text-sm font-semibold text-foreground mb-2">
-        {title}
-        {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
-      </button>
-      {open && children}
-    </div>
-  );
-}
-
 function StarRating({ rating }) {
   return (
     <div className="flex items-center gap-0.5">
@@ -200,61 +172,8 @@ export default function CarsForSale() {
 
         <div className="flex gap-6">
           {/* Sidebar Filters */}
-          <aside className="hidden lg:block w-64 flex-shrink-0">
-            <div className="bg-white rounded-xl border border-border p-4 shadow-sm mb-4">
-              <button className="flex items-center gap-2 w-full text-sm text-foreground border border-border rounded-lg px-4 py-2.5 hover:bg-secondary transition-colors mb-4">
-                <Star className="w-4 h-4 text-muted-foreground" /> Save Search
-              </button>
-
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-bold text-foreground">Filters</h3>
-                <button className="text-xs text-primary hover:underline">Reset All</button>
-              </div>
-
-              <button className="flex items-center gap-2 w-full text-sm text-muted-foreground border border-border rounded-lg px-4 py-2.5 hover:bg-secondary transition-colors mb-4">
-                <Search className="w-4 h-4" /> View your previous searches
-              </button>
-
-              <div className="flex items-center gap-2 mb-4">
-                <input type="checkbox" id="trusted" className="w-4 h-4 accent-primary" />
-                <label htmlFor="trusted" className="text-sm text-foreground flex items-center gap-1.5 cursor-pointer">
-                  <span className="text-green-600">✓</span> Trusted dealers only <span className="text-muted-foreground">(33,485)</span>
-                </label>
-              </div>
-
-              <FilterSection title="Seller type">
-                <div className="flex flex-col gap-2">
-                  {[['Dealership', '72,285'], ['Private seller', '23,082']].map(([label, count]) => (
-                    <label key={label} className="flex items-center gap-2 cursor-pointer">
-                      <input type="checkbox" className="w-4 h-4 accent-primary" />
-                      <span className="text-sm text-foreground">{label} <span className="text-muted-foreground">({count})</span></span>
-                    </label>
-                  ))}
-                </div>
-              </FilterSection>
-
-              <FilterSection title="Make">
-                <FilterSelect options={makes} />
-              </FilterSection>
-
-              <FilterSection title="Year">
-                <div className="grid grid-cols-2 gap-2">
-                  <FilterSelect options={['From', ...years.slice(1)]} />
-                  <FilterSelect options={['To', ...years.slice(1)]} />
-                </div>
-              </FilterSection>
-
-              <FilterSection title="Price">
-                <div className="grid grid-cols-2 gap-2">
-                  <FilterSelect options={['Min', '€5,000', '€10,000', '€20,000', '€30,000', '€50,000']} />
-                  <FilterSelect options={['Max', '€10,000', '€20,000', '€30,000', '€50,000', '€100,000']} />
-                </div>
-              </FilterSection>
-
-              <FilterSection title="County">
-                <FilterSelect options={counties} />
-              </FilterSection>
-            </div>
+          <aside className="hidden lg:block w-64 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
+            <FiltersSidebar />
           </aside>
 
           {/* Listings */}
