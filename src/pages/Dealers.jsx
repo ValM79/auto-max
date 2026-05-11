@@ -115,13 +115,13 @@ export default function Dealers() {
   };
 
   const handleSearch = () => {
-    setActiveFilters({ dealer: dealerFilter, make: makeFilter, county: countyFilter });
+    setActiveFilters({ dealer: dealerFilter, make: makeFilter, county: '' });
   };
 
   const filteredDealers = dealers.filter((d) => {
     const matchDealer = !activeFilters.dealer || d.name === activeFilters.dealer;
     const matchMake = !activeFilters.make || d.makes.includes(activeFilters.make);
-    const matchCounty = !activeFilters.county || d.county === activeFilters.county;
+    const matchCounty = !countyFilter || d.county === countyFilter;
     return matchDealer && matchMake && matchCounty;
   });
 
