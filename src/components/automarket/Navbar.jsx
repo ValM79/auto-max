@@ -5,6 +5,7 @@ import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
 import { Link } from 'react-router-dom';
 import PlaceAdModal from './PlaceAdModal';
+import { useNavigate } from 'react-router-dom';
 
 const userMenuItems = [
   { label: 'Profile', icon: User },
@@ -54,6 +55,7 @@ export default function Navbar() {
   const sellMenuRef = useRef(null);
   const dealersMenuRef = useRef(null);
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -79,7 +81,7 @@ export default function Navbar() {
     if (!isLoggedIn) {
       base44.auth.redirectToLogin();
     } else {
-      setShowPlaceAd(true);
+      navigate('/place-ad');
     }
   };
 

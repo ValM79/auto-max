@@ -10,6 +10,7 @@ import CreateAccount from './pages/CreateAccount';
 import CarRent from './pages/CarRent';
 import CarInsurance from './pages/CarInsurance';
 import Dealers from './pages/Dealers';
+import PlaceAd from './pages/PlaceAd';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -43,6 +44,7 @@ const AuthenticatedApp = () => {
       <Route path="/car-rent" element={<CarRent />} />
       <Route path="/car-insurance" element={<CarInsurance />} />
       <Route path="/dealers" element={<Dealers />} />
+      <Route path="/place-ad" element={<PlaceAd />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
