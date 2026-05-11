@@ -24,6 +24,8 @@ const IMG = {
   boat: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/87a17cb2c_generated_image.png',
   breaking: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/700a41555_generated_image.png',
   rallyCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/f262f4c3a_generated_image.png',
+  carParts: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/3211f3316_generated_image.png',
+  carExtras: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/ca07bfd68_generated_image.png',
 };
 
 const categories = [
@@ -34,7 +36,7 @@ const categories = [
 { label: 'Vintage Cars', imgKey: 'vintageCar' },
 { label: 'Modified Cars', imgKey: 'modifiedCar' },
 { label: 'Car Parts', imgKey: 'carParts' },
-{ label: 'Car Extras', imgKey: 'carParts' },
+{ label: 'Car Extras', imgKey: 'carExtras' },
 { label: 'Rally Cars', imgKey: 'rallyCar' },
 { label: 'Breaking & Repairables', imgKey: 'breaking' },
 ],
