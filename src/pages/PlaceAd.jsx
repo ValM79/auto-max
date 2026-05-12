@@ -140,6 +140,7 @@ export default function PlaceAd() {
       newPhotos.unshift(cover);
       return newPhotos;
     });
+    setViewerIndex(null); // Close viewer to show updated gallery
   };
 
   const handleRotate = (idx, rotation) => {
