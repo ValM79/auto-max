@@ -161,20 +161,77 @@ export default function PlaceAd() {
 
           {/* Section 1: Category */}
           <Section title="What are you selling?">
-            <div className="flex gap-3">
+            <div className="flex flex-col gap-4">
               <input
                 type="text"
                 value={form.category}
                 onChange={handleCategoryChange}
                 placeholder="e.g. Car, Van, Truck"
-                className="flex-1 border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
               />
-              <button
-                onClick={() => form.category && document.getElementById('photos-section').scrollIntoView({ behavior: 'smooth' })}
-                className="bg-muted text-foreground font-semibold px-8 py-2.5 rounded-lg hover:bg-muted/80 transition-colors text-sm whitespace-nowrap"
-              >
-                Start
-              </button>
+
+              {/* Select Section */}
+              {form.section && (
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-1.5">Select Section</label>
+                  <div className="relative">
+                    <select
+                      value={form.section}
+                      onChange={(e) => setForm((f) => ({ ...f, section: e.target.value, subsection: '' }))}
+                      className="w-full appearance-none border border-border rounded-lg px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-9"
+                    >
+                      {sections.map((s) => <option key={s.label}>{s.label}</option>)}
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                  </div>
+                </div>
+              )}
+
+              {/* Select Subsection */}
+              {form.section && (
+                <div className="flex items-start gap-3">
+                  <div className="flex flex-col items-center mt-1">
+                    <div className="w-px h-4 bg-border" />
+                    <div className="w-3 h-px bg-border" />
+                  </div>
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium text-foreground mb-1.5">Select Subsection</label>
+                    <div className="relative">
+                      <select
+                        value={form.subsection}
+                        onChange={set('subsection')}
+                        className="w-full appearance-none border border-border rounded-lg px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-9"
+                      >
+                        <option value="">Select a subsection...</option>
+                        {subsections.map((s) => <option key={s}>{s}</option>)}
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Ad Type */}
+              {form.section && (
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Ad Type</label>
+                  <div className="flex gap-4">
+                    {['for_sale', 'wanted'].map((type) => (
+                      <label key={type} className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="radio"
+                          name="adType"
+                          value={type}
+                          checked={form.adType === type}
+                          onChange={set('adType')}
+                          className="w-4 h-4 accent-primary"
+                        />
+                        <span className="text-sm font-medium">{type === 'for_sale' ? 'For Sale' : 'Wanted'}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </Section>
 
