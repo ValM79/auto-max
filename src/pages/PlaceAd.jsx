@@ -259,6 +259,7 @@ export default function PlaceAd() {
                   type="text"
                   value={form.category}
                   onChange={handleCategoryChange}
+                  onKeyDown={(e) => { if (e.key === 'Enter' && form.category) setCategoryStarted(true); }}
                   placeholder="e.g. Car, Van, Truck"
                   className="flex-1 border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
                 />
