@@ -6,6 +6,7 @@ import BrowseByCategory from '../components/automarket/BrowseByCategory';
 import HubsSection from '../components/automarket/HubsSection';
 import ReviewsSection from '../components/automarket/ReviewsSection';
 import ElectricSection from '../components/automarket/ElectricSection';
+import CarValuationSection from '../components/automarket/CarValuationSection';
 import Footer from '../components/automarket/Footer';
 import CarListings from '../components/automarket/CarListings';
 
@@ -22,6 +23,7 @@ export default function Home() {
       <HubsSection />
       <ReviewsSection />
       <ElectricSection />
+      <CarValuationSection />
       <Footer />
     </div>
   );
