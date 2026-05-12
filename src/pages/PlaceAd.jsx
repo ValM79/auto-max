@@ -102,6 +102,13 @@ export default function PlaceAd() {
       section: match ? match.section : f.section,
       subsection: match ? match.subsection : f.subsection,
     }));
+    // Scroll to section/subsection area after category is selected
+    if (val.trim()) {
+      setTimeout(() => {
+        const sectionSelect = document.querySelector('select[value=""]')?.closest('div');
+        sectionSelect?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
   };
 
   const currentSectionObj = sections.find((s) => s.label === form.section);
