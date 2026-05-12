@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Upload, X, Youtube, User, Mail, Phone, MapPin, Tag, FileText, DollarSign, ChevronDown, Plus } from 'lucide-react';
+import { ArrowLeft, Upload, X, Youtube, User, Mail, Phone, MapPin, Tag, FileText, DollarSign, ChevronDown, Plus, Pencil } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import { base44 } from '@/api/base44Client';
@@ -253,37 +253,39 @@ export default function PlaceAd() {
           <Section id="photos-section" title="Photos and Video" icon={<Upload className="w-5 h-5" />} subtitle="Up to 20 photos">
             {/* Photo grid */}
             {photos.length > 0 && (
-              <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 mb-4">
-                {photos.map((p, i) => (
-                  <div key={i} className="relative rounded-lg overflow-hidden aspect-square border border-border">
-                    <img src={p.preview} alt="" className="w-full h-full object-cover" />
-                    {i === 0 && (
-                      <div className="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
-                        <span>★</span> COVER
-                      </div>
-                    )}
-                    <button
-                      onClick={() => removePhoto(i)}
-                      className="absolute top-1 right-1 bg-black/60 text-white rounded-full w-5 h-5 flex items-center justify-center hover:bg-black/80"
+              <div className="mb-4">
+                <div className="flex gap-3 flex-wrap items-start">
+                  {photos.map((p, i) => (
+                    <div key={i} className="relative w-32 h-32 rounded-lg overflow-hidden border border-border group">
+                      <img src={p.preview} alt="" className="w-full h-full object-cover" />
+                      {i === 0 && (
+                        <div className="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
+                          <span>★</span> COVER
+                        </div>
+                      )}
+                      <button
+                        onClick={() => removePhoto(i)}
+                        className="absolute top-2 right-2 bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-green-700 opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        <Pencil className="w-3 h-3" />
+                      </button>
+                    </div>
+                  ))}
+                  {photos.length < 20 && (
+                    <div
+                      onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+                      onDragLeave={() => setDragOver(false)}
+                      onDrop={handleDrop}
+                      className={`w-32 h-32 rounded-lg border-2 border-dashed flex flex-col items-center justify-center transition-colors cursor-pointer ${dragOver ? 'border-primary bg-primary/5' : 'border-border'}`}
                     >
-                      <X className="w-3 h-3" />
-                    </button>
-                  </div>
-                ))}
-                {photos.length < 20 && (
-                  <div
-                    onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
-                    onDragLeave={() => setDragOver(false)}
-                    onDrop={handleDrop}
-                    className={`relative rounded-lg aspect-square border-2 border-dashed flex flex-col items-center justify-center transition-colors cursor-pointer ${dragOver ? 'border-primary bg-primary/5' : 'border-border'}`}
-                  >
-                    <label className="cursor-pointer flex flex-col items-center justify-center w-full h-full">
-                      <Plus className="w-8 h-8 text-primary mb-1" />
-                      <span className="text-sm text-muted-foreground">{photos.length}/20</span>
-                      <input type="file" multiple accept="image/*" className="hidden" onChange={(e) => handleFiles(e.target.files)} />
-                    </label>
-                  </div>
-                )}
+                      <label className="cursor-pointer flex flex-col items-center justify-center w-full h-full">
+                        <Plus className="w-8 h-8 text-primary mb-1" />
+                        <span className="text-sm text-muted-foreground font-medium">{photos.length}/20</span>
+                        <input type="file" multiple accept="image/*" className="hidden" onChange={(e) => handleFiles(e.target.files)} />
+                      </label>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
 
