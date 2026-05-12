@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Upload, X, Youtube, User, Mail, Phone, MapPin, Tag, FileText, DollarSign, ChevronDown, Plus, Pencil } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
+import ImageViewer from '../components/automarket/ImageViewer';
 import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
 
@@ -90,6 +91,7 @@ export default function PlaceAd() {
   const [dragOver, setDragOver] = useState(false);
   const [step, setStep] = useState('form'); // 'form' | 'preview'
   const [categoryStarted, setCategoryStarted] = useState(false);
+  const [viewerIndex, setViewerIndex] = useState(null);
 
   const set = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
   const toggle = (field) => () => setForm((f) => ({ ...f, [field]: !f[field] }));
@@ -130,6 +132,29 @@ export default function PlaceAd() {
     setPhotos((prev) => prev.filter((_, i) => i !== idx));
   };
 
+  const handleSetCover = (idx) => {
+    if (idx === 0) return; // Already cover
+    setPhotos((prev) => {
+      const newPhotos = [...prev];
+      const [cover] = newPhotos.splice(idx, 1);
+      newPhotos.unshift(cover);
+      return newPhotos;
+    });
+  };
+
+  const handleRotate = (idx, rotation) => {
+    setPhotos((prev) => {
+      const newPhotos = [...prev];
+      newPhotos[idx] = { ...newPhotos[idx], rotation };
+      return newPhotos;
+    });
+  };
+
+  const handleDeleteFromViewer = (idx) => {
+    removePhoto(idx);
+    setViewerIndex(null);
+  };
+
   const handleDrop = (e) => {
     e.preventDefault();
     setDragOver(false);
@@ -139,6 +164,17 @@ export default function PlaceAd() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+
+      {viewerIndex !== null && (
+        <ImageViewer
+          photos={photos}
+          initialIndex={viewerIndex}
+          onClose={() => setViewerIndex(null)}
+          onSetCover={handleSetCover}
+          onRotate={handleRotate}
+          onDelete={handleDeleteFromViewer}
+        />
+      )}
 
       <div className="max-w-3xl mx-auto px-4 py-8">
         {/* Breadcrumb */}
@@ -256,20 +292,21 @@ export default function PlaceAd() {
               <div className="mb-4">
                 <div className="flex gap-3 flex-wrap items-start">
                   {photos.map((p, i) => (
-                    <div key={i} className="relative w-32 h-32 rounded-lg overflow-hidden border border-border group">
-                      <img src={p.preview} alt="" className="w-full h-full object-cover" />
+                    <button
+                      key={i}
+                      onClick={() => setViewerIndex(i)}
+                      className="relative w-32 h-32 rounded-lg overflow-hidden border border-border group hover:border-primary transition-colors"
+                    >
+                      <img src={p.preview} alt="" className="w-full h-full object-cover" style={{ transform: `rotate(${p.rotation || 0}deg)` }} />
                       {i === 0 && (
                         <div className="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
                           <span>★</span> COVER
                         </div>
                       )}
-                      <button
-                        onClick={() => removePhoto(i)}
-                        className="absolute top-2 right-2 bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-green-700 opacity-0 group-hover:opacity-100 transition-opacity"
-                      >
-                        <Pencil className="w-3 h-3" />
-                      </button>
-                    </div>
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+                        <Pencil className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    </button>
                   ))}
                   {photos.length < 20 && (
                     <div
