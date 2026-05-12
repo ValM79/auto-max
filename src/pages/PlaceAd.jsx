@@ -71,6 +71,11 @@ const emptyForm = {
   registration: '',
   mileage: '',
   mileageUnit: 'km',
+  vehicleMake: '',
+  vehicleModel: '',
+  vehicleYear: '',
+  vehicleFuel: '',
+  vehicleTransmission: '',
   fullName: '',
   email: '',
   phone: '',
@@ -95,6 +100,8 @@ export default function PlaceAd() {
   const [step, setStep] = useState('form'); // 'form' | 'preview'
   const [categoryStarted, setCategoryStarted] = useState(false);
   const [viewerIndex, setViewerIndex] = useState(null);
+  const [loadingVehicle, setLoadingVehicle] = useState(false);
+  const [vehicleError, setVehicleError] = useState('');
 
   const set = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
   const toggle = (field) => () => setForm((f) => ({ ...f, [field]: !f[field] }));
@@ -163,6 +170,41 @@ export default function PlaceAd() {
     e.preventDefault();
     setDragOver(false);
     handleFiles(e.dataTransfer.files);
+  };
+
+  const handleLookupVehicle = async () => {
+    if (!form.registration.trim()) {
+      setVehicleError('Please enter a registration number');
+      return;
+    }
+
+    setLoadingVehicle(true);
+    setVehicleError('');
+
+    try {
+      const response = await base44.functions.invoke('getVehicleDetails', {
+        registration: form.registration,
+      });
+
+      if (response.data.success) {
+        const data = response.data.data;
+        setForm((f) => ({
+          ...f,
+          vehicleMake: data.make || '',
+          vehicleModel: data.model || '',
+          vehicleYear: data.year || '',
+          vehicleFuel: data.fuel || '',
+          vehicleTransmission: data.transmission || '',
+          mileage: data.mileage || '',
+        }));
+      } else {
+        setVehicleError(response.data.error || 'Vehicle not found');
+      }
+    } catch (error) {
+      setVehicleError('Failed to retrieve vehicle details');
+    } finally {
+      setLoadingVehicle(false);
+    }
   };
 
   return (
@@ -401,14 +443,22 @@ export default function PlaceAd() {
                       className="w-full border border-border rounded-lg px-4 py-3 text-sm pl-14 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
                     />
                   </div>
-                  <button className="bg-foreground text-white font-semibold px-6 py-2.5 rounded-lg hover:bg-foreground/90 transition-colors text-sm whitespace-nowrap">
-                    Find
+                  <button
+                    type="button"
+                    onClick={handleLookupVehicle}
+                    disabled={loadingVehicle}
+                    className="bg-foreground text-white font-semibold px-6 py-2.5 rounded-lg hover:bg-foreground/90 disabled:opacity-50 transition-colors text-sm whitespace-nowrap"
+                  >
+                    {loadingVehicle ? 'Finding...' : 'Find'}
                   </button>
                 </div>
                 <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
                   <Info className="w-4 h-4" />
                   Registration not displayed on ad
                 </div>
+                {vehicleError && (
+                  <div className="mt-2 text-xs text-destructive">{vehicleError}</div>
+                )}
               </div>
 
               <div>
@@ -434,6 +484,31 @@ export default function PlaceAd() {
                   </div>
                 </div>
               </div>
+
+              {form.vehicleMake && (
+                <div className="grid grid-cols-2 gap-4 pt-2 border-t border-border">
+                  <div>
+                    <label className="block text-xs font-medium text-muted-foreground mb-1">Make</label>
+                    <div className="text-sm font-medium text-foreground">{form.vehicleMake}</div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-muted-foreground mb-1">Model</label>
+                    <div className="text-sm font-medium text-foreground">{form.vehicleModel}</div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-muted-foreground mb-1">Year</label>
+                    <div className="text-sm font-medium text-foreground">{form.vehicleYear}</div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-muted-foreground mb-1">Fuel Type</label>
+                    <div className="text-sm font-medium text-foreground">{form.vehicleFuel}</div>
+                  </div>
+                  <div className="col-span-2">
+                    <label className="block text-xs font-medium text-muted-foreground mb-1">Transmission</label>
+                    <div className="text-sm font-medium text-foreground">{form.vehicleTransmission}</div>
+                  </div>
+                </div>
+              )}
             </div>
           </Section>
 
