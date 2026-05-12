@@ -60,6 +60,10 @@ const categories = [
 { label: 'Other Motor', isOther: true },
 ]];
 
+const makes = [
+{ label: 'Volvo' },
+];
+
 function CategoryIcon({ imgKey, isAllMotor, isOther }) {
   if (isAllMotor) {
     return (
@@ -105,6 +109,7 @@ function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
     if (label === 'Boat Extras') navigate('/boat-extras');
     if (label === 'Other Motor') navigate('/other-motor');
     if (label === 'Commercials') navigate('/commercials');
+    if (label === 'Volvo') navigate('/volvo-cars');
   };
 
   return (
@@ -123,12 +128,21 @@ export default function BrowseByCategory() {
   return (
     <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
       <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">Browse by category</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         {categories.map((col, i) =>
         <div key={i} className="flex flex-col">
             {col.map((cat) =>
           <CategoryRow key={cat.label} {...cat} />
           )}
+          </div>
+        )}
+      </div>
+
+      <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">Browse by make</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {makes.map((make) =>
+        <div key={make.label} className="flex flex-col">
+            <CategoryRow key={make.label} label={make.label} />
           </div>
         )}
       </div>
