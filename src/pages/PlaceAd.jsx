@@ -76,6 +76,13 @@ const emptyForm = {
   vehicleYear: '',
   vehicleFuel: '',
   vehicleTransmission: '',
+  bodyType: '',
+  colour: '',
+  engineSize: '',
+  numberOfDoors: '',
+  numberOfSeats: '',
+  currentCountryOfReg: '',
+  nctExpiry: '',
   fullName: '',
   email: '',
   phone: '',
@@ -193,9 +200,10 @@ export default function PlaceAd() {
           vehicleMake: data.make || '',
           vehicleModel: data.model || '',
           vehicleYear: data.year || '',
-          vehicleFuel: data.fuel || '',
+          vehicleFuel: data.fuelType || '',
           vehicleTransmission: data.transmission || '',
           mileage: data.mileage || '',
+          ...data,
         }));
       } else {
         setVehicleError(response.data.error || 'Vehicle not found');
@@ -486,28 +494,78 @@ export default function PlaceAd() {
               </div>
 
               {form.vehicleMake && (
-                <div className="grid grid-cols-2 gap-4 pt-2 border-t border-border">
-                  <div>
-                    <label className="block text-xs font-medium text-muted-foreground mb-1">Make</label>
-                    <div className="text-sm font-medium text-foreground">{form.vehicleMake}</div>
+                <>
+                  <div className="bg-accent/10 border border-accent/20 rounded-lg p-4 mb-4 flex items-start gap-3">
+                    <div className="flex-shrink-0 text-accent">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground text-sm">Vehicle details found</h4>
+                      <p className="text-xs text-muted-foreground mt-0.5">Check the details below before publishing your ad</p>
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-xs font-medium text-muted-foreground mb-1">Model</label>
-                    <div className="text-sm font-medium text-foreground">{form.vehicleModel}</div>
+
+                  <div className="grid grid-cols-2 gap-4 bg-secondary/30 rounded-lg p-4">
+                    <div>
+                      <label className="block text-xs font-medium text-muted-foreground mb-2">Make</label>
+                      <div className="text-base font-semibold text-foreground">{form.vehicleMake}</div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-muted-foreground mb-2">Model</label>
+                      <div className="text-base font-semibold text-foreground">{form.vehicleModel}</div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-muted-foreground mb-2">Body Type</label>
+                      <div className="text-base font-semibold text-foreground">{form.bodyType}</div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-muted-foreground mb-2">Fuel Type</label>
+                      <div className="text-base font-semibold text-foreground">{form.vehicleFuel}</div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-muted-foreground mb-2">Colour</label>
+                      <div className="text-base font-semibold text-foreground">{form.colour}</div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-muted-foreground mb-2">Year</label>
+                      <div className="text-base font-semibold text-foreground">{form.vehicleYear}</div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-muted-foreground mb-2">Transmission</label>
+                      <div className="text-base font-semibold text-foreground">{form.vehicleTransmission}</div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-muted-foreground mb-2">Engine Size</label>
+                      <div className="text-base font-semibold text-foreground">{form.engineSize}</div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-muted-foreground mb-2">Number of Doors</label>
+                      <div className="text-base font-semibold text-foreground">{form.numberOfDoors}</div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-muted-foreground mb-2">Number of Seats</label>
+                      <div className="text-base font-semibold text-foreground">{form.numberOfSeats}</div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-muted-foreground mb-2">Current Country of Reg.</label>
+                      <div className="text-base font-semibold text-foreground">{form.currentCountryOfReg}</div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-muted-foreground mb-2">NCT Expiry</label>
+                      <div className="text-base font-semibold text-foreground">{form.nctExpiry}</div>
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-xs font-medium text-muted-foreground mb-1">Year</label>
-                    <div className="text-sm font-medium text-foreground">{form.vehicleYear}</div>
+
+                  <button className="mt-3 text-primary text-sm font-semibold hover:underline">
+                    Edit vehicle details
+                  </button>
+
+                  <div className="mt-3 bg-amber-50 border border-amber-200 rounded-lg p-3">
+                    <p className="text-xs text-amber-800">More details about your vehicle may be automatically displayed in your ad</p>
                   </div>
-                  <div>
-                    <label className="block text-xs font-medium text-muted-foreground mb-1">Fuel Type</label>
-                    <div className="text-sm font-medium text-foreground">{form.vehicleFuel}</div>
-                  </div>
-                  <div className="col-span-2">
-                    <label className="block text-xs font-medium text-muted-foreground mb-1">Transmission</label>
-                    <div className="text-sm font-medium text-foreground">{form.vehicleTransmission}</div>
-                  </div>
-                </div>
+                </>
               )}
             </div>
           </Section>
