@@ -279,6 +279,22 @@ export default function PlaceAd() {
                 <>
 
 
+                  {/* Select Section */}
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-1.5">Select Section</label>
+                    <div className="relative">
+                      <select
+                        value={form.section}
+                        onChange={(e) => setForm((f) => ({ ...f, section: e.target.value, subsection: '' }))}
+                        className="w-full appearance-none border border-border rounded-lg px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-9"
+                      >
+                        <option value="">Select a section...</option>
+                        {sections.map((s) => <option key={s.label}>{s.label}</option>)}
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                    </div>
+                  </div>
+
                   {/* Select Subsection */}
                   {form.section && (
                     <div className="flex items-start gap-3">
