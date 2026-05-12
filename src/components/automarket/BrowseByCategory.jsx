@@ -39,7 +39,6 @@ const categories = [
 { label: 'Car Extras', imgKey: 'carExtras' },
 { label: 'Rally Cars', imgKey: 'rallyCar' },
 { label: 'Breaking & Repairables', imgKey: 'breaking' },
-{ label: 'Volvo Cars', imgKey: 'carExtras' },
 ],
 [
 { label: 'Trucks', imgKey: 'truck' },
@@ -91,7 +90,6 @@ function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
     if (label === 'Car Extras') navigate('/car-extras');
     if (label === 'Rally Cars') navigate('/rally-cars');
     if (label === 'Breaking & Repairables') navigate('/breaking-repairables');
-    if (label === 'Volvo Cars') navigate('/volvo-cars');
     if (label === 'Trucks') navigate('/trucks');
     if (label === 'Trailers') navigate('/trailers');
     if (label === 'Campers') navigate('/campers');
