@@ -15,78 +15,45 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Registration is required' }, { status: 400 });
     }
 
-    // Mock vehicle data - replace with actual API call
-    const mockVehicles = {
-      '201D0123': {
-        make: 'Toyota',
-        model: 'Corolla',
-        year: '2020',
-        fuelType: 'Petrol',
-        transmission: 'Manual',
-        engineSize: '1.6 L',
-        bodyType: 'Sedan',
-        colour: 'Silver',
-        numberOfDoors: 4,
-        numberOfSeats: 5,
-        currentCountryOfReg: 'Ireland',
-        nctExpiry: 'Dec 2025',
-        mileage: '45000',
-      },
-      '171D2906': {
-        make: 'Hyundai',
-        model: 'Tucson',
-        year: '2017',
-        fuelType: 'Diesel',
-        transmission: 'Manual',
-        engineSize: '1.7 L',
-        bodyType: 'SUV',
-        colour: 'Blue',
-        numberOfDoors: 5,
-        numberOfSeats: 5,
-        currentCountryOfReg: 'Ireland',
-        nctExpiry: 'Jan 2027',
-        mileage: '78000',
-      },
-      '211D5678': {
-        make: 'BMW',
-        model: '3 Series',
-        year: '2021',
-        fuelType: 'Diesel',
-        transmission: 'Automatic',
-        engineSize: '2.0 L',
-        bodyType: 'Sedan',
-        colour: 'Black',
-        numberOfDoors: 4,
-        numberOfSeats: 5,
-        currentCountryOfReg: 'Ireland',
-        nctExpiry: 'Mar 2026',
-        mileage: '32000',
-      },
-      '19D9999': {
-        make: 'Ford',
-        model: 'Focus',
-        year: '2019',
-        fuelType: 'Petrol',
-        transmission: 'Manual',
-        engineSize: '1.5 L',
-        bodyType: 'Hatchback',
-        colour: 'White',
-        numberOfDoors: 5,
-        numberOfSeats: 5,
-        currentCountryOfReg: 'Ireland',
-        nctExpiry: 'Aug 2024',
-        mileage: '62000',
-      },
-    };
+    const apiKey = Deno.env.get('IRISH_NCR_API_KEY');
+    if (!apiKey) {
+      return Response.json({ error: 'API key not configured' }, { status: 500 });
+    }
 
-    const vehicleData = mockVehicles[registration.toUpperCase()];
+    // Call Irish NCR API
+    const ncrResponse = await fetch('https://www.irishncrapi.com/api/vehicledetails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({ registration: registration.toUpperCase() }),
+    });
 
-    if (!vehicleData) {
+    if (!ncrResponse.ok) {
       return Response.json(
         { error: 'Vehicle not found. Please check the registration number.' },
         { status: 404 }
       );
     }
+
+    const ncrData = await ncrResponse.json();
+
+    // Map NCR response to our format
+    const vehicleData = {
+      make: ncrData.make || '',
+      model: ncrData.model || '',
+      year: ncrData.year?.toString() || '',
+      fuelType: ncrData.fuelType || '',
+      transmission: ncrData.transmission || '',
+      engineSize: ncrData.engineSize || '',
+      bodyType: ncrData.bodyType || '',
+      colour: ncrData.colour || '',
+      numberOfDoors: ncrData.numberOfDoors?.toString() || '',
+      numberOfSeats: ncrData.numberOfSeats?.toString() || '',
+      currentCountryOfReg: 'Ireland',
+      nctExpiry: ncrData.nctExpiry || '',
+    };
 
     return Response.json({ success: true, data: vehicleData });
   } catch (error) {
