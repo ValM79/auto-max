@@ -69,7 +69,8 @@ function MakeRow({ label, logo }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    if (label === 'Volvo') navigate('/volvo-cars');
+    const makeSlug = label.toLowerCase().replace(/\s+/g, '-');
+    navigate(`/cars-by-make/${makeSlug}`);
   };
 
   return (

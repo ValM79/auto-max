@@ -48,7 +48,7 @@ import TrustedDealerCars from './pages/TrustedDealerCars';
 import ElectricHybridCars from './pages/ElectricHybridCars';
 import AllMotors from './pages/AllMotors';
 import BuyingTips from './pages/BuyingTips';
-import VolvoCars from './pages/VolvoCars';
+import CarsByMake from './pages/CarsByMake';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -120,7 +120,7 @@ const AuthenticatedApp = () => {
       <Route path="/electric-hybrid-cars" element={<ElectricHybridCars />} />
       <Route path="/all-motors" element={<AllMotors />} />
       <Route path="/buying-tips" element={<BuyingTips />} />
-      <Route path="/volvo-cars" element={<VolvoCars />} />
+      <Route path="/cars-by-make/:make" element={<CarsByMake />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
