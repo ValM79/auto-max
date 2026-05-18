@@ -161,7 +161,7 @@ export default function ModifiedCars() {
         </div>
 
         <div className="mb-6 rounded-xl overflow-hidden h-36 sm:h-44">
-          <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200&q=80" alt="Promo" className="w-full h-full object-cover" />
+          <img src="https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/7b875ae82_generated_image.png" alt="Promo" className="w-full h-full object-cover" />
         </div>
 
         <div className="flex gap-6">

@@ -152,7 +152,7 @@ export default function BreakingRepairables() {
         {/* Banner */}
         <div className="mb-6 rounded-xl overflow-hidden border border-border h-36 sm:h-44">
           <img
-            src="https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/700a41555_generated_image.png"
+            src="https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/a6206e6da_generated_image.png"
             alt="Breaking & Repairables Banner"
             className="w-full h-full object-cover" />
           
