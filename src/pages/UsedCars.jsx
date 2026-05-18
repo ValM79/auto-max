@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Search, Heart, Camera, ChevronDown, Star, LayoutList, LayoutGrid, ArrowLeft } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
@@ -155,6 +155,7 @@ function StarRating({ rating }) {
 }
 
 export default function UsedCars() {
+  const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [savedIds, setSavedIds] = useState([]);
 
@@ -171,7 +172,7 @@ export default function UsedCars() {
       <div className="max-w-7xl mx-auto px-4 py-4">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-          <button onClick={() => window.history.back()} className="flex items-center gap-1 hover:text-primary transition-colors">
+          <button onClick={() => navigate(-1)} className="flex items-center gap-1 hover:text-primary transition-colors">
             <ArrowLeft className="w-3.5 h-3.5" /> Back
           </button>
           <span>›</span>
