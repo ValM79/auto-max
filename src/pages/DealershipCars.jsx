@@ -197,24 +197,8 @@ export default function DealershipCars() {
           </div>
         </div>
 
-        {/* Banner */}
-        <div className="mb-6 rounded-xl overflow-hidden h-36 bg-orange-500 flex items-center justify-between px-8 relative">
-          <div className="flex items-center gap-6 z-10">
-            <div className="bg-orange-600 rounded-full w-24 h-24 flex items-center justify-center flex-shrink-0">
-              <div className="text-white text-center text-xs font-extrabold leading-tight px-2">
-                <p>CLICK</p><p>HERE</p><p>FOR MORE</p><p>INFO</p>
-              </div>
-            </div>
-            <img
-              src="https://images.unsplash.com/photo-1560472355-536de3962603?w=300&q=80"
-              alt="Family"
-              className="h-32 object-cover rounded-lg opacity-90"
-            />
-          </div>
-          <div className="text-white text-right z-10">
-            <p className="text-xs font-semibold uppercase tracking-wider mb-1">Members</p>
-            <p className="text-3xl font-extrabold leading-tight">FLEXIBLE<br />MORTGAGE</p>
-          </div>
+        <div className="mb-6 rounded-xl overflow-hidden h-36 sm:h-44">
+          <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1200&q=80" alt="Promo" className="w-full h-full object-cover" />
         </div>
 
         <div className="flex gap-6">

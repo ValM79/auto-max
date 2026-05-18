@@ -148,13 +148,8 @@ export default function Campers() {
           </div>
         </div>
 
-        {/* Banner */}
-        <div className="mb-6 rounded-xl overflow-hidden border border-border h-36 sm:h-44">
-          <img
-            src="https://images.unsplash.com/photo-1527519335468-447f819ea228?w=1200&q=80"
-            alt="Campers Banner"
-            className="w-full h-full object-cover"
-          />
+        <div className="mb-6 rounded-xl overflow-hidden h-36 sm:h-44">
+          <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=80" alt="Promo" className="w-full h-full object-cover" />
         </div>
 
         <div className="flex gap-6">

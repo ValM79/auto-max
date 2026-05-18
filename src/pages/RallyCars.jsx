@@ -148,17 +148,8 @@ export default function RallyCars() {
           </div>
         </div>
 
-        {/* Banner */}
-        <div className="mb-6 rounded-xl overflow-hidden border border-border h-36 sm:h-44 bg-gradient-to-r from-orange-500 to-orange-600 flex items-center justify-between px-8">
-          <div className="text-white">
-            <p className="text-3xl font-extrabold leading-tight">FIND YOUR<br />RALLY CAR</p>
-            <p className="text-sm mt-1 opacity-80">183 ads in Ireland</p>
-          </div>
-          <img
-            src="https://images.unsplash.com/photo-1547245324-d777c6f05e80?w=600&q=80"
-            alt="Rally Car"
-            className="h-full w-1/2 object-cover rounded-lg opacity-80"
-          />
+        <div className="mb-6 rounded-xl overflow-hidden h-36 sm:h-44">
+          <img src="https://images.unsplash.com/photo-1547245324-d777c6f05e80?w=1200&q=80" alt="Promo" className="w-full h-full object-cover" />
         </div>
 
         <div className="flex gap-6">

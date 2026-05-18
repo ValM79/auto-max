@@ -169,13 +169,8 @@ export default function MotorbikeExtras() {
           </div>
         </div>
 
-        {/* Banner */}
-        <div className="mb-6 rounded-xl overflow-hidden border border-border h-36 sm:h-44">
-          <img
-            src="https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/34aa93463_generated_image.png"
-            alt="Motorbike Extras Banner"
-            className="w-full h-full object-cover"
-          />
+        <div className="mb-6 rounded-xl overflow-hidden h-36 sm:h-44">
+          <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=1200&q=80" alt="Promo" className="w-full h-full object-cover" />
         </div>
 
         <div className="flex gap-6">

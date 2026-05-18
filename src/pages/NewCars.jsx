@@ -172,7 +172,7 @@ export default function NewCars() {
           </div>
         </div>
 
-        <PromoBanner />
+        <PromoBanner image="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80" />
 
         <div className="flex gap-6">
           {/* Sidebar */}

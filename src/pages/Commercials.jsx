@@ -245,25 +245,8 @@ export default function Commercials() {
           </div>
         </div>
 
-        {/* Promo banner */}
-        <div className="rounded-xl overflow-hidden mb-6 relative bg-gray-900 h-40 sm:h-52 flex items-center">
-          <img
-            src="https://images.unsplash.com/photo-1586191180000-5df15b3eef4a?w=1200&q=80"
-            alt="Promo"
-            className="absolute inset-0 w-full h-full object-cover opacity-50"
-          />
-          <div className="relative z-10 px-8 py-6">
-            <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">Special Offer</p>
-            <h2 className="text-white text-2xl sm:text-3xl font-extrabold leading-tight mb-1">
-              10-YEAR <span className="text-red-400">TGE</span> ANNIVERSARY
-            </h2>
-            <p className="text-white font-bold text-lg">SPECIAL OFFER</p>
-            <p className="text-white/80 text-xs mt-1">Saving of up to <span className="text-white font-bold">€2,700</span></p>
-          </div>
-          <div className="absolute right-6 top-1/2 -translate-y-1/2 bg-red-600 text-white rounded-full w-20 h-20 flex flex-col items-center justify-center text-center hidden sm:flex">
-            <span className="text-[10px] font-semibold leading-tight">SAVING UP TO</span>
-            <span className="text-base font-extrabold">€2,700</span>
-          </div>
+        <div className="rounded-xl overflow-hidden mb-6 h-36 sm:h-44">
+          <img src="https://images.unsplash.com/photo-1586191180000-5df15b3eef4a?w=1200&q=80" alt="Promo" className="w-full h-full object-cover" />
         </div>
 
         <div className="flex gap-6">

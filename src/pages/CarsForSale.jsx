@@ -162,7 +162,7 @@ export default function CarsForSale() {
           </div>
         </div>
 
-        <PromoBanner />
+        <PromoBanner image="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200&q=80" />
 
         <div className="flex gap-6">
           {/* Sidebar Filters */}

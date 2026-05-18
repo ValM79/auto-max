@@ -103,8 +103,8 @@ export default function OtherMotor() {
             <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search Other Motor" className="w-full border border-border rounded-lg pl-9 pr-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30" />
           </div>
         </div>
-        <div className="mb-6 rounded-xl overflow-hidden border border-border h-36 sm:h-44">
-          <img src="https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/34aa93463_generated_image.png" alt="Other Motor Banner" className="w-full h-full object-cover" />
+        <div className="mb-6 rounded-xl overflow-hidden h-36 sm:h-44">
+          <img src="https://images.unsplash.com/photo-1537350994076-726c6e5e0e7d?w=1200&q=80" alt="Promo" className="w-full h-full object-cover" />
         </div>
         <div className="flex gap-6">
           <aside className="hidden lg:block w-64 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
