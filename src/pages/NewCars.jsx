@@ -158,7 +158,7 @@ export default function NewCars() {
 
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
-          <h1 className="text-2xl font-bold text-foreground">New & Used 2 Cars For Sale</h1>
+          <h1 className="text-2xl font-bold text-foreground">New & Used Cars For Sale</h1>
           <div className="relative w-full sm:w-80">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
