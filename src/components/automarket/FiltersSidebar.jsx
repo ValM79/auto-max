@@ -239,7 +239,7 @@ export default function FiltersSidebar() {
         <div className="flex flex-wrap gap-2">
           {transmissions.map((t) =>
             <button key={t} onClick={() => toggleArr(setTransSelected)(t)}
-            className={`px-4 py-2 border transition-colors rounded-md font-bold text-sm ${transSelected.includes(t) ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:bg-secondary'}`}>
+            className={`px-4 py-2 border transition-colors rounded-md font-bold text-base ${transSelected.includes(t) ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:bg-secondary'}`}>
               {t}
             </button>
             )}
