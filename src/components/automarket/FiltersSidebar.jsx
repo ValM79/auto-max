@@ -128,7 +128,7 @@ export default function FiltersSidebar() {
   const toggleArr = (setter) => (val) => setter((prev) => prev.includes(val) ? prev.filter((x) => x !== val) : [...prev, val]);
 
   return (
-    <div className="text-base">
+    <div className="text-base px-2">
       {/* Save Search */}
       <button className="flex items-center justify-center gap-2 w-full bg-primary text-white rounded-lg px-4 py-3 hover:bg-primary/90 transition-colors mb-5 font-semibold text-base">
         <Star className="w-5 h-5" /> Save Search
