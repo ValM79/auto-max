@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Heart, Camera, ChevronDown, Star, LayoutList, LayoutGrid, ArrowLeft, ShieldCheck, Phone } from 'lucide-react';
+import { Search, ChevronDown, LayoutList, LayoutGrid, ArrowLeft } from 'lucide-react';
+import ListingCard from '../components/automarket/ListingCard';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import FiltersSidebar from '../components/automarket/FiltersSidebar';
@@ -140,15 +141,7 @@ const dealerListings = [
   },
 ];
 
-function StarRating({ rating }) {
-  return (
-    <div className="flex items-center gap-0.5">
-      {[1,2,3,4,5].map(s => (
-        <Star key={s} className={`w-3 h-3 ${s <= Math.round(rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200 fill-gray-200'}`} />
-      ))}
-    </div>
-  );
-}
+
 
 export default function DealershipCars() {
   const [search, setSearch] = useState('');
@@ -183,16 +176,16 @@ export default function DealershipCars() {
         </div>
 
         {/* Title + Search */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Cars from Dealerships</h1>
-          <div className="relative w-full sm:w-72">
+        <div className="mb-6">
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Cars from Dealerships</h1>
+          <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search Cars"
-              className="w-full border border-border rounded-lg pl-9 pr-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
             />
           </div>
         </div>
@@ -238,76 +231,21 @@ export default function DealershipCars() {
 
             <div className="flex flex-col gap-4">
               {filtered.map(car => (
-                <div key={car.id} className="bg-white rounded-xl border border-border shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                  {/* Dealer header */}
-                  <div className="flex items-center gap-3 px-4 py-2.5 border-b border-border bg-secondary/20">
-                    <img src={car.dealerLogo} alt={car.dealerName} className="w-9 h-9 rounded object-cover border border-border" />
-                    <span className="text-sm font-semibold text-foreground">{car.dealerName}</span>
-                    {car.dealerType.includes('Trusted') && (
-                      <span className="ml-auto flex items-center gap-1 text-xs text-green-700 font-medium">
-                        <ShieldCheck className="w-3.5 h-3.5 text-green-600" /> Trusted
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row">
-                    {/* Image */}
-                    <div className="relative sm:w-64 h-48 sm:h-auto flex-shrink-0">
-                      {car.spotlight && (
-                        <span className="absolute top-2 left-2 bg-black/70 text-white text-xs font-semibold px-2 py-0.5 rounded z-10">Spotlight</span>
-                      )}
-                      <img src={car.image} alt={car.title} className="w-full h-full object-cover" />
-                      <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-black/60 text-white text-xs px-2 py-0.5 rounded">
-                        <Camera className="w-3 h-3" /> {car.photos}
-                      </div>
-                      {car.phone && (
-                        <div className="absolute bottom-2 right-2 flex items-center gap-1 bg-black/60 text-white text-xs px-2 py-0.5 rounded">
-                          <Phone className="w-3 h-3" /> {car.phone}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Details */}
-                    <div className="flex-1 p-4 flex flex-col justify-between">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-xs text-muted-foreground">{car.dealerType}</span>
-                          <StarRating rating={car.dealerRating} />
-                          <span className="text-xs text-muted-foreground">{car.dealerRating}</span>
-                        </div>
-                        <h3 className="text-lg font-bold text-foreground mb-1">{car.title}</h3>
-                        <p className="text-sm text-muted-foreground mb-2">
-                          {car.year} · {car.fuel} · {car.mileage} · {car.location}
-                        </p>
-                        {car.badge && (
-                          <span className={`inline-block text-xs font-medium px-2.5 py-1 rounded-full ${car.badgeColor}`}>
-                            {car.badge}
-                          </span>
-                        )}
-                      </div>
-                      <div className="flex items-end justify-between mt-4">
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <p className="text-2xl font-bold text-foreground">€{car.price.toLocaleString()}</p>
-                            {car.priceNote && (
-                              <span className={`text-xs font-semibold flex items-center gap-1 ${car.priceNoteColor}`}>
-                                ● {car.priceNote}
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-xs text-muted-foreground">From €{car.monthly}/mo</p>
-                        </div>
-                        <button
-                          onClick={() => toggleSave(car.id)}
-                          className={`p-2 rounded-full border transition-colors ${savedIds.includes(car.id) ? 'border-destructive text-destructive' : 'border-border text-muted-foreground hover:text-destructive hover:border-destructive'}`}>
-                          <Heart className={`w-5 h-5 ${savedIds.includes(car.id) ? 'fill-destructive' : ''}`} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <ListingCard
+                  key={car.id}
+                  item={{
+                    ...car,
+                    dealer: car.dealerName,
+                    sellerType: car.dealerType,
+                    sellerRating: car.dealerRating,
+                    trusted: car.dealerType.includes('Trusted'),
+                    price: `€${car.price.toLocaleString()}`,
+                  }}
+                  saved={savedIds.includes(car.id)}
+                  onToggleSave={toggleSave}
+                  viewMode="list"
+                />
               ))}
-
               {filtered.length === 0 && (
                 <div className="text-center py-16 text-muted-foreground">
                   <p className="text-lg font-medium">No dealership cars found</p>

@@ -1,20 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PromoBanner from '../components/automarket/PromoBanner';
-import { Search, Star, ChevronDown, Heart, Camera, ArrowLeft } from 'lucide-react';
+import { Search, ChevronDown, ArrowLeft } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import FiltersSidebar from '../components/automarket/FiltersSidebar';
-
-function StarRating({ rating }) {
-  return (
-    <div className="flex items-center gap-0.5">
-      {[1, 2, 3, 4, 5].map((s) =>
-      <Star key={s} className={`w-3 h-3 ${s <= Math.round(rating) ? 'fill-yellow-400 text-yellow-400' : 'fill-gray-200 text-gray-200'}`} />
-      )}
-    </div>);
-
-}
+import ListingCard from '../components/automarket/ListingCard';
 
 
 const listings = [
@@ -158,17 +149,16 @@ export default function NewCars() {
         </div>
 
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
-          <h1 className="text-2xl font-bold text-foreground">Аll Cars For Sale</h1>
-          <div className="relative w-full sm:w-80">
+        <div className="mb-5">
+          <h1 className="text-2xl font-bold text-foreground mb-3">All Cars For Sale</h1>
+          <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Cars"
-              className="w-full border border-border rounded-lg pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
-            
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
           </div>
         </div>
 
@@ -192,83 +182,24 @@ export default function NewCars() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-5">
-              {filtered.map((listing) =>
-              <div key={listing.id} className="bg-white border border-border rounded-xl shadow-sm overflow-hidden">
-                  {/* Dealer header */}
-                  <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
-                    <img src={listing.dealerLogo} alt={listing.dealer} className="w-8 h-8 rounded-full object-cover" />
-                    <span className="text-sm font-semibold text-primary">{listing.dealer}</span>
-                    {listing.spotlight &&
-                  <span className="ml-2 text-xs bg-gray-800 text-white px-2 py-0.5 rounded font-semibold">Spotlight</span>
-                  }
-                  </div>
-
-                  {/* Main image + info */}
-                  <div className="flex flex-col sm:flex-row">
-                    <div className="w-full sm:w-64 flex-shrink-0">
-                      <div className="relative h-44 sm:h-48">
-                        <img src={listing.images[0]} alt={listing.title} className="w-full h-full object-cover" />
-                        <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-black/50 text-white text-xs px-2 py-0.5 rounded">
-                          <Camera className="w-3 h-3" /> {listing.photos}
-                        </div>
-                      </div>
-                      {/* Thumbnail strip */}
-                      {listing.images.length > 1 &&
-                    <div className="flex gap-1 p-1 bg-gray-50">
-                          {listing.images.slice(1).map((img, i) =>
-                      <div key={i} className="relative flex-1 h-14 overflow-hidden rounded">
-                              <img src={img} alt="" className="w-full h-full object-cover" />
-                              {i === listing.images.slice(1).length - 1 && listing.photos > 3 &&
-                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                                  <span className="text-white text-xs font-bold">+{listing.photos - 2}</span>
-                                </div>
-                        }
-                            </div>
-                      )}
-                        </div>
-                    }
-                    </div>
-
-                    {/* Info */}
-                    <div className="flex-1 p-4 flex flex-col justify-between">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <span className="text-xs text-muted-foreground">{listing.dealerType}</span>
-                          {listing.dealerRating ?
-                        <>
-                              <StarRating rating={listing.dealerRating} />
-                              <span className="text-xs font-semibold">{listing.ratingLabel}</span>
-                            </> :
-
-                        <span className="text-xs text-muted-foreground">{listing.ratingLabel}</span>
-                        }
-                        </div>
-                        <h3 className="text-base font-bold text-foreground mb-2 hover:text-primary cursor-pointer transition-colors">{listing.title}</h3>
-                        <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground mb-3">
-                          <span>{listing.year}</span>
-                          <span>·</span>
-                          <span>{listing.engine}</span>
-                          <span>·</span>
-                          <span>{listing.mileage}</span>
-                          <span>·</span>
-                          <span>{listing.location}</span>
-                        </div>
-                        {listing.badge &&
-                      <span className="inline-block text-xs border border-border rounded px-2 py-0.5 text-muted-foreground">{listing.badge}</span>
-                      }
-                      </div>
-                      <div className="flex items-center justify-between mt-4">
-                        <span className="text-xl font-extrabold text-foreground">{listing.price}</span>
-                        <button onClick={() => toggleSaved(listing.id)}
-                      className={`w-9 h-9 rounded-full border flex items-center justify-center transition-colors ${savedIds.includes(listing.id) ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:border-primary hover:text-primary'}`}>
-                          <Heart className={`w-4 h-4 ${savedIds.includes(listing.id) ? 'fill-primary' : ''}`} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
+            <div className="flex flex-col gap-4">
+              {filtered.map((listing) => (
+                <ListingCard
+                  key={listing.id}
+                  item={{
+                    ...listing,
+                    dealer: listing.dealer,
+                    dealerLogo: listing.dealerLogo,
+                    image: listing.images[0],
+                    images: listing.images,
+                    sellerType: listing.dealerType,
+                    sellerRating: listing.dealerRating,
+                  }}
+                  saved={savedIds.includes(listing.id)}
+                  onToggleSave={toggleSaved}
+                  viewMode="list"
+                />
+              ))}
             </div>
           </div>
         </div>

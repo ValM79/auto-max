@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Star, ChevronDown, ChevronUp, Heart, Camera, ArrowLeft } from 'lucide-react';
+import { Search, Star, ChevronDown, ChevronUp, ArrowLeft } from 'lucide-react';
+import ListingCard from '../components/automarket/ListingCard';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 
@@ -231,16 +232,16 @@ export default function Commercials() {
         </div>
 
         {/* Header row */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
-          <h1 className="text-2xl font-bold text-foreground">Commercials in Ireland</h1>
-          <div className="relative w-full sm:w-80">
+        <div className="mb-5">
+          <h1 className="text-2xl font-bold text-foreground mb-3">Commercials in Ireland</h1>
+          <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search Commercials"
-              className="w-full border border-border rounded-lg pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
             />
           </div>
         </div>
@@ -395,69 +396,18 @@ export default function Commercials() {
 
             <div className="flex flex-col gap-4">
               {filtered.map(listing => (
-                <div key={listing.id} className="bg-white border border-border rounded-xl shadow-sm overflow-hidden">
-                  {/* Dealer header */}
-                  <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
-                    <img src={listing.dealerLogo} alt={listing.dealer} className="w-8 h-8 rounded-full object-cover" />
-                    <span className="text-sm font-semibold text-primary">{listing.dealer}</span>
-                    {listing.spotlight && (
-                      <span className="ml-auto text-xs bg-yellow-100 text-yellow-700 border border-yellow-300 px-2 py-0.5 rounded font-semibold">Spotlight</span>
-                    )}
-                  </div>
-
-                  {/* Listing body */}
-                  <div className="flex flex-col sm:flex-row">
-                    {/* Image */}
-                    <div className="relative w-full sm:w-56 flex-shrink-0 h-44 sm:h-auto">
-                      <img src={listing.image} alt={listing.title} className="w-full h-full object-cover" />
-                      {listing.badge && (
-                        <div className="absolute inset-0 bg-black/60 flex flex-col justify-center px-4">
-                          <span className="text-yellow-400 font-extrabold text-sm mb-1">{listing.badge}</span>
-                          {listing.badgeDesc && listing.badgeDesc.split('\n').map((line, i) => (
-                            <p key={i} className="text-white text-xs leading-snug">{line}</p>
-                          ))}
-                        </div>
-                      )}
-                      <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-black/50 text-white text-xs px-2 py-0.5 rounded">
-                        <Camera className="w-3 h-3" /> {listing.photos}
-                      </div>
-                    </div>
-
-                    {/* Info */}
-                    <div className="flex-1 p-4 flex flex-col justify-between">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-xs text-muted-foreground font-medium">{listing.dealerType}</span>
-                          {listing.dealerRating && (
-                            <>
-                              <StarRating rating={listing.dealerRating} />
-                              <span className="text-xs font-semibold text-foreground">{listing.dealerRating}</span>
-                            </>
-                          )}
-                        </div>
-                        <h3 className="text-base font-bold text-foreground mb-2 hover:text-primary cursor-pointer transition-colors">{listing.title}</h3>
-                        <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
-                          <span>{listing.year}</span>
-                          <span>·</span>
-                          <span>{listing.engine}</span>
-                          <span>·</span>
-                          <span>{listing.mileage}</span>
-                          <span>·</span>
-                          <span>{listing.daysAgo}</span>
-                          <span>·</span>
-                          <span>{listing.location}</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between mt-3">
-                        <span className="text-xl font-extrabold text-foreground">{listing.price}</span>
-                        <button onClick={() => toggleSaved(listing.id)}
-                          className={`w-9 h-9 rounded-full border flex items-center justify-center transition-colors ${savedIds.includes(listing.id) ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:border-primary hover:text-primary'}`}>
-                          <Heart className={`w-4 h-4 ${savedIds.includes(listing.id) ? 'fill-primary' : ''}`} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <ListingCard
+                  key={listing.id}
+                  item={{
+                    ...listing,
+                    sellerType: listing.dealerType,
+                    sellerRating: listing.dealerRating,
+                    timeAgo: listing.daysAgo,
+                  }}
+                  saved={savedIds.includes(listing.id)}
+                  onToggleSave={toggleSaved}
+                  viewMode="list"
+                />
               ))}
             </div>
           </div>

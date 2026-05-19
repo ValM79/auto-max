@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Heart, Camera, ChevronDown, Star, LayoutList, LayoutGrid, ArrowLeft } from 'lucide-react';
+import { Search, ChevronDown, LayoutList, LayoutGrid, ArrowLeft } from 'lucide-react';
+import ListingCard from '../components/automarket/ListingCard';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import SimpleFiltersSidebar from '../components/automarket/SimpleFiltersSidebar';
@@ -98,15 +99,7 @@ const listings = [
   },
 ];
 
-function StarRating({ rating }) {
-  return (
-    <div className="flex items-center gap-0.5">
-      {[1,2,3,4,5].map(s => (
-        <Star key={s} className={`w-3 h-3 ${s <= Math.round(rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200 fill-gray-200'}`} />
-      ))}
-    </div>
-  );
-}
+
 
 export default function Motorbikes() {
   const [search, setSearch] = useState('');
@@ -147,11 +140,11 @@ export default function Motorbikes() {
           <span>›</span>
           <span className="text-foreground font-medium">Motorbikes</span>
         </div>
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Motorbikes in Ireland</h1>
-          <div className="relative w-full sm:w-72">
+        <div className="mb-6">
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Motorbikes in Ireland</h1>
+          <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search Motorbikes" className="w-full border border-border rounded-lg pl-9 pr-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30" />
+            <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search Motorbikes" className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
           </div>
         </div>
         <div className="mb-6 rounded-xl overflow-hidden border border-border h-36 sm:h-44">
@@ -182,32 +175,13 @@ export default function Motorbikes() {
             </div>
             <div className={viewMode === 'grid' ? 'grid grid-cols-2 gap-4' : 'flex flex-col gap-4'}>
               {filtered.map(item => (
-                <div key={item.id} className="bg-white rounded-xl border border-border shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                  <div className={viewMode === 'grid' ? 'flex flex-col' : 'flex flex-col sm:flex-row'}>
-                    <div className={`relative flex-shrink-0 ${viewMode === 'grid' ? 'h-44 w-full' : 'sm:w-56 h-44 sm:h-auto'}`}>
-                      {item.spotlight && <span className="absolute top-2 left-2 bg-black/70 text-white text-xs font-semibold px-2 py-0.5 rounded z-10">Spotlight</span>}
-                      <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
-                      <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-black/60 text-white text-xs px-2 py-0.5 rounded">
-                        <Camera className="w-3 h-3" /> {item.photos}
-                      </div>
-                    </div>
-                    <div className="flex-1 p-4 flex flex-col justify-between">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <span className="text-xs text-muted-foreground">{item.sellerType}</span>
-                          {item.sellerRating ? (<><StarRating rating={item.sellerRating} /><span className="text-xs text-muted-foreground">{item.sellerRating}</span></>) : (<span className="text-xs text-muted-foreground flex items-center gap-1"><Star className="w-3 h-3 text-gray-300 fill-gray-300" /> No rating</span>)}
-                        </div>
-                        <h3 className="text-base font-bold text-foreground mb-1 hover:text-primary cursor-pointer transition-colors">{item.title}</h3>
-                        {item.year && <p className="text-xs text-muted-foreground">{item.year} · {item.fuel} · {item.mileage}</p>}
-                        <p className="text-sm text-muted-foreground">{item.timeAgo} · {item.location}</p>
-                      </div>
-                      <div className="flex items-end justify-between mt-4">
-                        <p className="text-2xl font-bold text-foreground">{item.price}</p>
-                        <button onClick={() => toggleSave(item.id)} className={`p-2 rounded-full border transition-colors ${savedIds.includes(item.id) ? 'border-destructive text-destructive' : 'border-border text-muted-foreground hover:text-destructive hover:border-destructive'}`}><Heart className={`w-5 h-5 ${savedIds.includes(item.id) ? 'fill-destructive' : ''}`} /></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <ListingCard
+                  key={item.id}
+                  item={item}
+                  saved={savedIds.includes(item.id)}
+                  onToggleSave={toggleSave}
+                  viewMode={viewMode}
+                />
               ))}
             </div>
           </div>
