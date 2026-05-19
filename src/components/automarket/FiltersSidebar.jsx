@@ -9,18 +9,8 @@ const counties = ['All Ireland', 'Dublin', 'Cork', 'Galway', 'Limerick', 'Waterf
 const radii = ['+5km', '+10km', '+20km', '+50km', '+100km', 'Nationwide'];
 const fuelTypes = ['Petrol', 'Diesel', 'Electric', 'Hybrid', 'Plug-in Hybrid', 'LPG', 'Other'];
 const transmissions = ['Manual', 'Automatic', 'Semi-Automatic'];
-const bodyTypes = [
-  { label: 'SUV', img: 'https://www.cars.ie/assets/images/body-types/suv.png' },
-  { label: 'Estate', img: 'https://www.cars.ie/assets/images/body-types/estate.png' },
-  { label: 'Hatchback', img: 'https://www.cars.ie/assets/images/body-types/hatchback.png' },
-  { label: 'Saloon', img: 'https://www.cars.ie/assets/images/body-types/saloon.png' },
-  { label: 'MPV', img: 'https://www.cars.ie/assets/images/body-types/mpv.png' },
-  { label: 'Coupe', img: 'https://www.cars.ie/assets/images/body-types/coupe.png' },
-  { label: 'Van', img: 'https://www.cars.ie/assets/images/body-types/van.png' },
-  { label: 'Convertible', img: 'https://www.cars.ie/assets/images/body-types/convertible.png' },
-  { label: 'Pick Up', img: 'https://www.cars.ie/assets/images/body-types/pick-up.png' },
-  { label: 'Other', img: null },
-];
+const bodyTypes = ['Saloon', 'Hatchback', 'SUV', 'Estate', 'Coupe', 'Convertible', 'MPV', 'Van', 'Pickup'];
+const bodyIcons = { Saloon: '🚗', Hatchback: '🚙', SUV: '🚕', Estate: '🚐', Coupe: '🏎️', Convertible: '🚘', MPV: '🚌', Van: '🚚', Pickup: '🛻' };
 const engineSizes = ['Any', 'Under 1.0L', '1.0–1.4L', '1.4–1.8L', '1.8–2.0L', '2.0–2.5L', '2.5–3.0L', '3.0L+'];
 const enginePowers = ['Any', 'Under 75hp', '75–100hp', '100–150hp', '150–200hp', '200–300hp', '300hp+'];
 const seatOptions = ['Any', '2', '4', '5', '6', '7', '8+'];
@@ -236,16 +226,11 @@ export default function FiltersSidebar() {
       {/* Body type */}
       <Section title="Body type">
         <div className="grid grid-cols-3 gap-2">
-          {bodyTypes.map(({ label, img }) => (
-            <button key={label} onClick={() => toggleArr(setBodySelected)(label)}
-              className={`flex flex-col items-center justify-end gap-1 border rounded-lg pt-2 pb-2.5 px-1 text-sm transition-colors ${bodySelected.includes(label) ? 'border-primary bg-primary/5 text-primary font-semibold' : 'border-border text-foreground hover:bg-secondary'}`}>
-              {img ? (
-                <img src={img} alt={label} className="w-full h-10 object-contain"
-                  onError={e => { e.target.style.display = 'none'; }} />
-              ) : (
-                <div className="h-10" />
-              )}
-              <span className="text-xs leading-tight text-center">{label}</span>
+          {bodyTypes.map(t => (
+            <button key={t} onClick={() => toggleArr(setBodySelected)(t)}
+              className={`flex flex-col items-center gap-1.5 border rounded-lg py-3 px-1 text-sm transition-colors ${bodySelected.includes(t) ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:bg-secondary'}`}>
+              <span className="text-xl">{bodyIcons[t]}</span>
+              <span className="leading-tight text-center">{t}</span>
             </button>
           ))}
         </div>
