@@ -166,7 +166,7 @@ export default function NewCars() {
 
         <div className="flex gap-6">
           {/* Sidebar */}
-          <aside className="hidden lg:block w-64 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
+          <aside className="hidden lg:block w-80 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
             <FiltersSidebar />
           </aside>
 
