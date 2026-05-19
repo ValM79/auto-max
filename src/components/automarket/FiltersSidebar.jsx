@@ -8,14 +8,14 @@ const models = ['All models', 'Corolla', 'Golf', 'Focus', 'IX20', 'A4', '3 Serie
 const trims = ['All trims', 'SE', 'Sport', 'Executive', 'Comfort', 'Premium'];
 const years = Array.from({ length: 2026 - 1970 + 1 }, (_, i) => String(2026 - i));
 const counties = [
-  'All Ireland',
-  'Co. Dublin', 'Co. Antrim', 'Co. Armagh', 'Co. Carlow', 'Co. Cavan', 'Co. Clare',
-  'Co. Cork', 'Co. Derry', 'Co. Donegal', 'Co. Down', 'Co. Fermanagh', 'Co. Galway',
-  'Co. Kerry', 'Co. Kildare', 'Co. Kilkenny', 'Co. Laois', 'Co. Leitrim', 'Co. Limerick',
-  'Co. Longford', 'Co. Louth', 'Co. Mayo', 'Co. Meath', 'Co. Monaghan', 'Co. Offaly',
-  'Co. Roscommon', 'Co. Sligo', 'Co. Tipperary', 'Co. Tyrone', 'Co. Waterford',
-  'Co. Westmeath', 'Co. Wexford', 'Co. Wicklow',
-];
+'All Ireland',
+'Co. Dublin', 'Co. Antrim', 'Co. Armagh', 'Co. Carlow', 'Co. Cavan', 'Co. Clare',
+'Co. Cork', 'Co. Derry', 'Co. Donegal', 'Co. Down', 'Co. Fermanagh', 'Co. Galway',
+'Co. Kerry', 'Co. Kildare', 'Co. Kilkenny', 'Co. Laois', 'Co. Leitrim', 'Co. Limerick',
+'Co. Longford', 'Co. Louth', 'Co. Mayo', 'Co. Meath', 'Co. Monaghan', 'Co. Offaly',
+'Co. Roscommon', 'Co. Sligo', 'Co. Tipperary', 'Co. Tyrone', 'Co. Waterford',
+'Co. Westmeath', 'Co. Wexford', 'Co. Wicklow'];
+
 const radii = ['+5km', '+10km', '+20km', '+50km', '+100km', 'Nationwide'];
 const priceOptions = ['€100', '€500', '€1,000', '€2,000', '€3,000', '€4,000', '€5,000', '€6,000', '€7,000', '€8,000', '€9,000', '€10,000', '€12,000', '€15,000', '€18,000', '€20,000', '€25,000', '€30,000', '€35,000', '€40,000', '€50,000', '€60,000', '€70,000', '€80,000', '€100,000', '€150,000'];
 const mileageOptions = ['0 km', '5,000 km', '10,000 km', '20,000 km', '30,000 km', '40,000 km', '50,000 km', '60,000 km', '75,000 km', '100,000 km', '125,000 km', '150,000 km', '175,000 km', '200,000 km', '250,000 km', '300,000 km', '400,000 km'];
@@ -239,7 +239,7 @@ export default function FiltersSidebar() {
         <div className="flex flex-wrap gap-2">
           {transmissions.map((t) =>
             <button key={t} onClick={() => toggleArr(setTransSelected)(t)}
-            className={`px-4 py-2 rounded-full border text-sm font-medium transition-colors ${transSelected.includes(t) ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:bg-secondary'}`}>
+            className={`px-4 py-2 border text-sm font-medium transition-colors rounded-[28px] ${transSelected.includes(t) ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:bg-secondary'}`}>
               {t}
             </button>
             )}
