@@ -1,4 +1,5 @@
 import React from 'react';
+import { ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 // Using car logos from a reliable public CDN (carlogos.org)
@@ -64,7 +65,7 @@ function chunkIntoColumns(arr, cols) {
   return Array.from({ length: cols }, (_, i) => arr.slice(i * perCol, (i + 1) * perCol));
 }
 
-function MakeCard({ label, logo }) {
+function MakeRow({ label, logo }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -73,34 +74,38 @@ function MakeCard({ label, logo }) {
   };
 
   return (
-    <button
-      onClick={handleClick}
-      className="group flex flex-col items-center bg-white border border-border rounded-xl overflow-hidden hover:shadow-md hover:border-primary/30 transition-all text-center"
-    >
-      <div className="w-full h-20 bg-secondary/30 flex items-center justify-center px-3 py-3">
-        <img
-          src={logo}
-          alt={label}
-          className="max-w-full max-h-full object-contain"
-          onError={(e) => { e.target.style.display = 'none'; }}
-        />
-      </div>
-      <div className="px-2 py-2 w-full border-t border-border/50">
-        <span className="text-xs font-semibold text-foreground group-hover:text-primary transition-colors leading-tight block truncate">
+    <button onClick={handleClick} className="flex items-center justify-between w-full py-2.5 border-b border-border last:border-0 hover:bg-secondary/40 px-2 rounded transition-colors group">
+      <div className="flex items-center gap-3">
+        <div className="w-12 h-9 flex items-center justify-center flex-shrink-0">
+          <img
+            src={logo}
+            alt={label}
+            className="max-w-full max-h-full object-contain"
+            onError={(e) => { e.target.style.display = 'none'; }}
+          />
+        </div>
+        <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
           {label}
         </span>
       </div>
+      <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
     </button>
   );
 }
 
 export default function CarListings() {
+  const columns = chunkIntoColumns(MAKES, 3);
+
   return (
     <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
       <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">Browse by Make</h2>
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-3">
-        {MAKES.map((make) => (
-          <MakeCard key={make.label} {...make} />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {columns.map((col, i) => (
+          <div key={i} className="flex flex-col">
+            {col.map((make) => (
+              <MakeRow key={make.label} {...make} />
+            ))}
+          </div>
         ))}
       </div>
     </section>

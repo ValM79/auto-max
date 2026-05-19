@@ -1,4 +1,5 @@
 import React from 'react';
+import { ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const IMG = {
@@ -59,8 +60,24 @@ const categories = [
 { label: 'Other Motor', isOther: true },
 ]];
 
+function CategoryIcon({ imgKey, isAllMotor, isOther }) {
+  if (isAllMotor) {
+    return (
+      <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center flex-shrink-0">
+        <span className="text-white font-bold text-lg">D</span>
+      </div>);
+  }
+  if (isOther) {
+    return (
+      <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 text-muted-foreground text-2xl font-bold">?</div>);
+  }
+  return (
+    <div className="w-12 h-9 flex items-center justify-center flex-shrink-0">
+      <img src={IMG[imgKey]} alt="" className="max-w-full max-h-full object-contain" />
+    </div>);
+}
 
-function CategoryCard({ label, imgKey, isOther }) {
+function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -91,36 +108,29 @@ function CategoryCard({ label, imgKey, isOther }) {
   };
 
   return (
-    <button
-      onClick={handleClick}
-      className="group flex flex-col items-center bg-white border border-border rounded-xl overflow-hidden hover:shadow-md hover:border-primary/30 transition-all text-center"
-    >
-      <div className="w-full h-28 bg-secondary/40 flex items-center justify-center overflow-hidden">
-        {isOther ? (
-          <span className="text-3xl font-bold text-muted-foreground">?</span>
-        ) : (
-          <img src={IMG[imgKey]} alt={label} className="w-full h-full object-cover" />
-        )}
-      </div>
-      <div className="px-2 py-2.5 w-full">
-        <span className="text-xs font-semibold text-foreground group-hover:text-primary transition-colors leading-tight block">
+    <button onClick={handleClick} className="flex items-center justify-between w-full py-2.5 border-b border-border last:border-0 hover:bg-secondary/40 px-2 rounded transition-colors group">
+      <div className="flex items-center gap-3">
+        <CategoryIcon imgKey={imgKey} isAllMotor={isAllMotor} isOther={isOther} />
+        <span className="text-[hsl(var(--foreground))] text-sm font-medium group-hover:text-primary transition-colors">
           {label}
         </span>
       </div>
-    </button>
-  );
+      <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+    </button>);
 }
 
 export default function BrowseByCategory() {
-  const allCats = categories.flat();
   return (
     <section className="max-w-7xl mx-auto px-4 py-12 md:py-16">
       <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">Browse by category</h2>
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-3">
-        {allCats.map((cat) => (
-          <CategoryCard key={cat.label} {...cat} />
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {categories.map((col, i) =>
+        <div key={i} className="flex flex-col">
+            {col.map((cat) =>
+          <CategoryRow key={cat.label} {...cat} />
+          )}
+          </div>
+        )}
       </div>
-    </section>
-  );
+    </section>);
 }
