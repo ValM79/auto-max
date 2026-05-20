@@ -141,9 +141,9 @@ export default function FiltersSidebar({ onFilterChange }) {
 
   useEffect(() => {
     if (onFilterChange) {
-      onFilterChange({ vehicles });
+      onFilterChange({ vehicles, yearFrom, yearTo, priceFrom, priceTo, mileageFrom, mileageTo });
     }
-  }, [vehicles]);
+  }, [vehicles, yearFrom, yearTo, priceFrom, priceTo, mileageFrom, mileageTo]);
 
   return (
     <div className="text-base ml-1">

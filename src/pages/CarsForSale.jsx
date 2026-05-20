@@ -121,12 +121,27 @@ export default function CarsForSale() {
 
   const toggleSave = (id) => setSavedIds(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
 
-  // Build a list of active vehicle filters (ones with at least a make selected)
   const activeVehicles = (activeFilters.vehicles || []).filter(v => v.make);
 
-  // If no vehicle filters active, show all (filtered by search)
-  // Otherwise group listings by each vehicle filter
+  // Parse price string like "€14,900" -> 14900
+  const parsePrice = (str) => str ? parseInt(str.replace(/[€,]/g, ''), 10) : null;
+  // Parse mileage string like "88,500 km" -> 88500
+  const parseMileage = (str) => str ? parseInt(str.replace(/[, km]/g, ''), 10) : null;
+
   const matchesSearch = (c) => !search || c.title.toLowerCase().includes(search.toLowerCase()) || c.location.toLowerCase().includes(search.toLowerCase());
+
+  const matchesRanges = (c) => {
+    const { yearFrom, yearTo, priceFrom, priceTo, mileageFrom, mileageTo } = activeFilters;
+    if (yearFrom && c.year < parseInt(yearFrom)) return false;
+    if (yearTo && c.year > parseInt(yearTo)) return false;
+    const cPrice = c.price;
+    if (priceFrom && cPrice < parsePrice(priceFrom)) return false;
+    if (priceTo && cPrice > parsePrice(priceTo)) return false;
+    const cMileage = parseMileage(c.mileage);
+    if (mileageFrom && cMileage < parseMileage(mileageFrom)) return false;
+    if (mileageTo && cMileage > parseMileage(mileageTo)) return false;
+    return true;
+  };
 
   const matchesVehicle = (c, v) => {
     const makeMatch = !v.make || c.title.toLowerCase().includes(v.make.toLowerCase());
@@ -134,15 +149,14 @@ export default function CarsForSale() {
     return makeMatch && modelMatch;
   };
 
-  // Groups: if activeVehicles exist, one group per vehicle; else single group with all search-matched
   const groups = activeVehicles.length > 0
     ? activeVehicles.map(v => ({
         label: [v.make, v.model].filter(Boolean).join(' '),
-        listings: carListings.filter(c => matchesSearch(c) && matchesVehicle(c, v)),
+        listings: carListings.filter(c => matchesSearch(c) && matchesRanges(c) && matchesVehicle(c, v)),
       }))
-    : [{ label: null, listings: carListings.filter(matchesSearch) }];
+    : [{ label: null, listings: carListings.filter(c => matchesSearch(c) && matchesRanges(c)) }];
 
-  const filtered = carListings.filter(matchesSearch);
+  const filtered = carListings.filter(c => matchesSearch(c) && matchesRanges(c));
 
   return (
     <div className="min-h-screen bg-[#f4f5f6]">
