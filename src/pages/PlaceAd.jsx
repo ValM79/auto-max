@@ -364,49 +364,38 @@ export default function PlaceAd() {
             {/* Photo grid */}
             {photos.length > 0 && (
               <div className="mb-4">
-                <div className="grid grid-cols-4 gap-2">
-                  {Array.from({ length: 20 }).map((_, i) => {
-                    const p = photos[i];
-                    if (p) {
-                      return (
-                        <button
-                          key={i}
-                          onClick={() => setViewerIndex(i)}
-                          className="relative aspect-square rounded-lg overflow-hidden border border-border group hover:border-primary transition-colors"
-                        >
-                          <img src={p.preview} alt="" className="w-full h-full object-cover" style={{ transform: `rotate(${p.rotation || 0}deg)` }} />
-                          {i === 0 && (
-                            <div className="absolute top-1 left-1 bg-yellow-500 text-white text-xs font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
-                              <span>★</span> COVER
-                            </div>
-                          )}
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-                            <Pencil className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
-                          </div>
-                        </button>
-                      );
-                    }
-                    if (i === photos.length) {
-                      return (
-                        <div
-                          key={i}
-                          onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
-                          onDragLeave={() => setDragOver(false)}
-                          onDrop={handleDrop}
-                          className={`aspect-square rounded-lg border-2 border-dashed flex flex-col items-center justify-center transition-colors cursor-pointer ${dragOver ? 'border-primary bg-primary/5' : 'border-border'}`}
-                        >
-                          <label className="cursor-pointer flex flex-col items-center justify-center w-full h-full">
-                            <Plus className="w-6 h-6 text-primary mb-1" />
-                            <span className="text-xs text-muted-foreground font-medium">{photos.length}/20</span>
-                            <input key={photos.length} type="file" multiple accept="image/*" className="hidden" onChange={(e) => handleFiles(e.target.files)} />
-                          </label>
+                <div className="flex gap-3 flex-wrap items-start">
+                  {photos.map((p, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setViewerIndex(i)}
+                      className="relative w-32 h-32 rounded-lg overflow-hidden border border-border group hover:border-primary transition-colors"
+                    >
+                      <img src={p.preview} alt="" className="w-full h-full object-cover" style={{ transform: `rotate(${p.rotation || 0}deg)` }} />
+                      {i === 0 && (
+                        <div className="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
+                          <span>★</span> COVER
                         </div>
-                      );
-                    }
-                    return (
-                      <div key={i} className="aspect-square rounded-lg border border-dashed border-border/40 bg-secondary/20" />
-                    );
-                  })}
+                      )}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+                        <Pencil className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    </button>
+                  ))}
+                  {photos.length < 20 && (
+                    <div
+                      onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+                      onDragLeave={() => setDragOver(false)}
+                      onDrop={handleDrop}
+                      className={`w-32 h-32 rounded-lg border-2 border-dashed flex flex-col items-center justify-center transition-colors cursor-pointer ${dragOver ? 'border-primary bg-primary/5' : 'border-border'}`}
+                    >
+                      <label className="cursor-pointer flex flex-col items-center justify-center w-full h-full">
+                        <Plus className="w-8 h-8 text-primary mb-1" />
+                        <span className="text-sm text-muted-foreground font-medium">{photos.length}/20</span>
+                        <input key={photos.length} type="file" multiple accept="image/*" className="hidden" onChange={(e) => handleFiles(e.target.files)} />
+                      </label>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
