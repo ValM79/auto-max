@@ -364,12 +364,12 @@ export default function PlaceAd() {
             {/* Photo grid */}
             {photos.length > 0 && (
               <div className="mb-4">
-                <div className="flex gap-3 flex-wrap items-start">
+                <div className="grid grid-cols-5 gap-3 items-start">
                   {photos.map((p, i) => (
                     <button
                       key={i}
                       onClick={() => setViewerIndex(i)}
-                      className="relative w-32 h-32 rounded-lg overflow-hidden border border-border group hover:border-primary transition-colors"
+                      className="relative aspect-square rounded-lg overflow-hidden border border-border group hover:border-primary transition-colors w-full"
                     >
                       <img src={p.preview} alt="" className="w-full h-full object-cover" style={{ transform: `rotate(${p.rotation || 0}deg)` }} />
                       {i === 0 && (
@@ -387,7 +387,7 @@ export default function PlaceAd() {
                       onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
                       onDragLeave={() => setDragOver(false)}
                       onDrop={handleDrop}
-                      className={`w-32 h-32 rounded-lg border-2 border-dashed flex flex-col items-center justify-center transition-colors cursor-pointer ${dragOver ? 'border-primary bg-primary/5' : 'border-border'}`}
+                      className={`aspect-square rounded-lg border-2 border-dashed flex flex-col items-center justify-center transition-colors cursor-pointer ${dragOver ? 'border-primary bg-primary/5' : 'border-border'}`}
                     >
                       <label className="cursor-pointer flex flex-col items-center justify-center w-full h-full">
                         <Plus className="w-8 h-8 text-primary mb-1" />
