@@ -24,11 +24,11 @@ const sections = [
   },
   {
     label: 'Trucks & Vans',
-    subsections: ['Trucks', 'Commercials', 'Trailers', 'Campers', 'Coaches & Buses', 'Plant Machinery', 'Motorbike Extras', 'Caravans', 'Bikes & Bicycles'],
+    subsections: ['Trucks', 'Commercials', 'Trailers', 'Campers', 'Coaches & Buses', 'Plant Machinery', 'Motorbike Extras', 'Caravans'],
   },
   {
     label: 'Bikes & Boats',
-    subsections: ['Motorbikes', 'Vintage Bikes', 'Scooters', 'Quads', 'Boats & Jet Skis', 'Boat Extras', 'Other'],
+    subsections: ['Motorbikes', 'Vintage Bikes', 'Scooters', 'Quads', 'Boats & Jet Skis', 'Boat Extras', 'Other Motor'],
   },
 ];
 
@@ -50,15 +50,13 @@ const categoryToSection = {
   'plant machinery': { section: 'Trucks & Vans', subsection: 'Plant Machinery' },
   'motorbike extras': { section: 'Trucks & Vans', subsection: 'Motorbike Extras' },
   caravans: { section: 'Trucks & Vans', subsection: 'Caravans' },
-  'bikes & bicycles': { section: 'Trucks & Vans', subsection: 'Bikes & Bicycles' },
   motorbikes: { section: 'Bikes & Boats', subsection: 'Motorbikes' },
   'vintage bikes': { section: 'Bikes & Boats', subsection: 'Vintage Bikes' },
   scooters: { section: 'Bikes & Boats', subsection: 'Scooters' },
   quads: { section: 'Bikes & Boats', subsection: 'Quads' },
   'boats & jet skis': { section: 'Bikes & Boats', subsection: 'Boats & Jet Skis' },
   'boat extras': { section: 'Bikes & Boats', subsection: 'Boat Extras' },
-  'other motor': { section: 'Bikes & Boats', subsection: 'Other' },
-  other: { section: 'Bikes & Boats', subsection: 'Other' },
+  'other motor': { section: 'Bikes & Boats', subsection: 'Other Motor' },
 };
 
 const emptyForm = {
