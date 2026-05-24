@@ -7,91 +7,91 @@ import Footer from '../components/automarket/Footer';
 import SimpleFiltersSidebar from '../components/automarket/SimpleFiltersSidebar';
 
 const listings = [
-  {
-    id: 1,
-    dealer: null,
-    sellerType: 'Private Seller',
-    sellerRating: 4,
-    spotlight: true,
-    title: 'Honda Civic 1.6 Junior Spec Car',
-    description: 'Full roll cage, race harnesses, bucket seat, fire suppression system. Ready to rally.',
-    timeAgo: '1 day',
-    location: 'Lifford, Donegal',
-    price: '€14,000',
-    photos: 10,
-    image: 'https://images.unsplash.com/photo-1547245324-d777c6f05e80?w=600&q=80',
-  },
-  {
-    id: 2,
-    dealer: null,
-    sellerType: 'Private Seller',
-    sellerRating: null,
-    spotlight: true,
-    title: 'Mk2 Escort',
-    description: 'Classic Mk2 Escort rally car. Recently rebuilt engine, new suspension setup.',
-    timeAgo: '4 hours',
-    location: 'Letterkenny, Donegal',
-    price: '€22,500',
-    photos: 8,
-    image: 'https://images.unsplash.com/photo-1558618047-f4e90b0a0d0f?w=600&q=80',
-  },
-  {
-    id: 3,
-    dealer: null,
-    sellerType: 'Private Seller',
-    sellerRating: 4.5,
-    spotlight: false,
-    title: 'Subaru Impreza WRX Rally Spec',
-    description: 'Built to national spec. Sequential gearbox, Prodrive suspension, full safety equipment.',
-    timeAgo: '2 days',
-    location: 'Cork City, Cork',
-    price: '€38,000',
-    photos: 14,
-    image: 'https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=600&q=80',
-  },
-  {
-    id: 4,
-    dealer: null,
-    sellerType: 'Private Seller',
-    sellerRating: null,
-    spotlight: false,
-    title: 'Ford Fiesta R2 – Full FIA Spec',
-    description: 'FIA logbook, new tyres, full service history. Competitive in national championship.',
-    timeAgo: '3 days',
-    location: 'Galway City, Galway',
-    price: '€29,500',
-    photos: 12,
-    image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80',
-  },
-  {
-    id: 5,
-    dealer: null,
-    sellerType: 'Private Seller',
-    sellerRating: 3.8,
-    spotlight: false,
-    title: 'Mitsubishi Lancer Evo VI Rally Car',
-    description: 'Evo 6 built to stage spec. Motec ECU, adjustable diff, new clutch. Ready to compete.',
-    timeAgo: '5 days',
-    location: 'Limerick City, Limerick',
-    price: '€45,000',
-    photos: 11,
-    image: 'https://images.unsplash.com/photo-1519245659620-e859806a8d3b?w=600&q=80',
-  },
-  {
-    id: 6,
-    dealer: null,
-    sellerType: 'Private Seller',
-    sellerRating: null,
-    spotlight: false,
-    title: 'Peugeot 206 WRC Replica – Stage Ready',
-    description: '206 WRC replica, built on bare shell. 2.0 turbo, 6-speed sequential, full cage.',
-    timeAgo: '1 week',
-    location: 'Waterford City, Waterford',
-    price: '€18,000',
-    photos: 9,
-    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80',
-  },
-];
+{
+  id: 1,
+  dealer: null,
+  sellerType: 'Private Seller',
+  sellerRating: 4,
+  spotlight: true,
+  title: 'Honda Civic 1.6 Junior Spec Car',
+  description: 'Full roll cage, race harnesses, bucket seat, fire suppression system. Ready to rally.',
+  timeAgo: '1 day',
+  location: 'Lifford, Donegal',
+  price: '€14,000',
+  photos: 10,
+  image: 'https://images.unsplash.com/photo-1547245324-d777c6f05e80?w=600&q=80'
+},
+{
+  id: 2,
+  dealer: null,
+  sellerType: 'Private Seller',
+  sellerRating: null,
+  spotlight: true,
+  title: 'Mk2 Escort',
+  description: 'Classic Mk2 Escort rally car. Recently rebuilt engine, new suspension setup.',
+  timeAgo: '4 hours',
+  location: 'Letterkenny, Donegal',
+  price: '€22,500',
+  photos: 8,
+  image: 'https://images.unsplash.com/photo-1558618047-f4e90b0a0d0f?w=600&q=80'
+},
+{
+  id: 3,
+  dealer: null,
+  sellerType: 'Private Seller',
+  sellerRating: 4.5,
+  spotlight: false,
+  title: 'Subaru Impreza WRX Rally Spec',
+  description: 'Built to national spec. Sequential gearbox, Prodrive suspension, full safety equipment.',
+  timeAgo: '2 days',
+  location: 'Cork City, Cork',
+  price: '€38,000',
+  photos: 14,
+  image: 'https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=600&q=80'
+},
+{
+  id: 4,
+  dealer: null,
+  sellerType: 'Private Seller',
+  sellerRating: null,
+  spotlight: false,
+  title: 'Ford Fiesta R2 – Full FIA Spec',
+  description: 'FIA logbook, new tyres, full service history. Competitive in national championship.',
+  timeAgo: '3 days',
+  location: 'Galway City, Galway',
+  price: '€29,500',
+  photos: 12,
+  image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80'
+},
+{
+  id: 5,
+  dealer: null,
+  sellerType: 'Private Seller',
+  sellerRating: 3.8,
+  spotlight: false,
+  title: 'Mitsubishi Lancer Evo VI Rally Car',
+  description: 'Evo 6 built to stage spec. Motec ECU, adjustable diff, new clutch. Ready to compete.',
+  timeAgo: '5 days',
+  location: 'Limerick City, Limerick',
+  price: '€45,000',
+  photos: 11,
+  image: 'https://images.unsplash.com/photo-1519245659620-e859806a8d3b?w=600&q=80'
+},
+{
+  id: 6,
+  dealer: null,
+  sellerType: 'Private Seller',
+  sellerRating: null,
+  spotlight: false,
+  title: 'Peugeot 206 WRC Replica – Stage Ready',
+  description: '206 WRC replica, built on bare shell. 2.0 turbo, 6-speed sequential, full cage.',
+  timeAgo: '1 week',
+  location: 'Waterford City, Waterford',
+  price: '€18,000',
+  photos: 9,
+  image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80'
+}];
+
 
 
 
@@ -100,14 +100,14 @@ export default function RallyCars() {
   const [savedIds, setSavedIds] = useState([]);
   const [viewMode, setViewMode] = useState('list');
 
-  const toggleSave = (id) => setSavedIds(prev =>
-    prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+  const toggleSave = (id) => setSavedIds((prev) =>
+  prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
   );
 
-  const filtered = listings.filter(c =>
-    !search ||
-    c.title.toLowerCase().includes(search.toLowerCase()) ||
-    c.location.toLowerCase().includes(search.toLowerCase())
+  const filtered = listings.filter((c) =>
+  !search ||
+  c.title.toLowerCase().includes(search.toLowerCase()) ||
+  c.location.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -128,16 +128,16 @@ export default function RallyCars() {
 
         {/* Title + Search */}
         <div className="mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Rally Cars in Ireland</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Rally Cars</h1>
           <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
               value={search}
-              onChange={e => setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Rally Cars"
-              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-            />
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+            
           </div>
         </div>
 
@@ -180,28 +180,28 @@ export default function RallyCars() {
             </div>
 
             <div className={viewMode === 'grid' ? 'grid grid-cols-2 gap-4' : 'flex flex-col gap-4'}>
-              {filtered.map(item => (
-                <ListingCard
-                  key={item.id}
-                  item={item}
-                  saved={savedIds.includes(item.id)}
-                  onToggleSave={toggleSave}
-                  viewMode={viewMode}
-                />
-              ))}
+              {filtered.map((item) =>
+              <ListingCard
+                key={item.id}
+                item={item}
+                saved={savedIds.includes(item.id)}
+                onToggleSave={toggleSave}
+                viewMode={viewMode} />
 
-              {filtered.length === 0 && (
-                <div className="text-center py-16 text-muted-foreground col-span-2">
+              )}
+
+              {filtered.length === 0 &&
+              <div className="text-center py-16 text-muted-foreground col-span-2">
                   <p className="text-lg font-medium">No rally cars found</p>
                   <p className="text-sm mt-1">Try adjusting your search or filters</p>
                 </div>
-              )}
+              }
             </div>
           </div>
         </div>
       </div>
 
       <Footer />
-    </div>
-  );
+    </div>);
+
 }
