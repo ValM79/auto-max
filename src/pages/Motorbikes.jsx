@@ -7,97 +7,97 @@ import Footer from '../components/automarket/Footer';
 import SimpleFiltersSidebar from '../components/automarket/SimpleFiltersSidebar';
 
 const listings = [
-  {
-    id: 1,
-    sellerType: 'Private Seller',
-    sellerRating: 4.8,
-    spotlight: true,
-    title: 'Honda CB500F 2022 – 3,200 miles',
-    year: '2022',
-    fuel: 'Petrol',
-    mileage: '3,200 km',
-    timeAgo: '2 hours',
-    location: 'Dublin, Dublin',
-    price: '€5,200',
-    photos: 12,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-  },
-  {
-    id: 2,
-    sellerType: 'Dealership',
-    sellerRating: 4.9,
-    spotlight: true,
-    title: 'Yamaha MT-07 2021 – Excellent condition',
-    year: '2021',
-    fuel: 'Petrol',
-    mileage: '8,500 km',
-    timeAgo: '1 day',
-    location: 'Cork, Cork',
-    price: '€6,800',
-    photos: 15,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-  },
-  {
-    id: 3,
-    sellerType: 'Private Seller',
-    sellerRating: 4.5,
-    spotlight: false,
-    title: 'Kawasaki Ninja 400 2020',
-    year: '2020',
-    fuel: 'Petrol',
-    mileage: '12,300 km',
-    timeAgo: '3 days',
-    location: 'Galway, Galway',
-    price: '€3,900',
-    photos: 9,
-    image: 'https://images.unsplash.com/photo-1537350994076-726c6e5e0e7d?w=600&q=80',
-  },
-  {
-    id: 4,
-    sellerType: 'Trader',
-    sellerRating: 4.7,
-    spotlight: false,
-    title: 'BMW S1000RR 2019 – Racing bike',
-    year: '2019',
-    fuel: 'Petrol',
-    mileage: '15,600 km',
-    timeAgo: '5 days',
-    location: 'Limerick, Limerick',
-    price: '€8,500',
-    photos: 14,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-  },
-  {
-    id: 5,
-    sellerType: 'Private Seller',
-    sellerRating: 4.2,
-    spotlight: false,
-    title: 'Ducati Monster 2018',
-    year: '2018',
-    fuel: 'Petrol',
-    mileage: '18,900 km',
-    timeAgo: '1 week',
-    location: 'Waterford, Waterford',
-    price: '€4,600',
-    photos: 11,
-    image: 'https://images.unsplash.com/photo-1539860381487-90123d64bd32?w=600&q=80',
-  },
-  {
-    id: 6,
-    sellerType: 'Dealership',
-    sellerRating: 4.8,
-    spotlight: false,
-    title: 'Royal Enfield Classic 350 2023',
-    year: '2023',
-    fuel: 'Petrol',
-    mileage: '2,100 km',
-    timeAgo: '2 days',
-    location: 'Donegal, Donegal',
-    price: '€3,400',
-    photos: 10,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-  },
-];
+{
+  id: 1,
+  sellerType: 'Private Seller',
+  sellerRating: 4.8,
+  spotlight: true,
+  title: 'Honda CB500F 2022 – 3,200 miles',
+  year: '2022',
+  fuel: 'Petrol',
+  mileage: '3,200 km',
+  timeAgo: '2 hours',
+  location: 'Dublin, Dublin',
+  price: '€5,200',
+  photos: 12,
+  image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'
+},
+{
+  id: 2,
+  sellerType: 'Dealership',
+  sellerRating: 4.9,
+  spotlight: true,
+  title: 'Yamaha MT-07 2021 – Excellent condition',
+  year: '2021',
+  fuel: 'Petrol',
+  mileage: '8,500 km',
+  timeAgo: '1 day',
+  location: 'Cork, Cork',
+  price: '€6,800',
+  photos: 15,
+  image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'
+},
+{
+  id: 3,
+  sellerType: 'Private Seller',
+  sellerRating: 4.5,
+  spotlight: false,
+  title: 'Kawasaki Ninja 400 2020',
+  year: '2020',
+  fuel: 'Petrol',
+  mileage: '12,300 km',
+  timeAgo: '3 days',
+  location: 'Galway, Galway',
+  price: '€3,900',
+  photos: 9,
+  image: 'https://images.unsplash.com/photo-1537350994076-726c6e5e0e7d?w=600&q=80'
+},
+{
+  id: 4,
+  sellerType: 'Trader',
+  sellerRating: 4.7,
+  spotlight: false,
+  title: 'BMW S1000RR 2019 – Racing bike',
+  year: '2019',
+  fuel: 'Petrol',
+  mileage: '15,600 km',
+  timeAgo: '5 days',
+  location: 'Limerick, Limerick',
+  price: '€8,500',
+  photos: 14,
+  image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'
+},
+{
+  id: 5,
+  sellerType: 'Private Seller',
+  sellerRating: 4.2,
+  spotlight: false,
+  title: 'Ducati Monster 2018',
+  year: '2018',
+  fuel: 'Petrol',
+  mileage: '18,900 km',
+  timeAgo: '1 week',
+  location: 'Waterford, Waterford',
+  price: '€4,600',
+  photos: 11,
+  image: 'https://images.unsplash.com/photo-1539860381487-90123d64bd32?w=600&q=80'
+},
+{
+  id: 6,
+  sellerType: 'Dealership',
+  sellerRating: 4.8,
+  spotlight: false,
+  title: 'Royal Enfield Classic 350 2023',
+  year: '2023',
+  fuel: 'Petrol',
+  mileage: '2,100 km',
+  timeAgo: '2 days',
+  location: 'Donegal, Donegal',
+  price: '€3,400',
+  photos: 10,
+  image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'
+}];
+
 
 
 
@@ -107,24 +107,24 @@ export default function Motorbikes() {
   const [viewMode, setViewMode] = useState('list');
 
   const toggleSave = (id) => {
-    setSavedIds(prev => {
-      const updated = prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id];
-      const itemToSave = listings.find(item => item.id === id);
+    setSavedIds((prev) => {
+      const updated = prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id];
+      const itemToSave = listings.find((item) => item.id === id);
       if (itemToSave && !prev.includes(id)) {
         const saved = JSON.parse(localStorage.getItem('automarket_saved_items') || '[]');
         saved.push({ ...itemToSave, savedAt: new Date().toISOString() });
         localStorage.setItem('automarket_saved_items', JSON.stringify(saved));
       } else if (prev.includes(id)) {
         const saved = JSON.parse(localStorage.getItem('automarket_saved_items') || '[]');
-        const filtered = saved.filter(item => item.id !== id);
+        const filtered = saved.filter((item) => item.id !== id);
         localStorage.setItem('automarket_saved_items', JSON.stringify(filtered));
       }
       return updated;
     });
   };
 
-  const filtered = listings.filter(item =>
-    !search || item.title.toLowerCase().includes(search.toLowerCase()) || item.location.toLowerCase().includes(search.toLowerCase())
+  const filtered = listings.filter((item) =>
+  !search || item.title.toLowerCase().includes(search.toLowerCase()) || item.location.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -141,10 +141,10 @@ export default function Motorbikes() {
           <span className="text-foreground font-medium">Motorbikes</span>
         </div>
         <div className="mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Motorbikes in Ireland</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Motorbikes</h1>
           <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search Motorbikes" className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+            <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search Motorbikes" className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
           </div>
         </div>
         <div className="mb-6 rounded-xl overflow-hidden border border-border h-36 sm:h-44">
@@ -174,20 +174,20 @@ export default function Motorbikes() {
               </div>
             </div>
             <div className={viewMode === 'grid' ? 'grid grid-cols-2 gap-4' : 'flex flex-col gap-4'}>
-              {filtered.map(item => (
-                <ListingCard
-                  key={item.id}
-                  item={item}
-                  saved={savedIds.includes(item.id)}
-                  onToggleSave={toggleSave}
-                  viewMode={viewMode}
-                />
-              ))}
+              {filtered.map((item) =>
+              <ListingCard
+                key={item.id}
+                item={item}
+                saved={savedIds.includes(item.id)}
+                onToggleSave={toggleSave}
+                viewMode={viewMode} />
+
+              )}
             </div>
           </div>
         </div>
       </div>
       <Footer />
-    </div>
-  );
+    </div>);
+
 }
