@@ -7,112 +7,112 @@ import Footer from '../components/automarket/Footer';
 import FiltersSidebar from '../components/automarket/FiltersSidebar';
 
 const listings = [
-  {
-    id: 1,
-    dealer: 'CM Wheels Ltd',
-    dealerLogo: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=80&q=80',
-    sellerType: 'Independent Dealership',
-    sellerRating: null,
-    spotlight: true,
-    title: '17" Alloy VW POLO SEAT IBIZA AUDI A1 FABIA…',
-    description: 'Set of 4 alloy wheels, 17 inch, 5x100 PCD. Fit VW Polo, Seat Ibiza, Audi A1, Skoda Fabia. Free nationwide delivery.',
-    hoursAgo: '11 days',
-    location: 'Dungannon, Tyrone',
-    category: 'Alloys & Wheels',
-    price: '£430',
-    photos: 9,
-    image: 'https://images.unsplash.com/photo-1558618047-f4e90b0a0d0f?w=600&q=80',
-  },
-  {
-    id: 2,
-    dealer: null,
-    dealerLogo: null,
-    sellerType: 'Private Seller',
-    sellerRating: null,
-    spotlight: true,
-    title: 'Brand New Continental ContiSportContact 5 Tyres – 225/45 R17',
-    description: 'Set of 2 brand new Continental tyres, never fitted. 225/45 R17 91W. Great grip, perfect for performance cars.',
-    hoursAgo: '2 days',
-    location: 'Dublin',
-    category: 'Tyres',
-    price: '€220',
-    photos: 3,
-    image: 'https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=600&q=80',
-  },
-  {
-    id: 3,
-    dealer: 'Accessories Auto Ireland',
-    dealerLogo: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=80&q=80',
-    sellerType: 'Independent Dealership',
-    sellerRating: 4.6,
-    spotlight: false,
-    title: 'Universal Roof Rack Cross Bars – Silver Aluminium',
-    description: 'Aluminium roof rack bars, adjustable fit. Suitable for most hatchbacks and saloons. Load rating 75kg.',
-    hoursAgo: '3 days',
-    location: 'Cork',
-    category: 'Car Accessories',
-    price: '€85',
-    photos: 5,
-    image: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=600&q=80',
-  },
-  {
-    id: 4,
-    dealer: null,
-    dealerLogo: null,
-    sellerType: 'Private Seller',
-    sellerRating: 4.1,
-    spotlight: false,
-    title: 'Thule Roof Box 430L – Black Aeroskin',
-    description: 'Thule Motion XT XL roofbox, 430 litre capacity. Used twice, excellent condition. Fits most roof racks.',
-    hoursAgo: '1 week',
-    location: 'Galway',
-    category: 'Car Accessories',
-    price: '€350',
-    photos: 7,
-    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80',
-  },
-  {
-    id: 5,
-    dealer: 'PerfomanceParts IE',
-    dealerLogo: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=80&q=80',
-    sellerType: 'Independent Dealership',
-    sellerRating: 4.8,
-    spotlight: false,
-    title: 'Universal Carbon Fibre Rear Spoiler – Hatchback',
-    description: 'High quality carbon fibre rear spoiler, universal fit for hatchback. Easy fitment with included hardware.',
-    hoursAgo: '5 days',
-    location: 'Limerick',
-    category: 'Styling & Exterior',
-    price: '€149',
-    photos: 6,
-    image: 'https://images.unsplash.com/photo-1567808291548-fc3ee04dbcf0?w=600&q=80',
-  },
-  {
-    id: 6,
-    dealer: null,
-    dealerLogo: null,
-    sellerType: 'Private Seller',
-    sellerRating: 3.9,
-    spotlight: false,
-    title: 'Dash Cam Front & Rear – Nextbase 522GW',
-    description: 'Nextbase 522GW dual dashcam, front and rear. Alexa built-in, 1080p rear. Includes all mounts and cables.',
-    hoursAgo: '4 days',
-    location: 'Waterford',
-    category: 'Electronics',
-    price: '€110',
-    photos: 4,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-  },
-];
+{
+  id: 1,
+  dealer: 'CM Wheels Ltd',
+  dealerLogo: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=80&q=80',
+  sellerType: 'Independent Dealership',
+  sellerRating: null,
+  spotlight: true,
+  title: '17" Alloy VW POLO SEAT IBIZA AUDI A1 FABIA…',
+  description: 'Set of 4 alloy wheels, 17 inch, 5x100 PCD. Fit VW Polo, Seat Ibiza, Audi A1, Skoda Fabia. Free nationwide delivery.',
+  hoursAgo: '11 days',
+  location: 'Dungannon, Tyrone',
+  category: 'Alloys & Wheels',
+  price: '£430',
+  photos: 9,
+  image: 'https://images.unsplash.com/photo-1558618047-f4e90b0a0d0f?w=600&q=80'
+},
+{
+  id: 2,
+  dealer: null,
+  dealerLogo: null,
+  sellerType: 'Private Seller',
+  sellerRating: null,
+  spotlight: true,
+  title: 'Brand New Continental ContiSportContact 5 Tyres – 225/45 R17',
+  description: 'Set of 2 brand new Continental tyres, never fitted. 225/45 R17 91W. Great grip, perfect for performance cars.',
+  hoursAgo: '2 days',
+  location: 'Dublin',
+  category: 'Tyres',
+  price: '€220',
+  photos: 3,
+  image: 'https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=600&q=80'
+},
+{
+  id: 3,
+  dealer: 'Accessories Auto Ireland',
+  dealerLogo: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=80&q=80',
+  sellerType: 'Independent Dealership',
+  sellerRating: 4.6,
+  spotlight: false,
+  title: 'Universal Roof Rack Cross Bars – Silver Aluminium',
+  description: 'Aluminium roof rack bars, adjustable fit. Suitable for most hatchbacks and saloons. Load rating 75kg.',
+  hoursAgo: '3 days',
+  location: 'Cork',
+  category: 'Car Accessories',
+  price: '€85',
+  photos: 5,
+  image: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=600&q=80'
+},
+{
+  id: 4,
+  dealer: null,
+  dealerLogo: null,
+  sellerType: 'Private Seller',
+  sellerRating: 4.1,
+  spotlight: false,
+  title: 'Thule Roof Box 430L – Black Aeroskin',
+  description: 'Thule Motion XT XL roofbox, 430 litre capacity. Used twice, excellent condition. Fits most roof racks.',
+  hoursAgo: '1 week',
+  location: 'Galway',
+  category: 'Car Accessories',
+  price: '€350',
+  photos: 7,
+  image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80'
+},
+{
+  id: 5,
+  dealer: 'PerfomanceParts IE',
+  dealerLogo: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=80&q=80',
+  sellerType: 'Independent Dealership',
+  sellerRating: 4.8,
+  spotlight: false,
+  title: 'Universal Carbon Fibre Rear Spoiler – Hatchback',
+  description: 'High quality carbon fibre rear spoiler, universal fit for hatchback. Easy fitment with included hardware.',
+  hoursAgo: '5 days',
+  location: 'Limerick',
+  category: 'Styling & Exterior',
+  price: '€149',
+  photos: 6,
+  image: 'https://images.unsplash.com/photo-1567808291548-fc3ee04dbcf0?w=600&q=80'
+},
+{
+  id: 6,
+  dealer: null,
+  dealerLogo: null,
+  sellerType: 'Private Seller',
+  sellerRating: 3.9,
+  spotlight: false,
+  title: 'Dash Cam Front & Rear – Nextbase 522GW',
+  description: 'Nextbase 522GW dual dashcam, front and rear. Alexa built-in, 1080p rear. Includes all mounts and cables.',
+  hoursAgo: '4 days',
+  location: 'Waterford',
+  category: 'Electronics',
+  price: '€110',
+  photos: 4,
+  image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'
+}];
+
 
 const subsections = [
-  { label: 'Car Extras', count: 8146 },
-  { label: 'Alloys & Wheels', count: 5161 },
-  { label: 'Tyres', count: 219 },
-  { label: 'Car Accessories', count: 2766 },
-  { label: 'Styling & Exterior', count: 312 },
-  { label: 'Electronics', count: 488 },
-];
+{ label: 'Car Extras', count: 8146 },
+{ label: 'Alloys & Wheels', count: 5161 },
+{ label: 'Tyres', count: 219 },
+{ label: 'Car Accessories', count: 2766 },
+{ label: 'Styling & Exterior', count: 312 },
+{ label: 'Electronics', count: 488 }];
+
 
 
 
@@ -122,14 +122,14 @@ export default function CarExtras() {
   const [viewMode, setViewMode] = useState('list');
   const [activeSubsection, setActiveSubsection] = useState('Car Extras');
 
-  const toggleSave = (id) => setSavedIds(prev =>
-    prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+  const toggleSave = (id) => setSavedIds((prev) =>
+  prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
   );
 
-  const filtered = listings.filter(c => {
+  const filtered = listings.filter((c) => {
     const matchesSearch = !search ||
-      c.title.toLowerCase().includes(search.toLowerCase()) ||
-      c.location.toLowerCase().includes(search.toLowerCase());
+    c.title.toLowerCase().includes(search.toLowerCase()) ||
+    c.location.toLowerCase().includes(search.toLowerCase());
     const matchesSection = activeSubsection === 'Car Extras' || c.category === activeSubsection;
     return matchesSearch && matchesSection;
   });
@@ -152,16 +152,16 @@ export default function CarExtras() {
 
         {/* Title + Search */}
         <div className="mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Car Extras in Ireland</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Car Extras </h1>
           <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
               value={search}
-              onChange={e => setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Car Extras"
-              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-            />
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+            
           </div>
         </div>
 
@@ -170,8 +170,8 @@ export default function CarExtras() {
           <img
             src="https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/86d0dd29e_generated_image.png"
             alt="Car Extras Banner"
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" />
+          
         </div>
 
         <div className="flex gap-6">
@@ -185,20 +185,20 @@ export default function CarExtras() {
               </button>
               <p className="text-xs text-muted-foreground mb-2 font-semibold uppercase tracking-wide">Subsections</p>
               <div className="flex flex-col gap-1">
-                {subsections.map(sub => (
-                  <button
-                    key={sub.label}
-                    onClick={() => setActiveSubsection(sub.label)}
-                    className={`flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors ${
-                      activeSubsection === sub.label
-                        ? 'border border-foreground bg-white font-semibold text-foreground'
-                        : 'text-muted-foreground hover:bg-secondary'
-                    }`}
-                  >
+                {subsections.map((sub) =>
+                <button
+                  key={sub.label}
+                  onClick={() => setActiveSubsection(sub.label)}
+                  className={`flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors ${
+                  activeSubsection === sub.label ?
+                  'border border-foreground bg-white font-semibold text-foreground' :
+                  'text-muted-foreground hover:bg-secondary'}`
+                  }>
+                  
                     <span>{sub.label}</span>
                     <span className="text-muted-foreground text-xs">{sub.count.toLocaleString()}</span>
                   </button>
-                ))}
+                )}
               </div>
             </div>
 
@@ -237,28 +237,28 @@ export default function CarExtras() {
             </div>
 
             <div className={viewMode === 'grid' ? 'grid grid-cols-2 gap-4' : 'flex flex-col gap-4'}>
-              {filtered.map(item => (
-                <ListingCard
-                  key={item.id}
-                  item={{ ...item, timeAgo: item.hoursAgo }}
-                  saved={savedIds.includes(item.id)}
-                  onToggleSave={toggleSave}
-                  viewMode={viewMode}
-                />
-              ))}
+              {filtered.map((item) =>
+              <ListingCard
+                key={item.id}
+                item={{ ...item, timeAgo: item.hoursAgo }}
+                saved={savedIds.includes(item.id)}
+                onToggleSave={toggleSave}
+                viewMode={viewMode} />
 
-              {filtered.length === 0 && (
-                <div className="text-center py-16 text-muted-foreground col-span-2">
+              )}
+
+              {filtered.length === 0 &&
+              <div className="text-center py-16 text-muted-foreground col-span-2">
                   <p className="text-lg font-medium">No car extras found</p>
                   <p className="text-sm mt-1">Try adjusting your search or filters</p>
                 </div>
-              )}
+              }
             </div>
           </div>
         </div>
       </div>
 
       <Footer />
-    </div>
-  );
+    </div>);
+
 }
