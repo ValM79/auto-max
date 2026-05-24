@@ -8,97 +8,97 @@ import Footer from '../components/automarket/Footer';
 import FiltersSidebar from '../components/automarket/FiltersSidebar';
 
 const listings = [
-  {
-    id: 1,
-    dealer: null,
-    dealerLogo: null,
-    sellerType: 'Private Seller',
-    sellerRating: 3.3,
-    spotlight: true,
-    title: 'Turbo Turbocharger Turbo',
-    description: 'FREE NATIONWIDE DELIVERY — 0877006300',
-    hoursAgo: '11 hours',
-    location: 'Limerick City, Limerick',
-    price: '€200',
-    photos: 1,
-    image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=80',
-  },
-  {
-    id: 2,
-    dealer: 'Boss Car Parts',
-    dealerLogo: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=80&q=80',
-    sellerType: 'Independent Dealership',
-    sellerRating: null,
-    spotlight: true,
-    title: 'BMW E46 M3 Engine Complete S54 – Low Mileage',
-    description: 'Full S54 engine removed from a 2003 E46 M3 with 62k miles. Starts and runs perfectly.',
-    hoursAgo: '3 hours',
-    location: 'Dublin',
-    price: '€4,500',
-    photos: 8,
-    image: 'https://images.unsplash.com/photo-1567808291548-fc3ee04dbcf0?w=600&q=80',
-  },
-  {
-    id: 3,
-    dealer: null,
-    dealerLogo: null,
-    sellerType: 'Private Seller',
-    sellerRating: 4.2,
-    spotlight: false,
-    title: 'Alloy Wheels 18" 5x112 – Set of 4',
-    description: 'BBS-style alloys, 18 inch, 5x112 PCD. Fit Audi, VW, Mercedes. Good condition, light kerb marks.',
-    hoursAgo: '1 day',
-    location: 'Cork',
-    price: '€380',
-    photos: 6,
-    image: 'https://images.unsplash.com/photo-1558618047-f4e90b0a0d0f?w=600&q=80',
-  },
-  {
-    id: 4,
-    dealer: 'AutoSpares Galway',
-    dealerLogo: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=80&q=80',
-    sellerType: 'Independent Dealership',
-    sellerRating: 4.7,
-    spotlight: false,
-    title: 'Ford Focus MK3 Front Bumper – Panther Black',
-    description: 'Genuine Ford front bumper, removed from a 2014 Focus. Minor scuff on left side.',
-    hoursAgo: '2 days',
-    location: 'Galway',
-    price: '€120',
-    photos: 4,
-    image: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=600&q=80',
-  },
-  {
-    id: 5,
-    dealer: null,
-    dealerLogo: null,
-    sellerType: 'Private Seller',
-    sellerRating: 3.8,
-    spotlight: false,
-    title: 'Recaro Sport Bucket Seats – Pair',
-    description: 'Genuine Recaro Sport seats in black leather. Removed from 2009 Seat Leon Cupra. Great condition.',
-    hoursAgo: '4 days',
-    location: 'Waterford',
-    price: '€650',
-    photos: 10,
-    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80',
-  },
-  {
-    id: 6,
-    dealer: 'Parts Direct Ireland',
-    dealerLogo: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=80&q=80',
-    sellerType: 'Independent Dealership',
-    sellerRating: 4.5,
-    spotlight: false,
-    title: 'Toyota Corolla 2019-2023 Headlight – Right Side OEM',
-    description: 'OEM right-side headlight, perfect working order. Removed after a front-end repair.',
-    hoursAgo: '5 days',
-    location: 'Dublin',
-    price: '€290',
-    photos: 5,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-  },
-];
+{
+  id: 1,
+  dealer: null,
+  dealerLogo: null,
+  sellerType: 'Private Seller',
+  sellerRating: 3.3,
+  spotlight: true,
+  title: 'Turbo Turbocharger Turbo',
+  description: 'FREE NATIONWIDE DELIVERY — 0877006300',
+  hoursAgo: '11 hours',
+  location: 'Limerick City, Limerick',
+  price: '€200',
+  photos: 1,
+  image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=80'
+},
+{
+  id: 2,
+  dealer: 'Boss Car Parts',
+  dealerLogo: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=80&q=80',
+  sellerType: 'Independent Dealership',
+  sellerRating: null,
+  spotlight: true,
+  title: 'BMW E46 M3 Engine Complete S54 – Low Mileage',
+  description: 'Full S54 engine removed from a 2003 E46 M3 with 62k miles. Starts and runs perfectly.',
+  hoursAgo: '3 hours',
+  location: 'Dublin',
+  price: '€4,500',
+  photos: 8,
+  image: 'https://images.unsplash.com/photo-1567808291548-fc3ee04dbcf0?w=600&q=80'
+},
+{
+  id: 3,
+  dealer: null,
+  dealerLogo: null,
+  sellerType: 'Private Seller',
+  sellerRating: 4.2,
+  spotlight: false,
+  title: 'Alloy Wheels 18" 5x112 – Set of 4',
+  description: 'BBS-style alloys, 18 inch, 5x112 PCD. Fit Audi, VW, Mercedes. Good condition, light kerb marks.',
+  hoursAgo: '1 day',
+  location: 'Cork',
+  price: '€380',
+  photos: 6,
+  image: 'https://images.unsplash.com/photo-1558618047-f4e90b0a0d0f?w=600&q=80'
+},
+{
+  id: 4,
+  dealer: 'AutoSpares Galway',
+  dealerLogo: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=80&q=80',
+  sellerType: 'Independent Dealership',
+  sellerRating: 4.7,
+  spotlight: false,
+  title: 'Ford Focus MK3 Front Bumper – Panther Black',
+  description: 'Genuine Ford front bumper, removed from a 2014 Focus. Minor scuff on left side.',
+  hoursAgo: '2 days',
+  location: 'Galway',
+  price: '€120',
+  photos: 4,
+  image: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=600&q=80'
+},
+{
+  id: 5,
+  dealer: null,
+  dealerLogo: null,
+  sellerType: 'Private Seller',
+  sellerRating: 3.8,
+  spotlight: false,
+  title: 'Recaro Sport Bucket Seats – Pair',
+  description: 'Genuine Recaro Sport seats in black leather. Removed from 2009 Seat Leon Cupra. Great condition.',
+  hoursAgo: '4 days',
+  location: 'Waterford',
+  price: '€650',
+  photos: 10,
+  image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80'
+},
+{
+  id: 6,
+  dealer: 'Parts Direct Ireland',
+  dealerLogo: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=80&q=80',
+  sellerType: 'Independent Dealership',
+  sellerRating: 4.5,
+  spotlight: false,
+  title: 'Toyota Corolla 2019-2023 Headlight – Right Side OEM',
+  description: 'OEM right-side headlight, perfect working order. Removed after a front-end repair.',
+  hoursAgo: '5 days',
+  location: 'Dublin',
+  price: '€290',
+  photos: 5,
+  image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'
+}];
+
 
 
 
@@ -107,14 +107,14 @@ export default function CarParts() {
   const [savedIds, setSavedIds] = useState([]);
   const [viewMode, setViewMode] = useState('list');
 
-  const toggleSave = (id) => setSavedIds(prev =>
-    prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+  const toggleSave = (id) => setSavedIds((prev) =>
+  prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
   );
 
-  const filtered = listings.filter(c =>
-    !search ||
-    c.title.toLowerCase().includes(search.toLowerCase()) ||
-    c.location.toLowerCase().includes(search.toLowerCase())
+  const filtered = listings.filter((c) =>
+  !search ||
+  c.title.toLowerCase().includes(search.toLowerCase()) ||
+  c.location.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -135,16 +135,16 @@ export default function CarParts() {
 
         {/* Title + Search */}
         <div className="mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Car Parts in Ireland</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Car Parts</h1>
           <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
               value={search}
-              onChange={e => setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Car Parts"
-              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-            />
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+            
           </div>
         </div>
 
@@ -185,28 +185,28 @@ export default function CarParts() {
             </div>
 
             <div className="flex flex-col gap-4">
-              {filtered.map(item => (
-                <ListingCard
-                  key={item.id}
-                  item={{ ...item, timeAgo: item.hoursAgo }}
-                  saved={savedIds.includes(item.id)}
-                  onToggleSave={toggleSave}
-                  viewMode={viewMode}
-                />
-              ))}
+              {filtered.map((item) =>
+              <ListingCard
+                key={item.id}
+                item={{ ...item, timeAgo: item.hoursAgo }}
+                saved={savedIds.includes(item.id)}
+                onToggleSave={toggleSave}
+                viewMode={viewMode} />
 
-              {filtered.length === 0 && (
-                <div className="text-center py-16 text-muted-foreground">
+              )}
+
+              {filtered.length === 0 &&
+              <div className="text-center py-16 text-muted-foreground">
                   <p className="text-lg font-medium">No car parts found</p>
                   <p className="text-sm mt-1">Try adjusting your search or filters</p>
                 </div>
-              )}
+              }
             </div>
           </div>
         </div>
       </div>
 
       <Footer />
-    </div>
-  );
+    </div>);
+
 }
