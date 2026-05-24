@@ -7,109 +7,109 @@ import Footer from '../components/automarket/Footer';
 import FiltersSidebar from '../components/automarket/FiltersSidebar';
 
 const listings = [
-  {
-    id: 1,
-    sellerType: 'Private Seller',
-    sellerRating: 3.5,
-    spotlight: true,
-    title: '1987 Ford Sierra rs500',
-    year: 1987,
-    daysAgo: '2 days',
-    location: 'Kilkeel, Down',
-    price: '£189,950',
-    monthly: null,
-    photos: 15,
-    dealer: null,
-    dealerLogo: null,
-    trusted: false,
-    image: 'https://images.unsplash.com/photo-1555353540-64580b51c258?w=600&q=80',
-  },
-  {
-    id: 2,
-    sellerType: 'Trusted Independent Dealership',
-    sellerRating: 4.8,
-    spotlight: true,
-    title: '1969 Ford Mustang Fastback',
-    year: 1969,
-    daysAgo: '1 day',
-    location: 'Dublin',
-    price: '€74,500',
-    monthly: null,
-    photos: 22,
-    dealer: 'Karl Goodwin Motors Ltd',
-    dealerLogo: 'https://images.unsplash.com/photo-1611566026373-c6c8da0ea861?w=80&q=80',
-    trusted: true,
-    image: 'https://images.unsplash.com/photo-1547744152-14d985cb937f?w=600&q=80',
-  },
-  {
-    id: 3,
-    sellerType: 'Private Seller',
-    sellerRating: 4.0,
-    spotlight: false,
-    title: '1972 Jaguar E-Type Series 3 V12',
-    year: 1972,
-    daysAgo: '3 days',
-    location: 'Cork',
-    price: '€95,000',
-    monthly: null,
-    photos: 18,
-    dealer: null,
-    dealerLogo: null,
-    trusted: false,
-    image: 'https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=600&q=80',
-  },
-  {
-    id: 4,
-    sellerType: 'Trusted Independent Dealership',
-    sellerRating: 4.6,
-    spotlight: false,
-    title: '1965 Austin-Healey 3000 BJ8',
-    year: 1965,
-    daysAgo: '5 days',
-    location: 'Limerick',
-    price: '€42,000',
-    monthly: null,
-    photos: 14,
-    dealer: 'Classic Cars Ireland',
-    dealerLogo: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=80&q=80',
-    trusted: true,
-    image: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=80',
-  },
-  {
-    id: 5,
-    sellerType: 'Private Seller',
-    sellerRating: 4.2,
-    spotlight: false,
-    title: '1978 Mercedes-Benz 450SL Roadster',
-    year: 1978,
-    daysAgo: '1 week',
-    location: 'Galway',
-    price: '€28,500',
-    monthly: null,
-    photos: 11,
-    dealer: null,
-    dealerLogo: null,
-    trusted: false,
-    image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80',
-  },
-  {
-    id: 6,
-    sellerType: 'Trusted Independent Dealership',
-    sellerRating: 4.9,
-    spotlight: false,
-    title: '1961 Triumph TR4 Roadster',
-    year: 1961,
-    daysAgo: '2 days',
-    location: 'Wexford',
-    price: '€31,750',
-    monthly: null,
-    photos: 16,
-    dealer: 'Heritage Autos Dublin',
-    dealerLogo: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=80&q=80',
-    trusted: true,
-    image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&q=80',
-  },
-];
+{
+  id: 1,
+  sellerType: 'Private Seller',
+  sellerRating: 3.5,
+  spotlight: true,
+  title: '1987 Ford Sierra rs500',
+  year: 1987,
+  daysAgo: '2 days',
+  location: 'Kilkeel, Down',
+  price: '£189,950',
+  monthly: null,
+  photos: 15,
+  dealer: null,
+  dealerLogo: null,
+  trusted: false,
+  image: 'https://images.unsplash.com/photo-1555353540-64580b51c258?w=600&q=80'
+},
+{
+  id: 2,
+  sellerType: 'Trusted Independent Dealership',
+  sellerRating: 4.8,
+  spotlight: true,
+  title: '1969 Ford Mustang Fastback',
+  year: 1969,
+  daysAgo: '1 day',
+  location: 'Dublin',
+  price: '€74,500',
+  monthly: null,
+  photos: 22,
+  dealer: 'Karl Goodwin Motors Ltd',
+  dealerLogo: 'https://images.unsplash.com/photo-1611566026373-c6c8da0ea861?w=80&q=80',
+  trusted: true,
+  image: 'https://images.unsplash.com/photo-1547744152-14d985cb937f?w=600&q=80'
+},
+{
+  id: 3,
+  sellerType: 'Private Seller',
+  sellerRating: 4.0,
+  spotlight: false,
+  title: '1972 Jaguar E-Type Series 3 V12',
+  year: 1972,
+  daysAgo: '3 days',
+  location: 'Cork',
+  price: '€95,000',
+  monthly: null,
+  photos: 18,
+  dealer: null,
+  dealerLogo: null,
+  trusted: false,
+  image: 'https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=600&q=80'
+},
+{
+  id: 4,
+  sellerType: 'Trusted Independent Dealership',
+  sellerRating: 4.6,
+  spotlight: false,
+  title: '1965 Austin-Healey 3000 BJ8',
+  year: 1965,
+  daysAgo: '5 days',
+  location: 'Limerick',
+  price: '€42,000',
+  monthly: null,
+  photos: 14,
+  dealer: 'Classic Cars Ireland',
+  dealerLogo: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=80&q=80',
+  trusted: true,
+  image: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=80'
+},
+{
+  id: 5,
+  sellerType: 'Private Seller',
+  sellerRating: 4.2,
+  spotlight: false,
+  title: '1978 Mercedes-Benz 450SL Roadster',
+  year: 1978,
+  daysAgo: '1 week',
+  location: 'Galway',
+  price: '€28,500',
+  monthly: null,
+  photos: 11,
+  dealer: null,
+  dealerLogo: null,
+  trusted: false,
+  image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80'
+},
+{
+  id: 6,
+  sellerType: 'Trusted Independent Dealership',
+  sellerRating: 4.9,
+  spotlight: false,
+  title: '1961 Triumph TR4 Roadster',
+  year: 1961,
+  daysAgo: '2 days',
+  location: 'Wexford',
+  price: '€31,750',
+  monthly: null,
+  photos: 16,
+  dealer: 'Heritage Autos Dublin',
+  dealerLogo: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=80&q=80',
+  trusted: true,
+  image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&q=80'
+}];
+
 
 
 
@@ -118,14 +118,14 @@ export default function VintageCars() {
   const [savedIds, setSavedIds] = useState([]);
   const [viewMode, setViewMode] = useState('list');
 
-  const toggleSave = (id) => setSavedIds(prev =>
-    prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+  const toggleSave = (id) => setSavedIds((prev) =>
+  prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
   );
 
-  const filtered = listings.filter(c =>
-    !search ||
-    c.title.toLowerCase().includes(search.toLowerCase()) ||
-    c.location.toLowerCase().includes(search.toLowerCase())
+  const filtered = listings.filter((c) =>
+  !search ||
+  c.title.toLowerCase().includes(search.toLowerCase()) ||
+  c.location.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -146,16 +146,16 @@ export default function VintageCars() {
 
         {/* Title + Search */}
         <div className="mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Vintage Cars in Ireland</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Vintage Cars</h1>
           <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
               value={search}
-              onChange={e => setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Vintage Cars"
-              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-            />
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+            
           </div>
         </div>
 
@@ -199,27 +199,27 @@ export default function VintageCars() {
             </div>
 
             <div className="flex flex-col gap-4">
-              {filtered.map(car => (
-                <ListingCard
-                  key={car.id}
-                  item={car}
-                  saved={savedIds.includes(car.id)}
-                  onToggleSave={toggleSave}
-                  viewMode={viewMode}
-                />
-              ))}
-              {filtered.length === 0 && (
-                <div className="text-center py-16 text-muted-foreground">
+              {filtered.map((car) =>
+              <ListingCard
+                key={car.id}
+                item={car}
+                saved={savedIds.includes(car.id)}
+                onToggleSave={toggleSave}
+                viewMode={viewMode} />
+
+              )}
+              {filtered.length === 0 &&
+              <div className="text-center py-16 text-muted-foreground">
                   <p className="text-lg font-medium">No vintage cars found</p>
                   <p className="text-sm mt-1">Try adjusting your search or filters</p>
                 </div>
-              )}
+              }
             </div>
           </div>
         </div>
       </div>
 
       <Footer />
-    </div>
-  );
+    </div>);
+
 }
