@@ -114,7 +114,7 @@ function CategoryRow({ label, imgKey, highlight, isAllMotor, isOther }) {
     <button onClick={handleClick} className="flex items-center justify-between w-full py-2.5 border-b border-border last:border-0 hover:bg-secondary/40 px-2 rounded transition-colors group">
       <div className="flex items-center gap-3">
         <CategoryIcon imgKey={imgKey} isAllMotor={isAllMotor} isOther={isOther} />
-        <span className="text-[hsl(var(--foreground))] text-sm font-medium group-hover:text-primary transition-colors">
+        <span className="text-[hsl(var(--foreground))] text-base font-semibold group-hover:text-primary transition-colors">
           {label}
         </span>
       </div>
