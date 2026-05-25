@@ -32,61 +32,6 @@ const sections = [
   },
 ];
 
-const IMG = {
-  car: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cffa66889_generated_image.png',
-  newCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/700a41555_generated_image.png',
-  dealerCars: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cffa66889_generated_image.png',
-  vintageCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/77e01c47a_generated_image.png',
-  modifiedCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/f262f4c3a_generated_image.png',
-  truck: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/cd2b5117c_generated_image.png',
-  commercial: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/69c5c7c03_generated_image.png',
-  trailer: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/1cf4ce53a_generated_image.png',
-  camper: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/11ae06ec9_generated_image.png',
-  coachBus: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/b9c3a0c85_generated_image.png',
-  plant: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/800664dcf_generated_image.png',
-  motorbikeExtras: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/34aa93463_generated_image.png',
-  caravan: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/fac88e4c9_generated_image.png',
-  motorbike: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/34aa93463_generated_image.png',
-  vintageBike: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/78a162d71_generated_image.png',
-  scooter: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/684c702eb_generated_image.png',
-  quad: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/72d1a5340_generated_image.png',
-  boatExtras: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/5687cde59_generated_image.png',
-  boat: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/87a17cb2c_generated_image.png',
-  breaking: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/700a41555_generated_image.png',
-  rallyCar: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/f262f4c3a_generated_image.png',
-  carParts: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/3211f3316_generated_image.png',
-  carExtras: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/ca07bfd68_generated_image.png',
-  bicycle: 'https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/8ded1f6ff_generated_image.png',
-};
-
-const browseCategories = [
-  { label: 'New Cars', imgKey: 'newCar' },
-  { label: 'Cars', imgKey: 'car' },
-  { label: 'Cars from Dealerships', imgKey: 'dealerCars' },
-  { label: 'Vintage Cars', imgKey: 'vintageCar' },
-  { label: 'Modified Cars', imgKey: 'modifiedCar' },
-  { label: 'Car Parts', imgKey: 'carParts' },
-  { label: 'Car Extras', imgKey: 'carExtras' },
-  { label: 'Rally Cars', imgKey: 'rallyCar' },
-  { label: 'Breaking & Repairables', imgKey: 'breaking' },
-  { label: 'Trucks', imgKey: 'truck' },
-  { label: 'Commercials', imgKey: 'commercial' },
-  { label: 'Trailers', imgKey: 'trailer' },
-  { label: 'Campers', imgKey: 'camper' },
-  { label: 'Coaches & Buses', imgKey: 'coachBus' },
-  { label: 'Plant Machinery', imgKey: 'plant' },
-  { label: 'Motorbike Extras', imgKey: 'motorbikeExtras' },
-  { label: 'Caravans', imgKey: 'caravan' },
-  { label: 'Bikes & Bicycles', imgKey: 'bicycle' },
-  { label: 'Motorbikes', imgKey: 'motorbike' },
-  { label: 'Vintage Bikes', imgKey: 'vintageBike' },
-  { label: 'Scooters', imgKey: 'scooter' },
-  { label: 'Quads', imgKey: 'quad' },
-  { label: 'Boats & Jet Skis', imgKey: 'boat' },
-  { label: 'Boat Extras', imgKey: 'boatExtras' },
-  { label: 'Other', imgKey: null },
-];
-
 const categoryToSection = {
   'new cars': { section: 'Cars', subsection: 'New Cars' },
   cars: { section: 'Cars', subsection: 'Cars' },
@@ -393,30 +338,45 @@ export default function PlaceAd() {
                 <>
 
 
-                  {/* Select Category */}
+                  {/* Select Section */}
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-3">Select Category</label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                      {browseCategories.map((cat) => {
-                        const isSelected = form.subsection === cat.label;
-                        return (
-                          <button
-                            key={cat.label}
-                            type="button"
-                            onClick={() => handleSelectSuggestion(cat.label)}
-                            className={`flex items-center gap-2.5 px-3 py-2.5 border rounded-lg text-sm font-medium transition-colors text-left ${isSelected ? 'border-primary bg-primary/5 text-primary' : 'border-border hover:bg-secondary text-foreground'}`}
-                          >
-                            {cat.imgKey ? (
-                              <img src={IMG[cat.imgKey]} alt="" className="w-8 h-6 object-contain flex-shrink-0" />
-                            ) : (
-                              <span className="w-8 h-6 flex items-center justify-center text-muted-foreground font-bold text-lg flex-shrink-0">?</span>
-                            )}
-                            <span className="leading-tight">{cat.label}</span>
-                          </button>
-                        );
-                      })}
+                    <label className="block text-sm font-medium text-foreground mb-1.5">Select Section</label>
+                    <div className="relative">
+                      <select
+                        value={form.section}
+                        onChange={(e) => setForm((f) => ({ ...f, section: e.target.value, subsection: '' }))}
+                        className="w-full appearance-none border border-border rounded-lg px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-9"
+                      >
+                        <option value="">Select a section...</option>
+                        {sections.map((s) => <option key={s.label}>{s.label}</option>)}
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                     </div>
                   </div>
+
+                  {/* Select Subsection */}
+                  {form.section && (
+                    <div className="flex items-start gap-3">
+                      <div className="flex flex-col items-center mt-1">
+                        <div className="w-px h-4 bg-border" />
+                        <div className="w-3 h-px bg-border" />
+                      </div>
+                      <div className="flex-1">
+                        <label className="block text-sm font-medium text-foreground mb-1.5">Select Subsection</label>
+                        <div className="relative">
+                          <select
+                            value={form.subsection}
+                            onChange={set('subsection')}
+                            className="w-full appearance-none border border-border rounded-lg px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-9"
+                          >
+                            <option value="">Select a subsection...</option>
+                            {subsections.map((s) => <option key={s}>{s}</option>)}
+                          </select>
+                          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Ad Type */}
                   <div>
