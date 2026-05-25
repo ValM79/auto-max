@@ -76,6 +76,36 @@ const categoryToSection = {
 // All category names flattened for suggestions
 const allCategories = sections.flatMap((s) => s.subsections);
 
+// Keyword → browseCategory auto-match map
+const keywordToCategory = {
+  // Cars
+  car: 'Cars', cars: 'Cars', sedan: 'Cars', hatchback: 'Cars', saloon: 'Cars', coupe: 'Cars', suv: 'Cars', estate: 'Cars', convertible: 'Cars', family: 'Cars',
+  new: 'New Cars', 'new car': 'New Cars',
+  dealership: 'Cars from Dealerships', dealer: 'Cars from Dealerships',
+  vintage: 'Vintage Cars', classic: 'Vintage Cars', retro: 'Vintage Cars', antique: 'Vintage Cars',
+  modified: 'Modified Cars', tuned: 'Modified Cars', custom: 'Modified Cars',
+  parts: 'Car Parts', 'car part': 'Car Parts', spares: 'Car Parts', spare: 'Car Parts', engine: 'Car Parts', gearbox: 'Car Parts',
+  extras: 'Car Extras', accessory: 'Car Extras', accessories: 'Car Extras',
+  rally: 'Rally Cars', racing: 'Rally Cars', race: 'Rally Cars',
+  breaking: 'Breaking & Repairables', repairable: 'Breaking & Repairables', damaged: 'Breaking & Repairables', salvage: 'Breaking & Repairables',
+  // Trucks & Vans
+  truck: 'Trucks', lorry: 'Trucks', lorries: 'Trucks', trucks: 'Trucks',
+  van: 'Commercials', vans: 'Commercials', commercial: 'Commercials', minivan: 'Commercials', transit: 'Commercials', transporter: 'Commercials',
+  trailer: 'Trailers', trailers: 'Trailers', flatbed: 'Trailers',
+  camper: 'Campers', campervan: 'Campers', motorhome: 'Campers', rv: 'Campers',
+  coach: 'Coaches & Buses', bus: 'Coaches & Buses', buses: 'Coaches & Buses', minibus: 'Coaches & Buses',
+  plant: 'Plant Machinery', machinery: 'Plant Machinery', excavator: 'Plant Machinery', digger: 'Plant Machinery', forklift: 'Plant Machinery', tractor: 'Plant Machinery',
+  caravan: 'Caravans', caravans: 'Caravans',
+  bike: 'Bikes & Bicycles', bicycle: 'Bikes & Bicycles', bicycles: 'Bikes & Bicycles', cycling: 'Bikes & Bicycles', ebike: 'Bikes & Bicycles', pushbike: 'Bikes & Bicycles', mtb: 'Bikes & Bicycles', road: 'Bikes & Bicycles',
+  // Bikes & Boats
+  motorbike: 'Motorbikes', motorcycle: 'Motorbikes', motorcycles: 'Motorbikes', motorbikes: 'Motorbikes', moto: 'Motorbikes',
+  scooter: 'Scooters', scooters: 'Scooters', moped: 'Scooters',
+  quad: 'Quads', quads: 'Quads', atv: 'Quads', buggy: 'Quads',
+  boat: 'Boats & Jet Skis', boats: 'Boats & Jet Skis', jetski: 'Boats & Jet Skis', 'jet ski': 'Boats & Jet Skis', yacht: 'Boats & Jet Skis', dinghy: 'Boats & Jet Skis', speedboat: 'Boats & Jet Skis',
+  'boat part': 'Boat Extras', 'boat extra': 'Boat Extras', marine: 'Boat Extras',
+  'motorbike extra': 'Motorbike Extras', helmet: 'Motorbike Extras', leathers: 'Motorbike Extras',
+};
+
 const emptyForm = {
   category: '',
   section: '',
@@ -132,30 +162,34 @@ export default function PlaceAd() {
   const set = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
   const toggle = (field) => () => setForm((f) => ({ ...f, [field]: !f[field] }));
 
+  const resolveSubsection = (text) => {
+    const lower = text.trim().toLowerCase();
+    if (!lower) return '';
+    // Check keyword map first (partial match against each word in input)
+    const words = lower.split(/\s+/);
+    for (const word of words) {
+      if (keywordToCategory[word]) return keywordToCategory[word];
+    }
+    // Also try full phrase
+    if (keywordToCategory[lower]) return keywordToCategory[lower];
+    // Default to Other
+    return 'Other';
+  };
+
   const handleCategoryChange = (e) => {
     const val = e.target.value;
-    const trimmed = val.trim().toLowerCase();
-    const match = categoryToSection[trimmed];
-    setShowSuggestions(true);
-
-    if (match) {
-      setForm((f) => ({
-        ...f,
-        category: val,
-        section: match.section,
-        subsection: match.subsection,
-      }));
-    } else if (trimmed) {
-      const capitalized = val.trim().charAt(0).toUpperCase() + val.trim().slice(1);
-      setForm((f) => ({
-        ...f,
-        category: val,
-        section: capitalized,
-        subsection: capitalized,
-      }));
-    } else {
+    if (!val.trim()) {
       setForm((f) => ({ ...f, category: val, section: '', subsection: '' }));
+      return;
     }
+    const subsection = resolveSubsection(val);
+    const sectionMatch = categoryToSection[subsection.toLowerCase()];
+    setForm((f) => ({
+      ...f,
+      category: val,
+      subsection,
+      section: sectionMatch ? sectionMatch.section : 'Bikes & Boats',
+    }));
   };
 
   const handleSelectSuggestion = (categoryName) => {
