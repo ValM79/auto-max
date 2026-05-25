@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PromoBanner from '../components/automarket/PromoBanner';
-import { Search, ChevronDown, LayoutList, LayoutGrid, ArrowLeft } from 'lucide-react';
+import { Search, ChevronDown, ArrowLeft } from 'lucide-react';
 import ListingCard from '../components/automarket/ListingCard';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
@@ -159,12 +159,12 @@ export default function CarsForSale() {
   const filtered = carListings.filter(c => matchesSearch(c) && matchesRanges(c));
 
   return (
-    <div className="min-h-screen bg-[#f4f5f6]">
+    <div className="min-h-screen bg-background">
       <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 py-4">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-5">
           <button onClick={() => window.history.back()} className="flex items-center gap-1 hover:text-primary transition-colors">
             <ArrowLeft className="w-3.5 h-3.5" /> Back
           </button>
@@ -175,8 +175,8 @@ export default function CarsForSale() {
         </div>
 
         {/* Title + Search */}
-        <div className="mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">New & Used Cars For Sale</h1>
+        <div className="mb-5">
+          <h1 className="text-2xl font-bold text-foreground mb-3">New & Used Cars For Sale</h1>
           <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
@@ -184,7 +184,7 @@ export default function CarsForSale() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search Cars"
-              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none border-0 outline-none"
             />
           </div>
         </div>
@@ -193,7 +193,7 @@ export default function CarsForSale() {
 
         <div className="flex gap-6">
           {/* Sidebar Filters */}
-          <aside className="hidden lg:block w-64 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
+          <aside className="hidden lg:block w-80 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
             <FiltersSidebar onFilterChange={setActiveFilters} />
           </aside>
 
@@ -201,24 +201,12 @@ export default function CarsForSale() {
           <div className="flex-1 min-w-0">
             {/* Sort bar */}
             <div className="flex items-center justify-between mb-4">
-              <p className="text-sm text-foreground font-medium">
-                <span className="font-bold">{groups.reduce((acc, g) => acc + g.listings.length, 0)}</span> cars in Ireland
+              <p className="text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">{groups.reduce((acc, g) => acc + g.listings.length, 0).toLocaleString()}</span> cars in Ireland
               </p>
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1">
-                  <LayoutList className="w-5 h-5 text-primary" />
-                  <LayoutGrid className="w-5 h-5 text-muted-foreground" />
-                </div>
-                <div className="relative">
-                  <select className="appearance-none border border-border rounded-lg px-3 py-1.5 text-sm bg-white pr-8 focus:outline-none">
-                    <option>Sort by: Best match</option>
-                    <option>Price: Low to High</option>
-                    <option>Price: High to Low</option>
-                    <option>Newest First</option>
-                    <option>Lowest Mileage</option>
-                  </select>
-                  <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
-                </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                Sort by: <span className="font-semibold text-foreground">Best match</span>
+                <ChevronDown className="w-4 h-4" />
               </div>
             </div>
 
