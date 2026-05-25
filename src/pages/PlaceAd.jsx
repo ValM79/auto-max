@@ -310,25 +310,18 @@ export default function PlaceAd() {
                      type="text"
                      value={form.category}
                      onChange={handleCategoryChange}
-                     onFocus={() => setShowSuggestions(true)}
-                     onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
-                     onKeyDown={(e) => { if (e.key === 'Enter' && form.category) { setShowSuggestions(false); setCategoryStarted(true); } }}
+                     onKeyDown={(e) => { if (e.key === 'Enter' && form.category) setCategoryStarted(true); }}
                      placeholder="e.g. Car, Van, Truck"
-                     className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                     className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-9"
                    />
-                   {showSuggestions && filteredSuggestions.length > 0 && (
-                     <div className="absolute z-50 top-full left-0 right-0 mt-1 bg-white border border-border rounded-lg shadow-lg max-h-60 overflow-y-auto">
-                       {filteredSuggestions.map((cat) => (
-                         <button
-                           key={cat}
-                           type="button"
-                           onMouseDown={() => handleSelectSuggestion(cat)}
-                           className="w-full text-left px-4 py-2.5 text-sm text-foreground hover:bg-secondary transition-colors"
-                         >
-                           {cat}
-                         </button>
-                       ))}
-                     </div>
+                   {form.category && (
+                     <button
+                       type="button"
+                       onClick={() => setForm((f) => ({ ...f, category: '', section: '', subsection: '' }))}
+                       className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                     >
+                       <X className="w-4 h-4" />
+                     </button>
                    )}
                  </div>
                  <button
