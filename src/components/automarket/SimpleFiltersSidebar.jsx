@@ -39,7 +39,7 @@ export default function SimpleFiltersSidebar({ onReset }) {
   );
 
   return (
-    <div className="bg-white rounded-xl border border-border shadow-sm p-4 text-sm">
+    <div className="bg-white rounded-xl p-4 text-sm">
       {/* Save Search */}
       <button className="flex items-center gap-2 w-full border border-border rounded-lg px-4 py-2.5 hover:bg-secondary transition-colors mb-4 text-foreground font-medium">
         ★ Save Search

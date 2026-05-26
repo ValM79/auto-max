@@ -253,7 +253,7 @@ export default function Commercials() {
         <div className="flex gap-6">
           {/* Sidebar */}
           <aside className="hidden lg:block w-80 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
-            <div className="bg-white rounded-xl border border-border shadow-sm p-4 text-sm">
+            <div className="bg-white rounded-xl p-4 text-sm">
               <button className="flex items-center gap-2 w-full border border-border rounded-lg px-4 py-2.5 hover:bg-secondary transition-colors mb-4 text-foreground">
                 <Star className="w-4 h-4 text-muted-foreground" /> Save Search
               </button>

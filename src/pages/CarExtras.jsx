@@ -176,7 +176,7 @@ export default function CarExtras() {
           {/* Sidebar */}
           <aside className="hidden lg:block w-64 flex-shrink-0 self-start sticky top-4">
             {/* Section filter */}
-            <div className="bg-white rounded-xl border border-border shadow-sm p-4 mb-4 text-sm">
+            <div className="bg-white rounded-xl p-4 mb-4 text-sm">
               <p className="text-xs text-muted-foreground mb-2 font-semibold uppercase tracking-wide">Section</p>
               <button className="flex items-center gap-1 text-primary text-sm mb-3 hover:underline">
                 <ArrowLeft className="w-3.5 h-3.5" /> Cars &amp; Motor
