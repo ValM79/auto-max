@@ -241,7 +241,7 @@ export default function Commercials() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Commercials"
-              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none border-0 outline-none" />
             
           </div>
         </div>
@@ -252,7 +252,7 @@ export default function Commercials() {
 
         <div className="flex gap-6">
           {/* Sidebar */}
-          <aside className="hidden lg:block w-64 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
+          <aside className="hidden lg:block w-80 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
             <div className="bg-white rounded-xl border border-border shadow-sm p-4 text-sm">
               <button className="flex items-center gap-2 w-full border border-border rounded-lg px-4 py-2.5 hover:bg-secondary transition-colors mb-4 text-foreground">
                 <Star className="w-4 h-4 text-muted-foreground" /> Save Search
