@@ -3,7 +3,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
 
-const HERO_IMAGE = 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3';
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3';
 
 const makes = ['-Kita-', 'A1 PRO', 'Abarth', 'AC', 'Acura', 'Aito', 'Aiways', 'Aixam', 'Alfa Romeo', 'Alpina', 'Aston Martin', 'Audi', 'BAW', 'BELLIER', 'Bentley', 'BMW', 'Bontu', 'Buick', 'BYD', 'Cadillac', 'Casalini', 'Cenntro', 'Chatenet', 'Chevrolet', 'Chrysler', 'Citroen', 'Cupra', 'Dacia', 'Daihatsu', 'DFSK', 'Dodge', 'Dongfeng', 'DS Automobiles', 'e.GO', 'Ferrari', 'Fiat', 'Fisker', 'Ford', 'Forthing', 'GAZ', 'Genesis', 'GMC', 'GWM', 'Honda', 'Hongqi', 'Hummer', 'Hyundai', 'IFA', 'Infiniti', 'Isuzu', 'Iveco', 'Jaguar', 'Jeep', 'KGM', 'Kia', 'Lada', 'Lamborghini', 'Lancia', 'Land Rover', 'Lexus', 'Ligier', 'Lincoln', 'Lotus', 'LuAZ', 'Lynk & Co', 'MAN', 'Maserati', 'Maxus', 'Maybach', 'Mazda', 'Mclaren', 'Mercedes-Benz', 'Mercury', 'MG', 'Microcar', 'Mini', 'Mitsubishi', 'Moskvich', 'Nissan', 'Opel', 'Peugeot', 'Piaggio', 'Plymouth', 'Polestar', 'Pontiac', 'Porsche', 'RAM', 'Renault', 'Rolls-Royce', 'Rover', 'Saab', 'Seat', 'Seres', 'Shuanghuan', 'Skoda', 'Skut', 'Smart', 'SsangYong', 'Subaru', 'Suzuki', 'Tesla', 'Toyota', 'Trabant', 'UAZ', 'Vauxhall', 'Volkswagen', 'Volvo', 'Voyah', 'Wartburg', 'XEV', 'Xpeng', 'ZAZ', 'Zeekr', 'Zhidou'];
 
