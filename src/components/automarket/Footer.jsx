@@ -30,14 +30,13 @@ export default function Footer() {
           {/* Logo + App Store buttons */}
           <div className="flex flex-col gap-5 min-w-[180px]">
             <div className="flex items-center gap-2">
+              <span className="text-white text-xl font-semibold tracking-tight">Auto</span>
+              <span className="text-white text-xl font-extrabold tracking-tight">Market</span>
               <img
                 src="https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/ca07bfd68_generated_image.png"
                 alt="AutoMarket Logo"
-                className="w-8 h-8 object-contain"
-                style={{ filter: 'brightness(0) invert(1)' }}
+                className="w-6 h-6 object-contain"
               />
-              <span className="text-white text-xl font-semibold tracking-tight">Auto</span>
-              <span className="text-white text-xl font-extrabold tracking-tight">Market</span>
             </div>
 
             {/* Download our App */}
