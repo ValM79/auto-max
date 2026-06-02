@@ -185,16 +185,7 @@ export default function HeroSearch() {
             </div>
           </div>
 
-          <div className="hidden lg:flex flex-col items-end gap-6 text-white pt-8">
-            <div className="text-right">
-              <h2 className="text-3xl xl:text-4xl font-bold leading-tight drop-shadow-lg">
-                Know what your car<br />is really worth.
-              </h2>
-            </div>
-            <Button className="bg-accent hover:bg-accent/90 text-white font-semibold rounded-lg px-8 h-12 text-base shadow-lg">
-              Value My Car
-            </Button>
-          </div>
+
         </div>
       </div>
     </section>);
