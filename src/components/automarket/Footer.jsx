@@ -45,11 +45,10 @@ export default function Footer() {
         </div>
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-1">
-              <span className="text-white text-xl font-extrabold tracking-tight">AutoMarket</span>
-              <svg className="w-4 h-4 text-white mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M7 17l9.2-9.2M17 17V7H7" />
-              </svg>
+            <div className="flex items-center gap-2">
+              <span className="text-white text-xl font-semibold tracking-tight">Auto</span>
+              <span className="text-white text-xl font-extrabold tracking-tight">Market</span>
+              <img src="https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/ca07bfd68_generated_image.png" alt="AutoMarket Logo" className="w-6 h-6 object-contain" />
             </div>
             <p className="text-xs text-white/40 text-center">© 2026 AutoMarket. All rights reserved. Ireland's largest car marketplace.</p>
             <div className="flex gap-4">
