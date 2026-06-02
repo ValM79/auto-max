@@ -76,7 +76,7 @@ function MakeRow({ label, logo }) {
   return (
     <button onClick={handleClick} className="flex items-center justify-between w-full py-2.5 border-b border-border last:border-0 hover:bg-secondary/40 px-2 rounded transition-colors group">
       <div className="flex items-center gap-3">
-        <div className="w-12 h-9 flex items-center justify-center flex-shrink-0">
+        <div className="w-8 h-7 flex items-center justify-center flex-shrink-0">
           <img
             src={logo}
             alt={label}
