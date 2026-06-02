@@ -36,6 +36,7 @@ export default function Footer() {
                 src="https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/ca07bfd68_generated_image.png"
                 alt="AutoMarket Logo"
                 className="w-6 h-6 object-contain"
+                style={{ mixBlendMode: 'screen' }}
               />
             </div>
 
