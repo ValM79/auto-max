@@ -98,10 +98,10 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <span className="text-[hsl(var(--foreground))] text-xl font-semibold tracking-tight">Auto</span>
-            <span className="text-[hsl(var(--foreground))] text-xl font-extrabold tracking-tight">Market</span>
-            <img src="https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/ca07bfd68_generated_image.png" alt="AutoMarket Logo" className="w-6 h-6 object-contain" />
+          <Link to="/" className="flex items-center gap-2">AutoMarket
+
+
+
           </Link>
 
           {/* Desktop Nav */}
