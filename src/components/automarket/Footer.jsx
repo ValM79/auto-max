@@ -22,7 +22,7 @@ const footerSections = [
 export default function Footer() {
   return (
     <footer className="bg-foreground text-white/70">
-      <div className="max-w-7xl mx-auto px-8 py-16">
+      <div className="max-w-7xl mx-auto px-16 py-16">
 
         {/* Top section: Logo + Links + App Download */}
         <div className="flex flex-col lg:flex-row gap-10 mb-10">
