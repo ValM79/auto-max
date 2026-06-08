@@ -30,8 +30,7 @@ export default function Footer() {
           {/* Logo + App Store buttons */}
           <div className="flex flex-col gap-5 w-full lg:w-1/3">
             <div className="flex items-center gap-2">
-              <span className="text-white text-xl font-semibold tracking-tight">Auto</span>
-              <span className="text-white text-xl font-extrabold tracking-tight">Market</span>
+              <span className="text-white text-xl font-extrabold tracking-tight">AutoMax</span>
               <img
                 src="https://media.base44.com/images/public/69ceb6b4f41f5a2cee0c7016/ca07bfd68_generated_image.png"
                 alt="AutoMarket Logo"
@@ -101,7 +100,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-white/40 text-center">© 2026 AutoMarket. All rights reserved. Ireland's largest car marketplace.</p>
+            <p className="text-xs text-white/40 text-center">© 2026 AutoMax. All rights reserved. Ireland's largest car marketplace.</p>
             <div className="flex gap-4">
               {['Facebook', 'Twitter', 'Instagram', 'YouTube'].map((social) => (
                 <a key={social} href="#" className="text-xs hover:text-white transition-colors">
