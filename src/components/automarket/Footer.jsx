@@ -6,10 +6,6 @@ const footerSections = [
   links: ['Used cars', 'New cars', 'Electric cars', 'Hybrid cars', 'Body types', 'Car finance']
 },
 {
-  title: 'Selling',
-  links: ['Sell my car', 'Value my car', 'Selling tips']
-},
-{
   title: 'Resources',
   links: ['Car reviews', 'Motoring advice', 'Car insurance', 'Dealers', 'Cartell vehicle check']
 },
