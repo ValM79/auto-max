@@ -39,6 +39,12 @@ export default function Footer() {
               
             </div>
 
+            {/* Contact info */}
+            <div className="flex flex-col gap-1">
+              <p className="text-white/70 text-sm">Phone: <a href="tel:+35314490650" className="hover:text-white transition-colors">+353 1 4490650</a></p>
+              <p className="text-white/70 text-sm">Email: <a href="mailto:support@automax.ie" className="hover:text-white transition-colors">support@automax.ie</a></p>
+            </div>
+
             {/* Download our App */}
             <div>
               <p className="text-white text-sm font-semibold mb-3">Download our App</p>
