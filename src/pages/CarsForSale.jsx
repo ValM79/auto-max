@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useFavorites } from '../hooks/useFavorites';
 import PromoBanner from '../components/automarket/PromoBanner';
 import { Search, ChevronDown, ArrowLeft } from 'lucide-react';
 import ListingCard from '../components/automarket/ListingCard';
@@ -116,10 +117,8 @@ const carListings = [
 
 export default function CarsForSale() {
   const [search, setSearch] = useState('');
-  const [savedIds, setSavedIds] = useState([]);
   const [activeFilters, setActiveFilters] = useState({ vehicles: [] });
-
-  const toggleSave = (id) => setSavedIds(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   const activeVehicles = (activeFilters.vehicles || []).filter(v => v.make);
 
@@ -226,8 +225,8 @@ export default function CarsForSale() {
                       <ListingCard
                         key={car.id}
                         item={{ ...car, dealer: car.dealerName, price: `€${car.price.toLocaleString()}` }}
-                        saved={savedIds.includes(car.id)}
-                        onToggleSave={toggleSave}
+                        saved={isFavorite(car.id)}
+                        onToggleSave={() => toggleFavorite({ ...car, dealer: car.dealerName, price: `€${car.price.toLocaleString()}` })}
                         viewMode="list"
                       />
                     ))}

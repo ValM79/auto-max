@@ -11,7 +11,7 @@ const userMenuItems = [
 { label: 'Profile', icon: User },
 { label: 'My Ads', icon: Megaphone },
 { label: 'Messages', icon: MessageSquare },
-{ label: 'Saved Ads', icon: Bookmark },
+{ label: 'Saved Ads', icon: Bookmark, route: '/favorites' },
 { label: 'Saved Searches', icon: Heart },
 { label: 'Browsing History', icon: History },
 { divider: true },
@@ -248,6 +248,15 @@ export default function Navbar() {
                 <Link
                   key={item.label}
                   to="/profile"
+                  onClick={() => setShowUserMenu(false)}
+                  className="flex items-center gap-2.5 w-full px-4 py-2 text-sm text-foreground hover:bg-secondary transition-colors">
+                          <item.icon className="w-4 h-4 text-muted-foreground" />
+                          {item.label}
+                        </Link> :
+                item.label === 'Saved Ads' ?
+                <Link
+                  key={item.label}
+                  to="/favorites"
                   onClick={() => setShowUserMenu(false)}
                   className="flex items-center gap-2.5 w-full px-4 py-2 text-sm text-foreground hover:bg-secondary transition-colors">
                           <item.icon className="w-4 h-4 text-muted-foreground" />
