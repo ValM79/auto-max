@@ -72,29 +72,12 @@ export default function Footer() {
             {/* Download our App */}
             <div>
               <p className="text-white text-sm font-semibold mb-3">Download our App</p>
-              <div className="flex flex-row gap-2">
-                {/* App Store badge */}
-                <a href="#" className="flex items-center gap-2 bg-black border border-white rounded-lg px-3 py-2 hover:opacity-80 transition-opacity min-w-[120px]">
-                  <svg className="w-5 h-5 text-white flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                  </svg>
-                  <div>
-                    <div className="text-white/60 text-[8px] leading-none tracking-wider uppercase">Download on the</div>
-                    <div className="text-white text-[13px] font-semibold leading-tight">App Store</div>
-                  </div>
+              <div className="flex flex-row gap-2 items-center">
+                <a href="#" className="hover:opacity-80 transition-opacity">
+                  <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" className="h-10" />
                 </a>
-                {/* Google Play badge */}
-                <a href="#" className="flex items-center gap-2 bg-black border border-white rounded-lg px-3 py-2 hover:opacity-80 transition-opacity min-w-[120px]">
-                  <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none">
-                    <path d="M3.18 23.76c.3.17.64.24.99.19l13.12-7.57-2.83-2.83L3.18 23.76z" fill="#EA4335" />
-                    <path d="M22.14 10.31L19.3 8.69l-3.16 3.16 3.16 3.16 2.87-1.65c.82-.47.82-1.58-.03-2.05z" fill="#FBBC04" />
-                    <path d="M3.18.24C2.88.42 2.7.75 2.7 1.13v21.74c0 .38.18.71.48.89l13.28-11.86L3.18.24z" fill="#4285F4" />
-                    <path d="M4.17.05L17.45 7.62l-3.17 3.17L4.17.05z" fill="#34A853" />
-                  </svg>
-                  <div>
-                    <div className="text-white/60 text-[8px] leading-none tracking-wider uppercase">Get it on</div>
-                    <div className="text-white text-[13px] font-semibold leading-tight">Google Play</div>
-                  </div>
+                <a href="#" className="hover:opacity-80 transition-opacity">
+                  <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" className="h-14" />
                 </a>
               </div>
             </div>
