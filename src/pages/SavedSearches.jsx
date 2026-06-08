@@ -8,7 +8,7 @@ export default function SavedSearches() {
   const [savedItems, setSavedItems] = useState([]);
 
   useEffect(() => {
-    const saved = localStorage.getItem('automax_saved_items');
+    const saved = localStorage.getItem('automarket_saved_items');
     if (saved) {
       setSavedItems(JSON.parse(saved));
     }
@@ -17,7 +17,7 @@ export default function SavedSearches() {
   const removeSaved = (id) => {
     const updated = savedItems.filter(item => item.id !== id);
     setSavedItems(updated);
-    localStorage.setItem('automax_saved_items', JSON.stringify(updated));
+    localStorage.setItem('automarket_saved_items', JSON.stringify(updated));
   };
 
   return (

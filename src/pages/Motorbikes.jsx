@@ -110,13 +110,13 @@ export default function Motorbikes() {
       const updated = prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id];
       const itemToSave = listings.find((item) => item.id === id);
       if (itemToSave && !prev.includes(id)) {
-        const saved = JSON.parse(localStorage.getItem('automax_saved_items') || '[]');
+        const saved = JSON.parse(localStorage.getItem('automarket_saved_items') || '[]');
         saved.push({ ...itemToSave, savedAt: new Date().toISOString() });
-        localStorage.setItem('automax_saved_items', JSON.stringify(saved));
+        localStorage.setItem('automarket_saved_items', JSON.stringify(saved));
       } else if (prev.includes(id)) {
-        const saved = JSON.parse(localStorage.getItem('automax_saved_items') || '[]');
+        const saved = JSON.parse(localStorage.getItem('automarket_saved_items') || '[]');
         const filtered = saved.filter((item) => item.id !== id);
-        localStorage.setItem('automax_saved_items', JSON.stringify(filtered));
+        localStorage.setItem('automarket_saved_items', JSON.stringify(filtered));
       }
       return updated;
     });
