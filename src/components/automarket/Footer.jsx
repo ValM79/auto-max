@@ -80,7 +80,7 @@ export default function Footer() {
           </div>
 
           {/* Nav link columns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full lg:w-4/5">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 w-full lg:w-4/5">
             {footerSections.map((section) =>
             <div key={section.title}>
                 <h3 className="text-white font-semibold text-sm mb-4">{section.title}</h3>
