@@ -10,10 +10,6 @@ const footerSections = [
   links: ['Car reviews', 'Motoring advice', 'Car insurance', 'Dealers', 'Cartell vehicle check']
 },
 {
-  title: 'Selling',
-  links: ['Place an ad', 'How to sell my car', 'Selling tips', 'Value my car']
-},
-{
   title: 'Company',
   links: ['About us', 'Advertising', 'Careers', 'Contact us', 'Terms', 'Privacy policy']
 }];
@@ -84,7 +80,7 @@ export default function Footer() {
           </div>
 
           {/* Nav link columns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full lg:w-4/5">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 w-full lg:w-4/5">
             {footerSections.map((section) =>
             <div key={section.title}>
                 <h3 className="text-white font-semibold text-sm mb-4">{section.title}</h3>
