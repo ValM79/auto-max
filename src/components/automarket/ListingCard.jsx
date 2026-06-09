@@ -1,6 +1,14 @@
 import React from 'react';
 import { Heart, Camera, Star, ShieldCheck } from 'lucide-react';
 
+const STATUS_BADGE_STYLES = {
+  'Newly Listed': 'bg-blue-100 text-blue-700 border-blue-200',
+  'Price Reduced': 'bg-orange-100 text-orange-700 border-orange-200',
+  'Hot Deal': 'bg-red-100 text-red-700 border-red-200',
+  'Just In': 'bg-green-100 text-green-700 border-green-200',
+  'Almost Gone': 'bg-yellow-100 text-yellow-700 border-yellow-200',
+};
+
 function StarRating({ rating }) {
   return (
     <div className="flex items-center gap-0.5">
@@ -47,6 +55,12 @@ export default function ListingCard({ item, saved, onToggleSave, viewMode = 'lis
             {item.spotlight && (
               <span className="absolute top-2 left-0 bg-gray-800 text-white text-xs font-semibold px-2.5 py-1 z-10" style={{borderRadius: '0 4px 4px 0'}}>
                 Spotlight
+              </span>
+            )}
+            {/* Status badge on image */}
+            {item.status && (
+              <span className={`absolute top-2 right-2 text-xs font-semibold px-2 py-0.5 rounded border z-10 ${STATUS_BADGE_STYLES[item.status] || 'bg-gray-100 text-gray-700 border-gray-200'}`}>
+                {item.status}
               </span>
             )}
             <img src={item.image} alt={item.title} className="w-full h-full object-cover" />

@@ -24,6 +24,7 @@ const carListings = [
     photos: 14,
     image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80',
     trusted: false,
+    status: 'Newly Listed',
   },
   {
     id: 2,
@@ -42,6 +43,7 @@ const carListings = [
     photos: 18,
     image: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=600&q=80',
     trusted: true,
+    status: 'Hot Deal',
   },
   {
     id: 3,
@@ -58,6 +60,7 @@ const carListings = [
     photos: 9,
     image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&q=80',
     trusted: false,
+    status: 'Price Reduced',
   },
   {
     id: 4,
@@ -76,6 +79,7 @@ const carListings = [
     photos: 22,
     image: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=80',
     trusted: true,
+    status: 'Just In',
   },
   {
     id: 5,
@@ -92,6 +96,7 @@ const carListings = [
     photos: 7,
     image: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=80',
     trusted: false,
+    status: 'Almost Gone',
   },
   {
     id: 6,
