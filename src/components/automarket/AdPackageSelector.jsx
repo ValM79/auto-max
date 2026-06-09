@@ -5,8 +5,8 @@ import { base44 } from '@/api/base44Client';
 const packages = [
   {
     name: 'Lite',
-    price: '€23.99',
-    priceId: 'price_1TgUJOLQxQzBuaMVcjFbuy5S',
+    price: '€5',
+    priceId: 'price_1TgUNLLQxQzBuaMVLYYB7kul',
     adViews: 1, // 1 out of 4 bars
     features: [
       '72 day listing',
@@ -15,8 +15,8 @@ const packages = [
   },
   {
     name: 'Standard',
-    price: '€35.99',
-    priceId: 'price_1TgUJOLQxQzBuaMVxgoLPteb',
+    price: '€7',
+    priceId: 'price_1TgUNLLQxQzBuaMV0tXw1AVC',
     recommended: true,
     adViews: 2,
     features: [
@@ -29,8 +29,8 @@ const packages = [
   },
   {
     name: 'Premium',
-    price: '€59.99',
-    priceId: 'price_1TgUJOLQxQzBuaMV6WHMLbVo',
+    price: '€12',
+    priceId: 'price_1TgUNLLQxQzBuaMVV5Xq2fzw',
     adViews: 3,
     features: [
       '72 day listing',
