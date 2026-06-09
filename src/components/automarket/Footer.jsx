@@ -3,15 +3,15 @@ import React from 'react';
 const footerSections = [
 {
   title: 'Company',
-  links: ['About us', 'Advertising', 'Careers', 'Contact us', 'Terms', 'Privacy policy']
+  links: ['About us', 'Contact us', 'Help', 'Reviews Gallery', 'Career']
 },
 {
   title: "Information",
-  links: ['Used cars', 'New cars', 'Electric cars', 'Hybrid cars', 'Body types', 'Car finance']
+  links: ['Cookie policy', 'Privacy policy', 'Terms & conditions', 'Manage cookies', 'Accessibility']
 },
 {
   title: 'Resources',
-  links: ['Car reviews', 'Motoring advice', 'Car insurance', 'Dealers', 'Cartell vehicle check']
+  links: ['Dealers information', 'Advertisement']
 }];
 
 
