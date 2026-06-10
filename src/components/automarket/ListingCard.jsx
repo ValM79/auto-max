@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Camera, Star, ShieldCheck } from 'lucide-react';
+import { Heart, Camera, Star, ShieldCheck, GitCompare } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const STATUS_BADGE_STYLES = {
@@ -23,7 +23,7 @@ function StarRating({ rating }) {
 /**
  * Shared listing card matching the Cars Ireland reference layout.
  */
-export default function ListingCard({ item, saved, onToggleSave, viewMode = 'list' }) {
+export default function ListingCard({ item, saved, onToggleSave, viewMode = 'list', onToggleCompare, inCompare }) {
   const isGrid = viewMode === 'grid';
   const navigate = useNavigate();
 
@@ -145,11 +145,21 @@ export default function ListingCard({ item, saved, onToggleSave, viewMode = 'lis
               </div>
               {item.monthly && <p className="text-xs text-muted-foreground">From €{item.monthly}/mo</p>}
             </div>
-            <button
-              onClick={(e) => { e.stopPropagation(); onToggleSave(item.id); }}
-              className={`p-2 rounded-full border transition-colors flex-shrink-0 ${saved ? 'border-destructive text-destructive' : 'border-border text-muted-foreground hover:text-destructive hover:border-destructive'}`}>
-              <Heart className={`w-5 h-5 ${saved ? 'fill-destructive' : ''}`} />
-            </button>
+            <div className="flex items-center gap-2">
+              {onToggleCompare && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); onToggleCompare(item); }}
+                  title={inCompare ? 'Remove from compare' : 'Add to compare'}
+                  className={`p-2 rounded-full border transition-colors flex-shrink-0 ${inCompare ? 'border-primary bg-primary text-white' : 'border-border text-muted-foreground hover:text-primary hover:border-primary'}`}>
+                  <GitCompare className="w-4 h-4" />
+                </button>
+              )}
+              <button
+                onClick={(e) => { e.stopPropagation(); onToggleSave(item.id); }}
+                className={`p-2 rounded-full border transition-colors flex-shrink-0 ${saved ? 'border-destructive text-destructive' : 'border-border text-muted-foreground hover:text-destructive hover:border-destructive'}`}>
+                <Heart className={`w-5 h-5 ${saved ? 'fill-destructive' : ''}`} />
+              </button>
+            </div>
           </div>
         </div>
       </div>

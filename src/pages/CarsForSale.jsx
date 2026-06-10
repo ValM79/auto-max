@@ -7,6 +7,8 @@ import ListingCard from '../components/automarket/ListingCard';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import FiltersSidebar from '../components/automarket/FiltersSidebar';
+import CompareBar from '../components/automarket/CompareBar';
+import CompareModal from '../components/automarket/CompareModal';
 
 const carListings = [
   {
@@ -124,6 +126,17 @@ export default function CarsForSale() {
   const [search, setSearch] = useState('');
   const [activeFilters, setActiveFilters] = useState({ vehicles: [] });
   const { isFavorite, toggleFavorite } = useFavorites();
+  const [compareCars, setCompareCars] = useState([]);
+  const [showCompareModal, setShowCompareModal] = useState(false);
+
+  const toggleCompare = (car) => {
+    setCompareCars(prev => {
+      const exists = prev.find(c => c.id === car.id);
+      if (exists) return prev.filter(c => c.id !== car.id);
+      if (prev.length >= 4) return prev;
+      return [...prev, car];
+    });
+  };
 
   const activeVehicles = (activeFilters.vehicles || []).filter(v => v.make);
 
@@ -233,6 +246,8 @@ export default function CarsForSale() {
                         saved={isFavorite(car.id)}
                         onToggleSave={() => toggleFavorite({ ...car, dealer: car.dealerName, price: `€${car.price.toLocaleString()}` })}
                         viewMode="list"
+                        onToggleCompare={(item) => toggleCompare({ ...car, name: car.title, price: `€${car.price.toLocaleString()}` })}
+                        inCompare={!!compareCars.find(c => c.id === car.id)}
                       />
                     ))}
                   </div>
@@ -243,6 +258,15 @@ export default function CarsForSale() {
         </div>
       </div>
 
+      <CompareBar
+        cars={compareCars}
+        onRemove={(id) => setCompareCars(prev => prev.filter(c => c.id !== id))}
+        onCompare={() => setShowCompareModal(true)}
+        onClear={() => setCompareCars([])}
+      />
+      {showCompareModal && (
+        <CompareModal cars={compareCars} onClose={() => setShowCompareModal(false)} />
+      )}
       <Footer />
     </div>
   );
