@@ -92,7 +92,7 @@ export default function AdPackageSelector({ onPackageSelected }) {
   return (
     <div className="bg-white border border-border rounded-2xl p-6 shadow-sm">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-bold text-foreground">elect  your ad option</h2>
+        <h2 className="text-lg font-bold text-foreground">Select  your ad option</h2>
         <span className="text-sm text-green-600 font-semibold cursor-pointer hover:underline">
           Learn more about our new ad packages
         </span>
