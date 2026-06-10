@@ -615,7 +615,7 @@ export default function PlaceAd() {
                   <input
                     type="text"
                     value={form.mileage}
-                    onChange={(e) => setForm(f => ({ ...f, mileage: e.target.value.replace(/[^0-9,]/g, '') }))}
+                    onChange={(e) => { const raw = e.target.value.replace(/[^0-9]/g, ''); const formatted = raw ? Number(raw).toLocaleString('en-IE') : ''; setForm(f => ({ ...f, mileage: formatted })); }}
                     placeholder="e.g. 12,000"
                     className="flex-1 border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
                   
@@ -870,7 +870,7 @@ export default function PlaceAd() {
                   <input
                     type="text"
                     value={form.price}
-                    onChange={(e) => { setForm(f => ({ ...f, price: e.target.value.replace(/[^0-9,]/g, '') })); setFormErrors((err) => ({ ...err, price: undefined })); }}
+                    onChange={(e) => { const raw = e.target.value.replace(/[^0-9]/g, ''); const formatted = raw ? Number(raw).toLocaleString('en-IE') : ''; setForm(f => ({ ...f, price: formatted })); setFormErrors((err) => ({ ...err, price: undefined })); }}
                     placeholder="e.g. 1,200"
                     className={`w-full border rounded-lg px-4 py-3 text-sm pl-7 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.price ? 'border-destructive' : 'border-border'}`} />
                 </div>
