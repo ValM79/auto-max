@@ -14,7 +14,7 @@ const packages = [
 
 },
 {
-  name: 'Standard',
+  name: "Basic",
   price: '€7',
   priceId: 'price_1TgUNLLQxQzBuaMV0tXw1AVC',
   recommended: true,
