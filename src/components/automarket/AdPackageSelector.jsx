@@ -124,7 +124,7 @@ export default function AdPackageSelector({ onPackageSelected }) {
               disabled={loading === pkg.name}
               className="w-full border border-foreground text-foreground font-semibold py-2.5 rounded-lg hover:bg-secondary transition-colors text-sm disabled:opacity-60">
               
-                {loading === pkg.name ? 'Loading...' : 'Choose'}
+                {loading === pkg.name ? 'Loading...' : 'Select'}
               </button>
             </div>
           </div>
