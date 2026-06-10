@@ -1,5 +1,6 @@
 import React from 'react';
 import { Heart, Camera, Star, ShieldCheck } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const STATUS_BADGE_STYLES = {
   'Newly Listed': 'bg-blue-100 text-blue-700 border-blue-200',
@@ -24,13 +25,18 @@ function StarRating({ rating }) {
  */
 export default function ListingCard({ item, saved, onToggleSave, viewMode = 'list' }) {
   const isGrid = viewMode === 'grid';
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/vehicle/${item.id}`, { state: { car: item } });
+  };
   const thumbnails = item.images ? item.images.slice(1, 4) : [];
   const meta = [item.year, item.engine || item.fuel, item.mileage, item.location].filter(Boolean).join(' · ');
 
   const isTrusted = item.trusted || (item.sellerType && item.sellerType.toLowerCase().includes('trusted'));
 
   return (
-    <div className="bg-white rounded-xl border border-border shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+    <div className="bg-white rounded-xl border border-border shadow-sm overflow-hidden hover:shadow-md transition-shadow cursor-pointer" onClick={handleCardClick}>
 
       {/* Dealer header row */}
       {item.dealer && (
@@ -140,7 +146,7 @@ export default function ListingCard({ item, saved, onToggleSave, viewMode = 'lis
               {item.monthly && <p className="text-xs text-muted-foreground">From €{item.monthly}/mo</p>}
             </div>
             <button
-              onClick={() => onToggleSave(item.id)}
+              onClick={(e) => { e.stopPropagation(); onToggleSave(item.id); }}
               className={`p-2 rounded-full border transition-colors flex-shrink-0 ${saved ? 'border-destructive text-destructive' : 'border-border text-muted-foreground hover:text-destructive hover:border-destructive'}`}>
               <Heart className={`w-5 h-5 ${saved ? 'fill-destructive' : ''}`} />
             </button>
