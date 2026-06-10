@@ -615,7 +615,7 @@ export default function PlaceAd() {
                   <input
                     type="text"
                     value={form.mileage}
-                    onChange={set('mileage')}
+                    onChange={(e) => setForm(f => ({ ...f, mileage: e.target.value.replace(/[^0-9,]/g, '') }))}
                     placeholder="e.g. 12,000"
                     className="flex-1 border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
                   
@@ -870,7 +870,7 @@ export default function PlaceAd() {
                   <input
                     type="text"
                     value={form.price}
-                    onChange={(e) => { set('price')(e); setFormErrors((err) => ({ ...err, price: undefined })); }}
+                    onChange={(e) => { setForm(f => ({ ...f, price: e.target.value.replace(/[^0-9,]/g, '') })); setFormErrors((err) => ({ ...err, price: undefined })); }}
                     placeholder="e.g. 1,200"
                     className={`w-full border rounded-lg px-4 py-3 text-sm pl-7 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.price ? 'border-destructive' : 'border-border'}`} />
                 </div>
@@ -906,7 +906,7 @@ export default function PlaceAd() {
                 <label className="block text-sm font-medium text-foreground mb-1.5">Phone <span className="text-destructive">*</span></label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <input type="tel" value={form.phone} onChange={(e) => { set('phone')(e); setFormErrors((err) => ({ ...err, phone: undefined })); }} placeholder="e.g. 086 123 4567"
+                  <input type="tel" value={form.phone} onChange={(e) => { setForm(f => ({ ...f, phone: e.target.value.replace(/[^0-9 +\-()]/g, '') })); setFormErrors((err) => ({ ...err, phone: undefined })); }} placeholder="e.g. 086 123 4567"
                   className={`w-full border rounded-lg px-4 py-3 text-sm pl-9 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.phone ? 'border-destructive' : 'border-border'}`} />
                 </div>
                 {formErrors.phone && <p className="text-xs text-destructive mt-1 flex items-center gap-1"><span>⚠</span>{formErrors.phone}</p>}
