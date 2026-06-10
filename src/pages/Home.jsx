@@ -4,7 +4,6 @@ import HeroSearch from '../components/automarket/HeroSearch';
 import BrowseByCategory from '../components/automarket/BrowseByCategory';
 import Footer from '../components/automarket/Footer';
 import CarListings from '../components/automarket/CarListings';
-import FeaturedVehicles from '../components/automarket/FeaturedVehicles';
 
 export default function Home() {
   return (
@@ -12,7 +11,6 @@ export default function Home() {
       <Navbar />
       <HeroSearch />
       <BrowseByCategory />
-      <FeaturedVehicles />
       <CarListings />
 
       <Footer />
