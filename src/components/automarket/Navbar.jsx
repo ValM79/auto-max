@@ -5,6 +5,7 @@ import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
 import { Link } from 'react-router-dom';
 import PlaceAdModal from './PlaceAdModal';
+import SearchDropdown from './SearchDropdown';
 import { useNavigate } from 'react-router-dom';
 
 const userMenuItems = [
@@ -50,10 +51,12 @@ export default function Navbar() {
   const [showBuyMenu, setShowBuyMenu] = useState(false);
   const [showSellMenu, setShowSellMenu] = useState(false);
   const [showDealersMenu, setShowDealersMenu] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const menuRef = useRef(null);
   const buyMenuRef = useRef(null);
   const sellMenuRef = useRef(null);
   const dealersMenuRef = useRef(null);
+  const searchRef = useRef(null);
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -70,6 +73,9 @@ export default function Navbar() {
       }
       if (dealersMenuRef.current && !dealersMenuRef.current.contains(e.target)) {
         setShowDealersMenu(false);
+      }
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setShowSearch(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -216,9 +222,15 @@ export default function Navbar() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-10">
-            <button className="hidden sm:flex items-center text-foreground hover:text-primary transition-colors">
-              <Search className="w-5 h-5" />
-            </button>
+            <div className="relative hidden sm:block" ref={searchRef}>
+              <button
+                onClick={() => setShowSearch(v => !v)}
+                className={`flex items-center text-foreground hover:text-primary transition-colors ${showSearch ? 'text-primary' : ''}`}
+              >
+                <Search className="w-5 h-5" />
+              </button>
+              {showSearch && <SearchDropdown onClose={() => setShowSearch(false)} />}
+            </div>
 
             <Button
               onClick={handlePlaceAd}
