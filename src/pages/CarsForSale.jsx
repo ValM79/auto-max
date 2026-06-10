@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useFavorites } from '../hooks/useFavorites';
 import PromoBanner from '../components/automarket/PromoBanner';
 import { Search, ChevronDown, ArrowLeft } from 'lucide-react';
@@ -123,7 +123,11 @@ const carListings = [
 
 
 export default function CarsForSale() {
-  const [search, setSearch] = useState('');
+  const location = useLocation();
+  const [search, setSearch] = useState(() => {
+    const params = new URLSearchParams(location.search);
+    return params.get('q') || '';
+  });
   const [activeFilters, setActiveFilters] = useState({ vehicles: [] });
   const { isFavorite, toggleFavorite } = useFavorites();
   const [compareCars, setCompareCars] = useState([]);

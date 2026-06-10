@@ -87,20 +87,21 @@ export default function SearchDropdown({ onClose }) {
     setSuggestions(scored);
   }, [query]);
 
-  const handleGo = (route, label) => {
+  const handleGo = (route, label, searchQuery) => {
     if (label) saveToHistory({ label, route });
-    navigate(route);
+    const destination = searchQuery ? `${route}?q=${encodeURIComponent(searchQuery)}` : route;
+    navigate(destination);
     onClose();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (suggestions.length > 0) {
-      handleGo(suggestions[0].route, suggestions[0].label);
-    } else if (query.trim()) {
+    if (query.trim()) {
       saveToHistory({ label: query.trim(), route: `/cars-for-sale` });
-      navigate(`/cars-for-sale`);
+      navigate(`/cars-for-sale?q=${encodeURIComponent(query.trim())}`);
       onClose();
+    } else if (suggestions.length > 0) {
+      handleGo(suggestions[0].route, suggestions[0].label);
     }
   };
 
@@ -144,8 +145,8 @@ export default function SearchDropdown({ onClose }) {
           {suggestions.map(page => (
             <li key={page.route}>
               <button
-                onClick={() => handleGo(page.route, page.label)}
-                className="w-full flex items-center justify-between px-4 py-2.5 text-sm hover:bg-secondary transition-colors text-left group"
+              onClick={() => handleGo(page.route, page.label, query)}
+              className="w-full flex items-center justify-between px-4 py-2.5 text-sm hover:bg-secondary transition-colors text-left group"
               >
                 <div className="flex items-center gap-2">
                   <Search className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
