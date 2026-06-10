@@ -49,10 +49,13 @@ const packages = [
 
 
 
-export default function AdPackageSelector({ onPackageSelected }) {
+export default function AdPackageSelector({ onPackageSelected, onBeforeCheckout }) {
   const [loading, setLoading] = useState(null);
 
   const handleChoose = async (pkg) => {
+    // Validate form before proceeding
+    if (onBeforeCheckout && !onBeforeCheckout()) return;
+
     // Block checkout if running inside an iframe (app preview)
     if (window.self !== window.top) {
       alert('Checkout is only available from the published app, not the preview.');

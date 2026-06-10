@@ -167,6 +167,29 @@ export default function PlaceAd() {
   const [vehicleError, setVehicleError] = useState('');
   const [editingVehicle, setEditingVehicle] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
+
+  const validateForm = () => {
+    const errors = {};
+    if (!form.subsection) errors.subsection = 'Please select a section';
+    if (!form.registration.trim()) errors.registration = 'This field is required';
+    if (!form.title.trim()) errors.title = 'Please enter a title for your ad';
+    if (!form.description.trim()) errors.description = 'Please enter a description for your ad';
+    if (!form.price.trim()) errors.price = 'Please enter a price for your ad';
+    if (!form.fullName.trim()) errors.fullName = 'Please enter your full name';
+    if (!form.email.trim()) errors.email = 'Please enter your email address';
+    if (!form.phone.trim()) errors.phone = 'Please enter your phone number';
+    if (!form.area) errors.area = 'Please select an area';
+    setFormErrors(errors);
+    if (Object.keys(errors).length > 0) {
+      // Scroll to first error
+      const firstErrorKey = Object.keys(errors)[0];
+      const el = document.getElementById(`field-${firstErrorKey}`);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return false;
+    }
+    return true;
+  };
 
   const set = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
   const toggle = (field) => () => setForm((f) => ({ ...f, [field]: !f[field] }));
@@ -385,7 +408,7 @@ export default function PlaceAd() {
 
 
                   {/* Select Section */}
-                  <div>
+                  <div id="field-subsection">
                     <label className="block text-sm font-medium text-foreground mb-1.5">Select Section</label>
                     <div className="relative">
                       <select
@@ -399,14 +422,16 @@ export default function PlaceAd() {
                           subsection: val,
                           section: match ? match.section : val
                         }));
+                        setFormErrors((e) => ({ ...e, subsection: undefined }));
                       }}
-                      className="w-full appearance-none border border-border rounded-lg px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-9">
-                      
+                      className={`w-full appearance-none border rounded-lg px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-9 ${formErrors.subsection ? 'border-destructive' : 'border-border'}`}>
+
                         <option value="">Select a section...</option>
                         {browseCategories.map((cat) => <option key={cat} value={cat}>{cat}</option>)}
                       </select>
                       <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                     </div>
+                    {formErrors.subsection && <p className="text-xs text-destructive mt-1 flex items-center gap-1"><span>⚠</span>{formErrors.subsection}</p>}
                   </div>
 
                   {/* Bikes & Bicycles Subsection */}
@@ -560,9 +585,9 @@ export default function PlaceAd() {
                     <input
                       type="text"
                       value={form.registration}
-                      onChange={set('registration')}
+                      onChange={(e) => { set('registration')(e); setFormErrors((err) => ({ ...err, registration: undefined })); }}
                       placeholder="e.g 201D0123"
-                      className="w-full border border-border rounded-lg px-4 py-3 text-sm pl-14 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
+                      className={`w-full border rounded-lg px-4 py-3 text-sm pl-14 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.registration ? 'border-destructive' : 'border-border'}`} />
                     
                   </div>
                   <button
@@ -574,10 +599,11 @@ export default function PlaceAd() {
                     {loadingVehicle ? 'Finding...' : 'Find'}
                   </button>
                 </div>
-                <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
+                <div id="field-registration" className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
                   <Info className="w-4 h-4" />
                   Registration not displayed on ad
                 </div>
+                {formErrors.registration && <p className="text-xs text-destructive mt-1 flex items-center gap-1"><span>⚠</span>{formErrors.registration}</p>}
                 {vehicleError &&
                 <div className="mt-2 text-xs text-destructive">{vehicleError}</div>
                 }
@@ -813,43 +839,42 @@ export default function PlaceAd() {
           {/* Section 4: Ad Details */}
           <Section title="Ad Details" icon={<FileText className="w-5 h-5" />}>
             <div className="flex flex-col gap-4">
-              <div>
+              <div id="field-title">
                 <label className="block text-sm font-medium text-foreground mb-1.5">Ad Title <span className="text-destructive">*</span></label>
                 <input
                   type="text"
                   value={form.title}
-                  onChange={set('title')}
+                  onChange={(e) => { set('title')(e); setFormErrors((err) => ({ ...err, title: undefined })); }}
                   placeholder="Insert your ad title"
-                  className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
-                
-                <p className="text-xs text-muted-foreground mt-1">Your ad title will be shown in search results</p>
+                  className={`w-full border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.title ? 'border-destructive' : 'border-border'}`} />
+                {formErrors.title ? <p className="text-xs text-destructive mt-1 flex items-center gap-1"><span>⚠</span>{formErrors.title}</p> : <p className="text-xs text-muted-foreground mt-1">Your ad title will be shown in search results</p>}
               </div>
 
-              <div>
+              <div id="field-description">
                 <label className="block text-sm font-medium text-foreground mb-1.5">Description <span className="text-destructive">*</span></label>
                 <textarea
                   value={form.description}
-                  onChange={set('description')}
+                  onChange={(e) => { set('description')(e); setFormErrors((err) => ({ ...err, description: undefined })); }}
                   maxLength={2000}
                   rows={5}
                   placeholder="Tell us about your ad. Make sure to give us as much information as possible."
-                  className="w-full border border-border rounded-lg px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
-                
+                  className={`w-full border rounded-lg px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.description ? 'border-destructive' : 'border-border'}`} />
+                {formErrors.description && <p className="text-xs text-destructive flex items-center gap-1"><span>⚠</span>{formErrors.description}</p>}
                 <p className="text-xs text-muted-foreground text-right">{form.description.length} / 2000</p>
               </div>
 
-              <div>
+              <div id="field-price">
                 <label className="block text-sm font-medium text-foreground mb-1.5">Price <span className="text-destructive">*</span></label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground font-medium text-sm">€</span>
                   <input
                     type="text"
                     value={form.price}
-                    onChange={set('price')}
+                    onChange={(e) => { set('price')(e); setFormErrors((err) => ({ ...err, price: undefined })); }}
                     placeholder="e.g. 1,200"
-                    className="w-full border border-border rounded-lg px-4 py-3 text-sm pl-7 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
-                  
+                    className={`w-full border rounded-lg px-4 py-3 text-sm pl-7 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.price ? 'border-destructive' : 'border-border'}`} />
                 </div>
+                {formErrors.price && <p className="text-xs text-destructive mt-1 flex items-center gap-1"><span>⚠</span>{formErrors.price}</p>}
               </div>
             </div>
           </Section>
@@ -857,31 +882,34 @@ export default function PlaceAd() {
           {/* Section 5: Contact Details */}
           <Section title="Contact Details" icon={<User className="w-5 h-5" />}>
             <div className="flex flex-col gap-4">
-              <div>
+              <div id="field-fullName">
                 <label className="block text-sm font-medium text-foreground mb-1.5">Full Name <span className="text-destructive">*</span></label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <input type="text" value={form.fullName} onChange={set('fullName')} placeholder="Your full name"
-                  className="w-full border border-border rounded-lg px-4 py-3 text-sm pl-9 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
+                  <input type="text" value={form.fullName} onChange={(e) => { set('fullName')(e); setFormErrors((err) => ({ ...err, fullName: undefined })); }} placeholder="Your full name"
+                  className={`w-full border rounded-lg px-4 py-3 text-sm pl-9 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.fullName ? 'border-destructive' : 'border-border'}`} />
                 </div>
+                {formErrors.fullName && <p className="text-xs text-destructive mt-1 flex items-center gap-1"><span>⚠</span>{formErrors.fullName}</p>}
               </div>
 
-              <div>
+              <div id="field-email">
                 <label className="block text-sm font-medium text-foreground mb-1.5">E-mail <span className="text-destructive">*</span></label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <input type="email" value={form.email} onChange={set('email')} placeholder="you@example.com"
-                  className="w-full border border-border rounded-lg px-4 py-3 text-sm pl-9 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
+                  <input type="email" value={form.email} onChange={(e) => { set('email')(e); setFormErrors((err) => ({ ...err, email: undefined })); }} placeholder="you@example.com"
+                  className={`w-full border rounded-lg px-4 py-3 text-sm pl-9 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.email ? 'border-destructive' : 'border-border'}`} />
                 </div>
+                {formErrors.email && <p className="text-xs text-destructive mt-1 flex items-center gap-1"><span>⚠</span>{formErrors.email}</p>}
               </div>
 
-              <div>
+              <div id="field-phone">
                 <label className="block text-sm font-medium text-foreground mb-1.5">Phone <span className="text-destructive">*</span></label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <input type="tel" value={form.phone} onChange={set('phone')} placeholder="e.g. 086 123 4567"
-                  className="w-full border border-border rounded-lg px-4 py-3 text-sm pl-9 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
+                  <input type="tel" value={form.phone} onChange={(e) => { set('phone')(e); setFormErrors((err) => ({ ...err, phone: undefined })); }} placeholder="e.g. 086 123 4567"
+                  className={`w-full border rounded-lg px-4 py-3 text-sm pl-9 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary ${formErrors.phone ? 'border-destructive' : 'border-border'}`} />
                 </div>
+                {formErrors.phone && <p className="text-xs text-destructive mt-1 flex items-center gap-1"><span>⚠</span>{formErrors.phone}</p>}
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -895,16 +923,17 @@ export default function PlaceAd() {
                     <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                   </div>
                 </div>
-                <div>
+                <div id="field-area">
                   <label className="block text-sm font-medium text-foreground mb-1.5">Area <span className="text-destructive">*</span></label>
                   <div className="relative">
-                    <select value={form.area} onChange={set('area')}
-                    className="w-full appearance-none border border-border rounded-lg px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-9">
+                    <select value={form.area} onChange={(e) => { set('area')(e); setFormErrors((err) => ({ ...err, area: undefined })); }}
+                    className={`w-full appearance-none border rounded-lg px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary pr-9 ${formErrors.area ? 'border-destructive' : 'border-border'}`}>
                       <option value="">Select area...</option>
                       {areas.map((a) => <option key={a}>{a}</option>)}
                     </select>
                     <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                   </div>
+                  {formErrors.area && <p className="text-xs text-destructive mt-1 flex items-center gap-1"><span>⚠</span>{formErrors.area}</p>}
                 </div>
               </div>
 
@@ -941,7 +970,10 @@ export default function PlaceAd() {
           </Section>
 
           {/* Ad Package / Payment */}
-          <AdPackageSelector onPackageSelected={(pkg) => setPackageLimits({ listingDays: pkg.listingDays || 72, maxPhotos: pkg.maxPhotos || 20 })} />
+          <AdPackageSelector
+            onPackageSelected={(pkg) => setPackageLimits({ listingDays: pkg.listingDays || 72, maxPhotos: pkg.maxPhotos || 20 })}
+            onBeforeCheckout={validateForm}
+          />
 
           {/* Actions */}
           <div className="flex flex-col gap-3 pb-10">
