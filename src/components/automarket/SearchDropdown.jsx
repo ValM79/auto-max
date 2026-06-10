@@ -116,26 +116,29 @@ export default function SearchDropdown({ onClose }) {
   };
 
   return (
-    <div className="absolute right-0 top-full mt-2 w-80 bg-white border border-border rounded-2xl shadow-2xl z-50 overflow-hidden">
+    <div className="absolute right-0 top-full mt-2 w-80 bg-white border border-border rounded-2xl shadow-2xl z-50">
       {/* Search input */}
-      <form onSubmit={handleSubmit} className="flex items-center gap-2 px-4 py-3 border-b border-border">
-        <Search className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+      <form onSubmit={handleSubmit} className="flex items-center gap-2 px-3 py-2.5">
         <input
           ref={inputRef}
           type="text"
           value={query}
           onChange={e => setQuery(e.target.value)}
-          placeholder='Search e.g. "kids bike", "van"...'
+          placeholder="Start typing to search"
           className="flex-1 text-sm outline-none text-foreground placeholder:text-muted-foreground bg-transparent"
         />
         {query && (
-          <button type="button" onClick={() => setQuery('')} className="text-muted-foreground hover:text-foreground transition-colors">
+          <button type="button" onClick={() => setQuery('')} className="text-muted-foreground hover:text-foreground transition-colors mr-1">
             <X className="w-4 h-4" />
           </button>
         )}
+        <button type="submit" className="bg-accent hover:bg-accent/90 text-white p-2 rounded-lg transition-colors flex-shrink-0">
+          <Search className="w-4 h-4" />
+        </button>
       </form>
 
       {/* Results */}
+      {(suggestions.length > 0 || query.trim() || history.length > 0) && <div className="border-t border-border" />}
       {suggestions.length > 0 ? (
         <ul className="py-1">
           {suggestions.map(page => (
@@ -164,56 +167,35 @@ export default function SearchDropdown({ onClose }) {
             Browse all listings →
           </button>
         </div>
-      ) : (
-        <div>
-          {/* Search history */}
-          {history.length > 0 && (
-            <div className="px-4 pt-3 pb-1">
-              <div className="flex items-center justify-between mb-1.5">
-                <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wide">Recent Searches</p>
-                <button onClick={handleClearHistory} className="text-xs text-muted-foreground hover:text-destructive flex items-center gap-1 transition-colors">
-                  <Trash2 className="w-3 h-3" /> Clear all
-                </button>
-              </div>
-              <ul>
-                {history.map(h => (
-                  <li key={h.label} className="group flex items-center justify-between hover:bg-secondary rounded-lg px-1 transition-colors">
-                    <button
-                      onClick={() => handleGo(h.route, h.label)}
-                      className="flex items-center gap-2 flex-1 py-2 text-sm text-foreground text-left"
-                    >
-                      <Clock className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
-                      {h.label}
-                    </button>
-                    <button
-                      onClick={() => handleRemoveHistoryItem(h.label)}
-                      className="opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-destructive transition-all p-1"
-                    >
-                      <X className="w-3 h-3" />
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Suggested searches */}
-          <div className={`px-4 pt-2 pb-3 ${history.length > 0 ? 'border-t border-border mt-1' : ''}`}>
-            <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wide mb-2">Suggested</p>
-            <div className="flex flex-wrap gap-1.5">
-              {['Kawasaki Ninja 400', 'Toyota Corolla', 'BMW 3 Series', 'Ford Transit', 'Electric Cars', 'VW Golf'].map(tag => (
-                <button
-                  key={tag}
-                  onClick={() => setQuery(tag)}
-                  className="text-xs bg-secondary text-foreground px-2.5 py-1 rounded-full hover:bg-border transition-colors"
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
+      ) : history.length > 0 ? (
+        <div className="px-4 pt-3 pb-2">
+          <div className="flex items-center justify-between mb-1.5">
+            <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wide">Recent Searches</p>
+            <button onClick={handleClearHistory} className="text-xs text-muted-foreground hover:text-destructive flex items-center gap-1 transition-colors">
+              <Trash2 className="w-3 h-3" /> Clear all
+            </button>
           </div>
+          <ul>
+            {history.map(h => (
+              <li key={h.label} className="group flex items-center justify-between hover:bg-secondary rounded-lg px-1 transition-colors">
+                <button
+                  onClick={() => handleGo(h.route, h.label)}
+                  className="flex items-center gap-2 flex-1 py-2 text-sm text-foreground text-left"
+                >
+                  <Clock className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
+                  {h.label}
+                </button>
+                <button
+                  onClick={() => handleRemoveHistoryItem(h.label)}
+                  className="opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-destructive transition-all p-1"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
