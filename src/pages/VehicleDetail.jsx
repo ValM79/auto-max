@@ -6,6 +6,7 @@ import Footer from '../components/automarket/Footer';
 import { useFavorites } from '../hooks/useFavorites';
 import SellerReviews from '../components/automarket/SellerReviews';
 import VehicleStats from '../components/automarket/VehicleStats';
+import LocationMap from '../components/automarket/LocationMap';
 
 function StarRating({ rating }) {
   return (
@@ -129,6 +130,9 @@ export default function VehicleDetail() {
                 </div>
               </div>
             </div>
+            {/* Location Map */}
+            <LocationMap location={car.location} />
+
             {/* Market Insights */}
             <VehicleStats car={car} />
 
