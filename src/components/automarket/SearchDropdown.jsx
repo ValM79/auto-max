@@ -132,7 +132,7 @@ export default function SearchDropdown({ onClose }) {
             <X className="w-4 h-4" />
           </button>
         )}
-        <button type="submit" className="bg-accent hover:bg-accent/90 text-white p-2 rounded-lg transition-colors flex-shrink-0">
+        <button type="submit" className="text-foreground hover:text-primary transition-colors flex-shrink-0">
           <Search className="w-4 h-4" />
         </button>
       </form>
