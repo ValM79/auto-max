@@ -7,133 +7,100 @@ const packages = [
   name: "Basic",
   price: '€5',
   priceId: 'price_1TgseALQxQzBuaMVeshJckr1',
-  adViews: 1,
   listingDays: 60,
   maxPhotos: 12,
+  bumps: 0,
+  bumpIntervalWeeks: null,
+  spotlightDays: 0,
   features: [
   '60 day listing',
   'Up to 12 photos']
-
 },
 {
   name: "Standard",
   price: '€7',
   priceId: 'price_1TgseALQxQzBuaMV0BaeiSxb',
-  recommended: true,
-  adViews: 2,
   listingDays: 72,
   maxPhotos: 12,
+  bumps: 2,
+  bumpIntervalWeeks: 4,
+  spotlightDays: 0,
   features: [
   '72 day listing',
   'Up to 12 photos',
   'Ad performance analytics',
-  '4x bumps to the top',
-  { text: '(1 per week)', note: true }]
-
+  '2x bumps to the top',
+  { text: '(1 every 4 weeks automatically)', note: true }]
 },
 {
   name: 'Premium',
   price: '€12',
   priceId: 'price_1TgseALQxQzBuaMV70sBeWh4',
-  adViews: 3,
   listingDays: 72,
   maxPhotos: 12,
+  bumps: 4,
+  bumpIntervalWeeks: 2,
+  spotlightDays: 5,
   features: [
   '72 day listing',
   'Up to 12 photos',
   'Ad performance analytics',
-  '8x bumps to the top',
-  { text: '(2 per week)', note: true },
+  '4x bumps to the top',
+  { text: '(1 every 2 weeks automatically)', note: true },
   'Spotlight',
   { text: '(5 days in the top spot)', note: true }]
-
 }];
 
 
 
 
 
-export default function AdPackageSelector({ onPackageSelected, onBeforeCheckout }) {
-  const [loading, setLoading] = useState(null);
+export { packages };
 
-  const handleChoose = async (pkg) => {
-    // Validate form before proceeding
-    if (onBeforeCheckout && !onBeforeCheckout()) return;
-
-    // Block checkout if running inside an iframe (app preview)
-    if (window.self !== window.top) {
-      alert('Checkout is only available from the published app, not the preview.');
-      return;
-    }
-
-    setLoading(pkg.name);
-    try {
-      if (onPackageSelected) {
-        onPackageSelected({ name: pkg.name, listingDays: pkg.listingDays, maxPhotos: pkg.maxPhotos });
-      }
-      const res = await base44.functions.invoke('createCheckoutSession', {
-        priceId: pkg.priceId,
-        packageName: pkg.name,
-        listingDays: pkg.listingDays,
-        maxPhotos: pkg.maxPhotos
-      });
-      if (res.data.url) {
-        window.location.href = res.data.url;
-      } else {
-        alert('Could not start checkout. Please try again.');
-      }
-    } catch (e) {
-      alert('Could not start checkout. Please try again.');
-    } finally {
-      setLoading(null);
-    }
-  };
-
+export default function AdPackageSelector({ selectedPackage, onPackageSelected }) {
   return (
     <div className="bg-white border border-border rounded-2xl p-6 shadow-sm">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-bold text-foreground">Select  your ad option</h2>
+        <h2 className="text-lg font-bold text-foreground">Select your ad option</h2>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {packages.map((pkg) =>
-        <div
-          key={pkg.name}
-          className="relative border border-border rounded-xl flex flex-col overflow-hidden">
-          
-  
+        {packages.map((pkg) => {
+          const isSelected = selectedPackage?.name === pkg.name;
+          return (
+            <div
+              key={pkg.name}
+              onClick={() => onPackageSelected(pkg)}
+              className={`relative border-2 rounded-xl flex flex-col overflow-hidden cursor-pointer transition-all ${isSelected ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/40'}`}>
+              <div className="p-5 flex flex-col flex-1">
+                <p className="text-sm text-foreground font-medium mb-1">{pkg.name}</p>
+                <p className="text-3xl font-bold text-foreground mb-4">{pkg.price}</p>
 
-            <div className="p-5 flex flex-col flex-1">
-              <p className="text-sm text-foreground font-medium mb-1">{pkg.name}</p>
-              <p className="text-3xl font-bold text-foreground mb-4">{pkg.price}</p>
+                <ul className="flex flex-col gap-1.5 flex-1 mb-6">
+                  {pkg.features.map((f, i) => {
+                    if (typeof f === 'object' && f.note) {
+                      return <li key={i} className="text-xs text-muted-foreground ml-5 -mt-1">{f.text}</li>;
+                    }
+                    return (
+                      <li key={i} className="flex items-center gap-2 text-sm text-foreground">
+                        <span className="w-1.5 h-1.5 rounded-full bg-foreground flex-shrink-0 inline-block" />
+                        {f}
+                      </li>
+                    );
+                  })}
+                </ul>
 
-              <ul className="flex flex-col gap-1.5 flex-1 mb-6">
-                {pkg.features.map((f, i) => {
-                if (typeof f === 'object' && f.note) {
-                  return (
-                    <li key={i} className="text-xs text-muted-foreground ml-5 -mt-1">
-                        {f.text}
-                      </li>);
-                }
-                return (
-                  <li key={i} className="flex items-center gap-2 text-sm text-foreground">
-                      <span className="w-1.5 h-1.5 rounded-full bg-foreground flex-shrink-0 inline-block" />
-                      {f}
-                    </li>);
-              })}
-              </ul>
-
-              <button
-              onClick={() => handleChoose(pkg)}
-              disabled={loading === pkg.name}
-              className="w-full border border-foreground text-foreground font-semibold py-2.5 rounded-lg hover:bg-secondary transition-colors text-sm disabled:opacity-60">
-              
-                {loading === pkg.name ? 'Loading...' : 'Select'}
-              </button>
+                <div className={`w-full text-center font-semibold py-2.5 rounded-lg text-sm transition-colors ${isSelected ? 'bg-primary text-white' : 'border border-foreground text-foreground'}`}>
+                  {isSelected ? '✓ Selected' : 'Select'}
+                </div>
+              </div>
             </div>
-          </div>
-        )}
+          );
+        })}
       </div>
-    </div>);
-
+      {!selectedPackage && (
+        <p className="text-xs text-muted-foreground text-center mt-3">Select a package above, then click "Sell Now" to proceed to payment.</p>
+      )}
+    </div>
+  );
 }

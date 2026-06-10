@@ -4,7 +4,7 @@ import { ArrowLeft, Upload, X, Youtube, User, Mail, Phone, MapPin, Tag, FileText
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import ImageViewer from '../components/automarket/ImageViewer';
-import AdPackageSelector from '../components/automarket/AdPackageSelector';
+import AdPackageSelector, { packages } from '../components/automarket/AdPackageSelector';
 import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
 
@@ -168,6 +168,8 @@ export default function PlaceAd() {
   const [editingVehicle, setEditingVehicle] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [formErrors, setFormErrors] = useState({});
+  const [selectedPackage, setSelectedPackage] = useState(null);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
 
   const validateForm = () => {
     const errors = {};
@@ -971,8 +973,11 @@ export default function PlaceAd() {
 
           {/* Ad Package / Payment */}
           <AdPackageSelector
-            onPackageSelected={(pkg) => setPackageLimits({ listingDays: pkg.listingDays || 72, maxPhotos: pkg.maxPhotos || 20 })}
-            onBeforeCheckout={validateForm}
+            selectedPackage={selectedPackage}
+            onPackageSelected={(pkg) => {
+              setSelectedPackage(pkg);
+              setPackageLimits({ listingDays: pkg.listingDays, maxPhotos: pkg.maxPhotos });
+            }}
           />
 
           {/* Actions */}
@@ -980,8 +985,43 @@ export default function PlaceAd() {
             <button className="w-full bg-primary text-white font-bold py-4 rounded-xl text-base hover:bg-primary/90 transition-colors">
               Preview Ad
             </button>
-            <button className="w-full bg-foreground text-white font-bold py-4 rounded-xl text-base hover:opacity-90 transition-opacity">
-              Sell Now
+            <button
+              onClick={async () => {
+                if (!validateForm()) return;
+                if (!selectedPackage) {
+                  alert('Please select an ad package before proceeding.');
+                  document.querySelector('[class*="AdPackageSelector"], .bg-white.border.border-border.rounded-2xl')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  return;
+                }
+                if (window.self !== window.top) {
+                  alert('Checkout is only available from the published app, not the preview.');
+                  return;
+                }
+                setCheckoutLoading(true);
+                try {
+                  const res = await base44.functions.invoke('createCheckoutSession', {
+                    priceId: selectedPackage.priceId,
+                    packageName: selectedPackage.name,
+                    listingDays: selectedPackage.listingDays,
+                    maxPhotos: selectedPackage.maxPhotos,
+                    bumps: selectedPackage.bumps,
+                    bumpIntervalWeeks: selectedPackage.bumpIntervalWeeks,
+                    spotlightDays: selectedPackage.spotlightDays,
+                  });
+                  if (res.data.url) {
+                    window.location.href = res.data.url;
+                  } else {
+                    alert('Could not start checkout. Please try again.');
+                  }
+                } catch (e) {
+                  alert('Could not start checkout. Please try again.');
+                } finally {
+                  setCheckoutLoading(false);
+                }
+              }}
+              disabled={checkoutLoading}
+              className="w-full bg-foreground text-white font-bold py-4 rounded-xl text-base hover:opacity-90 transition-opacity disabled:opacity-60">
+              {checkoutLoading ? 'Redirecting to payment...' : 'Sell Now'}
             </button>
             <p className="text-xs text-muted-foreground text-center">
               By clicking "Sell Now", you agree to the AutoMarket{' '}
