@@ -7,6 +7,7 @@ import { useFavorites } from '../hooks/useFavorites';
 import SellerReviews from '../components/automarket/SellerReviews';
 import VehicleStats from '../components/automarket/VehicleStats';
 import LocationMap from '../components/automarket/LocationMap';
+import PriceAlertBox from '../components/automarket/PriceAlertBox';
 
 function StarRating({ rating }) {
   return (
@@ -222,6 +223,7 @@ export default function VehicleDetail() {
                 </form>
               )}
             </div>
+            <PriceAlertBox car={car} />
           </div>
         </div>
       </div>
