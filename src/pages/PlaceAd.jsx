@@ -149,7 +149,7 @@ export default function PlaceAd() {
   // Read package limits from URL params (set after Stripe redirect)
   const urlParams = new URLSearchParams(window.location.search);
   const urlListingDays = parseInt(urlParams.get('listingDays') || '72', 10);
-  const urlMaxPhotos = parseInt(urlParams.get('maxPhotos') || '20', 10);
+  const urlMaxPhotos = parseInt(urlParams.get('maxPhotos') || '12', 10);
   const [packageLimits, setPackageLimits] = useState({ listingDays: urlListingDays, maxPhotos: urlMaxPhotos });
 
   const [form, setForm] = useState({
@@ -483,7 +483,7 @@ export default function PlaceAd() {
             {/* Photo grid */}
             {photos.length > 0 &&
             <div className="mb-4">
-                <div className="grid grid-cols-5 gap-3 items-start">
+                <div className="grid grid-cols-4 gap-3 items-start">
                   {photos.map((p, i) =>
                 <button
                   key={i}
