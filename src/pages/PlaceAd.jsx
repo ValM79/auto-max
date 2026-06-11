@@ -345,13 +345,13 @@ export default function PlaceAd() {
       <Navbar />
 
       {showPreview &&
-        <AdPreview
-          form={form}
-          photos={photos}
-          selectedPackage={selectedPackage}
-          onClose={() => setShowPreview(false)}
-          onBack={() => setShowPreview(false)}
-        />
+      <AdPreview
+        form={form}
+        photos={photos}
+        selectedPackage={selectedPackage}
+        onClose={() => setShowPreview(false)}
+        onBack={() => setShowPreview(false)} />
+
       }
 
       {viewerIndex !== null &&
@@ -376,7 +376,7 @@ export default function PlaceAd() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="font-bold text-foreground text-lg">Let's start with the basics</h1>
+            <h1 className="font-bold text-foreground text-lg">Complete your ad.</h1>
           </div>
           <button onClick={handleReset} className="text-primary hover:underline flex items-center gap-1 text-base">
             Reset Form
