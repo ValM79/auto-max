@@ -28,7 +28,6 @@ const packages = [
   features: [
   '72 day listing',
   'Up to 12 photos',
-  'Ad performance analytics',
   '2x bumps to the top',
   { text: '(1 every 4 weeks automatically)', note: true }]
 },

@@ -5,6 +5,7 @@ import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import ImageViewer from '../components/automarket/ImageViewer';
 import AdPackageSelector, { packages } from '../components/automarket/AdPackageSelector';
+import AdPreview from '../components/automarket/AdPreview';
 import { base44 } from '@/api/base44Client';
 import { useAuth } from '@/lib/AuthContext';
 
@@ -167,6 +168,7 @@ export default function PlaceAd() {
   const [vehicleError, setVehicleError] = useState('');
   const [editingVehicle, setEditingVehicle] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
   const [formErrors, setFormErrors] = useState({});
   const [sellError, setSellError] = useState('');
   const [selectedPackage, setSelectedPackage] = useState(null);
@@ -341,6 +343,16 @@ export default function PlaceAd() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+
+      {showPreview &&
+        <AdPreview
+          form={form}
+          photos={photos}
+          selectedPackage={selectedPackage}
+          onClose={() => setShowPreview(false)}
+          onBack={() => setShowPreview(false)}
+        />
+      }
 
       {viewerIndex !== null &&
       <ImageViewer
@@ -986,7 +998,9 @@ export default function PlaceAd() {
 
           {/* Actions */}
           <div className="flex flex-col gap-3 pb-10">
-            <button className="w-full bg-primary text-white font-bold py-4 rounded-xl text-base hover:bg-primary/90 transition-colors">
+            <button
+              onClick={() => setShowPreview(true)}
+              className="w-full bg-primary text-white font-bold py-4 rounded-xl text-base hover:bg-primary/90 transition-colors">
               Preview Ad
             </button>
             {sellError &&
