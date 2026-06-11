@@ -34,19 +34,19 @@ const packages = [
 },
 {
   name: 'Premium',
-  price: '€12',
-  priceId: 'price_1TgseALQxQzBuaMV70sBeWh4',
-  listingDays: 72,
+  price: '€15',
+  priceId: 'price_1Th4JaLQxQzBuaMVUlbbybA3',
+  listingDays: 90,
   maxPhotos: 12,
-  bumps: 4,
-  bumpIntervalWeeks: 2,
+  bumps: 3,
+  bumpIntervalWeeks: 3,
   spotlightDays: 5,
   features: [
-  '72 day listing',
+  '90 day listing',
   'Up to 12 photos',
   'Ad performance analytics',
-  '4x bumps to the top',
-  { text: '(1 every 2 weeks automatically)', note: true },
+  '3x bumps to the top',
+  { text: '(1 every 3 weeks automatically)', note: true },
   'Spotlight',
   { text: '(5 days in the top spot)', note: true }]
 }];
