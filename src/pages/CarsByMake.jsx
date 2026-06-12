@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Search, Heart, Camera, ChevronDown, Star, ArrowLeft } from 'lucide-react';
+import { Search, ChevronDown, ArrowLeft } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
 import Footer from '../components/automarket/Footer';
 import FiltersSidebar from '../components/automarket/FiltersSidebar';
+import ListingCard from '../components/automarket/ListingCard';
 import Pagination from '../components/automarket/Pagination';
 
 const ITEMS_PER_PAGE = 10;
@@ -46,16 +47,6 @@ const carsByMake = {
   ],
 };
 
-function StarRating({ rating }) {
-  return (
-    <div className="flex items-center gap-0.5">
-      {[1,2,3,4,5].map(s => (
-        <Star key={s} className={`w-3 h-3 ${s <= Math.round(rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200 fill-gray-200'}`} />
-      ))}
-    </div>
-  );
-}
-
 export default function CarsByMake() {
   const { make } = useParams();
   const [search, setSearch] = useState('');
@@ -77,12 +68,12 @@ export default function CarsByMake() {
   const handlePageChange = (page) => { setCurrentPage(page); window.scrollTo({ top: 0, behavior: 'smooth' }); };
 
   return (
-    <div className="min-h-screen bg-[#f4f5f6]">
+    <div className="min-h-screen bg-background">
       <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 py-4">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-5">
           <button onClick={() => window.history.back()} className="flex items-center gap-1 hover:text-primary transition-colors">
             <ArrowLeft className="w-3.5 h-3.5" /> Back
           </button>
@@ -92,96 +83,59 @@ export default function CarsByMake() {
           <span className="text-foreground font-medium">{makeDisplay}</span>
         </div>
 
-        {/* Title + Search */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">{makeDisplay} Cars For Sale</h1>
-          <div className="relative w-full sm:w-72">
+        {/* Header */}
+        <div className="mb-5">
+          <h1 className="text-2xl font-bold text-foreground mb-3">{makeDisplay} Cars For Sale</h1>
+          <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
               value={search}
-              onChange={e => setSearch(e.target.value)}
+              onChange={e => { setSearch(e.target.value); setCurrentPage(1); }}
               placeholder={`Search ${makeDisplay}`}
-              className="w-full border border-border rounded-lg pl-9 pr-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full bg-secondary/60 rounded-lg pl-9 pr-4 py-3 text-sm focus:outline-none border-0 outline-none"
             />
           </div>
         </div>
 
         <div className="flex gap-6">
           {/* Sidebar Filters */}
-          <aside className="hidden lg:block w-64 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
+          <aside className="hidden lg:block w-80 flex-shrink-0 self-start sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
             <FiltersSidebar />
           </aside>
 
           {/* Listings */}
           <div className="flex-1 min-w-0">
-            {/* Sort bar */}
             <div className="flex items-center justify-between mb-4">
-              <p className="text-sm text-foreground font-medium"><span className="font-bold">{filtered.length}</span> {makeDisplay} cars in Ireland</p>
-              <div className="relative">
-                <select className="appearance-none border border-border rounded-lg px-3 py-1.5 text-sm bg-white pr-8 focus:outline-none">
-                  <option>Sort by: Best match</option>
-                  <option>Price: Low to High</option>
-                  <option>Price: High to Low</option>
-                  <option>Newest First</option>
-                  <option>Lowest Mileage</option>
-                </select>
-                <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
+              <p className="text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">{allFiltered.length.toLocaleString()}</span> {makeDisplay} cars in Ireland
+              </p>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                Sort by: <span className="font-semibold text-foreground">Best match</span>
+                <ChevronDown className="w-4 h-4" />
               </div>
             </div>
 
             <div className="flex flex-col gap-4">
               {filtered.map(car => (
-                <div key={car.id} className="bg-white rounded-xl border border-border shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                  {car.dealerName ? (
-                    <div className="flex items-center gap-3 px-4 py-2 border-b border-border bg-secondary/30">
-                      <img src={car.dealerLogo || 'https://images.unsplash.com/photo-1611566026373-c6c8da0ea861?w=80&q=80'} alt={car.dealerName} className="w-8 h-8 rounded object-cover" />
-                      <span className="text-sm font-semibold text-foreground">{car.dealerName}</span>
-                      {car.trusted && <span className="ml-auto text-xs text-green-700 font-medium flex items-center gap-1"><span className="text-green-600">✓</span> Trusted <StarRating rating={car.sellerRating} /></span>}
-                    </div>
-                  ) : null}
-
-                  <div className="flex flex-col sm:flex-row">
-                    {/* Image */}
-                    <div className="relative sm:w-64 h-48 sm:h-auto flex-shrink-0">
-                      {car.spotlight && (
-                        <span className="absolute top-2 left-2 bg-black/70 text-white text-xs font-semibold px-2 py-0.5 rounded z-10">Spotlight</span>
-                      )}
-                      <img src={car.image} alt={car.title} className="w-full h-full object-cover" />
-                      <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-black/60 text-white text-xs px-2 py-0.5 rounded">
-                        <Camera className="w-3 h-3" /> {car.photos}
-                      </div>
-                    </div>
-
-                    {/* Details */}
-                    <div className="flex-1 p-4 flex flex-col justify-between">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-xs text-muted-foreground">{car.sellerType}</span>
-                          <StarRating rating={car.sellerRating} />
-                          {car.sellerRating}
-                        </div>
-                        <h3 className="text-lg font-bold text-foreground mb-1">{car.title}</h3>
-                        <p className="text-sm text-muted-foreground">
-                          {car.year} · {car.fuel} · {car.mileage} · {car.location}
-                        </p>
-                      </div>
-                      <div className="flex items-end justify-between mt-4">
-                        <div>
-                          <p className="text-2xl font-bold text-foreground">€{car.price.toLocaleString()}</p>
-                          <p className="text-xs text-muted-foreground">From €{car.monthly}/mo</p>
-                        </div>
-                        <button
-                          onClick={() => toggleSave(car.id)}
-                          className={`p-2 rounded-full border transition-colors ${savedIds.includes(car.id) ? 'border-destructive text-destructive' : 'border-border text-muted-foreground hover:text-destructive hover:border-destructive'}`}>
-                          <Heart className={`w-5 h-5 ${savedIds.includes(car.id) ? 'fill-destructive' : ''}`} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <ListingCard
+                  key={car.id}
+                  item={{
+                    ...car,
+                    image: car.image,
+                    images: [],
+                    dealer: car.dealerName,
+                    price: `€${car.price.toLocaleString()}`,
+                    monthly: car.monthly,
+                    engine: car.fuel,
+                  }}
+                  saved={savedIds.includes(car.id)}
+                  onToggleSave={toggleSave}
+                  viewMode="list"
+                />
               ))}
             </div>
+
             <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
           </div>
         </div>
