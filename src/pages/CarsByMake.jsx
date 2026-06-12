@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import Pagination from '../components/automarket/Pagination';
-
-const ITEMS_PER_PAGE = 10;
 import { Link, useParams } from 'react-router-dom';
 import { Search, Heart, Camera, ChevronDown, Star, ArrowLeft } from 'lucide-react';
 import Navbar from '../components/automarket/Navbar';
@@ -60,7 +57,6 @@ export default function CarsByMake() {
   const { make } = useParams();
   const [search, setSearch] = useState('');
   const [savedIds, setSavedIds] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
 
   const makeDisplay = make?.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'Cars';
   const listings = carsByMake[make] || [
@@ -69,12 +65,9 @@ export default function CarsByMake() {
 
   const toggleSave = (id) => setSavedIds(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
 
-  const allFiltered = listings.filter(c =>
+  const filtered = listings.filter(c =>
     !search || c.title.toLowerCase().includes(search.toLowerCase()) || c.location.toLowerCase().includes(search.toLowerCase())
   );
-  const totalPages = Math.ceil(allFiltered.length / ITEMS_PER_PAGE);
-  const filtered = allFiltered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
-  const handlePageChange = (page) => { setCurrentPage(page); window.scrollTo({ top: 0, behavior: 'smooth' }); };
 
   return (
     <div className="min-h-screen bg-[#f4f5f6]">
@@ -182,7 +175,6 @@ export default function CarsByMake() {
                 </div>
               ))}
             </div>
-            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
           </div>
         </div>
       </div>
