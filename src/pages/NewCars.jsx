@@ -236,7 +236,7 @@ export default function NewCars() {
                           dealer: listing.dealer,
                           dealerLogo: listing.dealerLogo,
                           image: listing.images[0],
-                          images: listing.images,
+                          images: [],
                           sellerType: listing.dealerType,
                           sellerRating: listing.dealerRating,
                         }}
