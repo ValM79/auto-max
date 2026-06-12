@@ -80,32 +80,80 @@ const allCategories = sections.flatMap((s) => s.subsections);
 
 // Keyword → browseCategory auto-match map
 const keywordToCategory = {
-  // Cars
-  car: 'Cars', cars: 'Cars', sedan: 'Cars', hatchback: 'Cars', saloon: 'Cars', coupe: 'Cars', suv: 'Cars', estate: 'Cars', convertible: 'Cars', family: 'Cars',
+  // --- Car Makes ---
+  opel: 'Cars', vauxhall: 'Cars', volkswagen: 'Cars', vw: 'Cars', ford: 'Cars', toyota: 'Cars', honda: 'Cars', nissan: 'Cars',
+  hyundai: 'Cars', kia: 'Cars', renault: 'Cars', peugeot: 'Cars', citroen: 'Cars', fiat: 'Cars', seat: 'Cars', skoda: 'Cars',
+  mazda: 'Cars', mitsubishi: 'Cars', subaru: 'Cars', suzuki: 'Cars', dacia: 'Cars', alfa: 'Cars', 'alfa romeo': 'Cars',
+  lancia: 'Cars', chrysler: 'Cars', dodge: 'Cars', jeep: 'Cars', chevrolet: 'Cars', buick: 'Cars', cadillac: 'Cars',
+  lincoln: 'Cars', pontiac: 'Cars', oldsmobile: 'Cars', saab: 'Cars', volvo: 'Cars', bmw: 'Cars', mercedes: 'Cars',
+  audi: 'Cars', porsche: 'Cars', ferrari: 'Cars', lamborghini: 'Cars', maserati: 'Cars', bentley: 'Cars', rolls: 'Cars',
+  'rolls-royce': 'Cars', jaguar: 'Cars', 'land rover': 'Cars', landrover: 'Cars', rover: 'Cars', mini: 'Cars',
+  lexus: 'Cars', infiniti: 'Cars', acura: 'Cars', genesis: 'Cars', tesla: 'Cars', rivian: 'Cars', lucid: 'Cars',
+  polestar: 'Cars', smart: 'Cars', lada: 'Cars', zastava: 'Cars', daewoo: 'Cars', ssangyong: 'Cars', isuzu: 'Cars',
+  // --- Car Types ---
+  car: 'Cars', cars: 'Cars', sedan: 'Cars', hatchback: 'Cars', saloon: 'Cars', coupe: 'Cars', suv: 'Cars', estate: 'Cars',
+  convertible: 'Cars', family: 'Cars', crossover: 'Cars', mpv: 'Cars', people: 'Cars', pickup: 'Trucks',
+  // --- New Cars ---
   new: 'New Cars', 'new car': 'New Cars',
+  // --- Dealership ---
   dealership: 'Cars from Dealerships', dealer: 'Cars from Dealerships',
-  vintage: 'Vintage Cars', classic: 'Vintage Cars', retro: 'Vintage Cars', antique: 'Vintage Cars',
-  modified: 'Modified Cars', tuned: 'Modified Cars', custom: 'Modified Cars',
-  parts: 'Car Parts', 'car part': 'Car Parts', spares: 'Car Parts', spare: 'Car Parts', engine: 'Car Parts', gearbox: 'Car Parts',
+  // --- Vintage / Classic ---
+  vintage: 'Vintage Cars', classic: 'Vintage Cars', retro: 'Vintage Cars', antique: 'Vintage Cars', oldtimer: 'Vintage Cars',
+  // --- Modified ---
+  modified: 'Modified Cars', tuned: 'Modified Cars', custom: 'Modified Cars', lowered: 'Modified Cars', turbo: 'Modified Cars',
+  // --- Car Parts ---
+  parts: 'Car Parts', 'car part': 'Car Parts', spares: 'Car Parts', spare: 'Car Parts',
+  engine: 'Car Parts', gearbox: 'Car Parts', transmission: 'Car Parts', alternator: 'Car Parts',
+  radiator: 'Car Parts', exhaust: 'Car Parts', suspension: 'Car Parts', brakes: 'Car Parts', brake: 'Car Parts',
+  clutch: 'Car Parts', starter: 'Car Parts', battery: 'Car Parts', bumper: 'Car Parts', bonnet: 'Car Parts',
+  door: 'Car Parts', doors: 'Car Parts', axle: 'Car Parts', differential: 'Car Parts', injector: 'Car Parts',
+  turbocharger: 'Car Parts', intercooler: 'Car Parts', camshaft: 'Car Parts', crankshaft: 'Car Parts',
+  headlight: 'Car Parts', headlights: 'Car Parts', taillight: 'Car Parts', mirror: 'Car Parts',
+  windscreen: 'Car Parts', wiper: 'Car Parts', wipers: 'Car Parts', catalytic: 'Car Parts',
+  // --- Car Extras ---
+  tyre: 'Car Extras', tyres: 'Car Extras', tire: 'Car Extras', tires: 'Car Extras', wheels: 'Car Extras', wheel: 'Car Extras',
+  alloys: 'Car Extras', alloy: 'Car Extras', rims: 'Car Extras', rim: 'Car Extras',
   extras: 'Car Extras', accessory: 'Car Extras', accessories: 'Car Extras',
-  rally: 'Rally Cars', racing: 'Rally Cars', race: 'Rally Cars',
-  breaking: 'Breaking & Repairables', repairable: 'Breaking & Repairables', damaged: 'Breaking & Repairables', salvage: 'Breaking & Repairables',
-  // Trucks & Vans
-  truck: 'Trucks', lorry: 'Trucks', lorries: 'Trucks', trucks: 'Trucks',
-  van: 'Commercials', vans: 'Commercials', commercial: 'Commercials', minivan: 'Commercials', transit: 'Commercials', transporter: 'Commercials',
-  trailer: 'Trailers', trailers: 'Trailers', flatbed: 'Trailers',
+  roof: 'Car Extras', 'roof rack': 'Car Extras', towbar: 'Car Extras', stereo: 'Car Extras',
+  dashcam: 'Car Extras', 'dash cam': 'Car Extras', mats: 'Car Extras', mat: 'Car Extras',
+  seat: 'Car Extras', seats: 'Car Extras', cover: 'Car Extras', covers: 'Car Extras',
+  // --- Rally ---
+  rally: 'Rally Cars', racing: 'Rally Cars', race: 'Rally Cars', track: 'Rally Cars',
+  // --- Breaking / Repairables ---
+  breaking: 'Breaking & Repairables', repairable: 'Breaking & Repairables', damaged: 'Breaking & Repairables',
+  salvage: 'Breaking & Repairables', crashed: 'Breaking & Repairables', wrecked: 'Breaking & Repairables',
+  // --- Trucks & Vans ---
+  truck: 'Trucks', lorry: 'Trucks', lorries: 'Trucks', trucks: 'Trucks', hgv: 'Trucks', lgv: 'Trucks',
+  van: 'Commercials', vans: 'Commercials', commercial: 'Commercials', minivan: 'Commercials',
+  transit: 'Commercials', transporter: 'Commercials', sprinter: 'Commercials', vivaro: 'Commercials',
+  ducato: 'Commercials', boxer: 'Commercials', traffic: 'Commercials', trafic: 'Commercials',
+  trailer: 'Trailers', trailers: 'Trailers', flatbed: 'Trailers', semi: 'Trailers',
   camper: 'Campers', campervan: 'Campers', motorhome: 'Campers', rv: 'Campers',
   coach: 'Coaches & Buses', bus: 'Coaches & Buses', buses: 'Coaches & Buses', minibus: 'Coaches & Buses',
-  plant: 'Plant Machinery', machinery: 'Plant Machinery', excavator: 'Plant Machinery', digger: 'Plant Machinery', forklift: 'Plant Machinery', tractor: 'Plant Machinery',
+  plant: 'Plant Machinery', machinery: 'Plant Machinery', excavator: 'Plant Machinery', digger: 'Plant Machinery',
+  forklift: 'Plant Machinery', tractor: 'Plant Machinery', crane: 'Plant Machinery', jcb: 'Plant Machinery',
+  bulldozer: 'Plant Machinery', dumper: 'Plant Machinery', telehandler: 'Plant Machinery',
   caravan: 'Caravans', caravans: 'Caravans',
-  bike: 'Bikes & Bicycles', bicycle: 'Bikes & Bicycles', bicycles: 'Bikes & Bicycles', cycling: 'Bikes & Bicycles', ebike: 'Bikes & Bicycles', pushbike: 'Bikes & Bicycles', mtb: 'Bikes & Bicycles', road: 'Bikes & Bicycles',
-  // Bikes & Boats
+  // --- Bikes & Bicycles ---
+  bike: 'Bikes & Bicycles', bicycle: 'Bikes & Bicycles', bicycles: 'Bikes & Bicycles', cycling: 'Bikes & Bicycles',
+  ebike: 'Bikes & Bicycles', pushbike: 'Bikes & Bicycles', mtb: 'Bikes & Bicycles',
+  // --- Motorbikes ---
   motorbike: 'Motorbikes', motorcycle: 'Motorbikes', motorcycles: 'Motorbikes', motorbikes: 'Motorbikes', moto: 'Motorbikes',
-  scooter: 'Scooters', scooters: 'Scooters', moped: 'Scooters',
+  harley: 'Motorbikes', kawasaki: 'Motorbikes', yamaha: 'Motorbikes', ducati: 'Motorbikes', triumph: 'Motorbikes',
+  ktm: 'Motorbikes', aprilia: 'Motorbikes',
+  // --- Scooters ---
+  scooter: 'Scooters', scooters: 'Scooters', moped: 'Scooters', vespa: 'Scooters',
+  // --- Quads ---
   quad: 'Quads', quads: 'Quads', atv: 'Quads', buggy: 'Quads',
-  boat: 'Boats & Jet Skis', boats: 'Boats & Jet Skis', jetski: 'Boats & Jet Skis', 'jet ski': 'Boats & Jet Skis', yacht: 'Boats & Jet Skis', dinghy: 'Boats & Jet Skis', speedboat: 'Boats & Jet Skis',
-  'boat part': 'Boat Extras', 'boat extra': 'Boat Extras', marine: 'Boat Extras',
-  'motorbike extra': 'Motorbike Extras', helmet: 'Motorbike Extras', leathers: 'Motorbike Extras'
+  // --- Boats ---
+  boat: 'Boats & Jet Skis', boats: 'Boats & Jet Skis', jetski: 'Boats & Jet Skis', 'jet ski': 'Boats & Jet Skis',
+  yacht: 'Boats & Jet Skis', dinghy: 'Boats & Jet Skis', speedboat: 'Boats & Jet Skis', kayak: 'Boats & Jet Skis',
+  canoe: 'Boats & Jet Skis', rib: 'Boats & Jet Skis', catamaran: 'Boats & Jet Skis',
+  // --- Boat Extras ---
+  'boat part': 'Boat Extras', 'boat extra': 'Boat Extras', marine: 'Boat Extras', outboard: 'Boat Extras', anchor: 'Boat Extras',
+  // --- Motorbike Extras ---
+  'motorbike extra': 'Motorbike Extras', helmet: 'Motorbike Extras', leathers: 'Motorbike Extras',
+  gloves: 'Motorbike Extras', visor: 'Motorbike Extras', jacket: 'Motorbike Extras',
 };
 
 const emptyForm = {
